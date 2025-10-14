@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daniel Gutensohn — Portfolio</title>
-    <meta name="description" content="Portfolio of Daniel Gutensohn — Full-Stack Engineer & eLearning Technologist" />
-    <meta name="theme-color" content="#0a0a0a" />
 
-    <!-- ✅ Prevent theme flash before React mounts -->
     <script>
       (() => {
         const saved = localStorage.getItem("theme");
@@ -22,11 +19,10 @@
       })();
     </script>
   </head>
-  <body class="transition-colors duration-500">
+  <body>
     <div id="root"></div>
 
-    <!-- ✅ Correct path for GitHub Pages -->
-    <script type="module" src="./main.tsx"></script>
-    <!-- Previously: /main.tsx (caused 404 on GitHub Pages) -->
+    <!-- ✅ Correct path for GitHub Pages + Vite -->
+    <script type="module" src="/dg-portfolio/src/main.tsx"></script>
   </body>
 </html>
