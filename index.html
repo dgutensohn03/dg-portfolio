@@ -2,23 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daniel Gutensohn — Portfolio</title>
 
-    <!-- Prevent theme flash before React mounts -->
     <script>
       (() => {
         const saved = localStorage.getItem("theme");
-        const prefersDark =
-          window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         if (saved === "dark" || (!saved && prefersDark)) {
           document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
         }
       })();
     </script>
@@ -27,5 +19,8 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- ✅ Correct entry for BOTH local AND GitHub Pages -->
+
   </body>
 </html>
