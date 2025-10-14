@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* Design tokens via CSS variables.
+   We avoid tailwind `dark:` variant entirely for reliability. */
+:root {
+  --bg: #ffffff;
+  --fg: #111827; /* gray-900 */
+  --muted: #4b5563; /* gray-600 */
+  --hairline: color-mix(in oklab, var(--fg) 12%, transparent);
+
+  /* Accent (blue) */
+  --accent: #3b82f6; /* blue-500 */
+  --accent-weak: #60a5fa; /* blue-400 */
+
+  /* Gradient stops (light) */
+  --grad-from: #ffffff;
+  --grad-via: #f3f4f6;   /* gray-100 */
+  --grad-to: #e5e7eb;    /* gray-200 */
+}
+
+html.dark {
+  --bg: #0a0a0a;
+  --fg: #f3f4f6;        /* gray-100 */
+  --muted: #d1d5db;     /* gray-300 */
+  --hairline: color-mix(in oklab, var(--fg) 14%, transparent);
+
+  --accent: #60a5fa;    /* blue-400 for contrast on dark */
+  --accent-weak: #93c5fd;
+
+  /* Gradient stops (dark) */
+  --grad-from: #0a0a0a;
+  --grad-via: #0d0d0d;
+  --grad-to: #111111;
+}
+
+/* Global base */
+html {
+  transition: color 300ms, background-color 300ms;
+}
+
+body {
+  @apply min-h-screen;
+  color: var(--fg);
+  background: var(--bg);
+  transition: background-color 300ms, color 300ms;
+}
+
+/* A simple, reusable row helper */
+.row {
+  @apply flex items-center;
+}
+
+/* Glass panel */
+.glass {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: color-mix(in oklab, var(--bg) 40%, transparent);
+  border: 1px solid var(--hairline);
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
+  color: var(--fg);
+  border: 1px solid var(--hairline);
+  background: color-mix(in oklab, var(--bg) 65%, transparent);
+}
+.btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-solid {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
+  background: var(--accent);
+  color: white;
+}
+.btn-solid:hover {
+  filter: brightness(1.08);
+}
+
+/* Make anchors look consistent when used inline */
+a {
+  color: var(--accent);
+}
+a:hover {
+  opacity: 0.85;
+}
