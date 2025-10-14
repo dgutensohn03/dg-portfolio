@@ -8,13 +8,9 @@
     <script>
       (() => {
         const saved = localStorage.getItem("theme");
-        const prefersDark =
-          window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         if (saved === "dark" || (!saved && prefersDark)) {
           document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
         }
       })();
     </script>
@@ -22,7 +18,8 @@
   <body>
     <div id="root"></div>
 
-    <!-- ✅ Correct path for GitHub Pages + Vite -->
-    <script type="module" src="/dg-portfolio/src/main.tsx"></script>
+    <!-- ✅ Correct entry for BOTH local AND GitHub Pages -->
+    <script type="module" src="./src/main.tsx"></script>
+
   </body>
 </html>
