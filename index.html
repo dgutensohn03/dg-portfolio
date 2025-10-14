@@ -2,13 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daniel Gutensohn — Portfolio</title>
+    <meta name="description" content="Portfolio of Daniel Gutensohn — Full-Stack Engineer & eLearning Technologist" />
+    <meta name="theme-color" content="#0a0a0a" />
 
-    <!-- Prevent theme flash before React mounts -->
+    <!-- ✅ Prevent theme flash before React mounts -->
     <script>
       (() => {
         const saved = localStorage.getItem("theme");
@@ -23,9 +22,11 @@
       })();
     </script>
   </head>
-  <body>
+  <body class="transition-colors duration-500">
     <div id="root"></div>
-    <script type="module" src="/main.tsx"></script>
 
+    <!-- ✅ Correct path for GitHub Pages -->
+    <script type="module" src="./main.tsx"></script>
+    <!-- Previously: /main.tsx (caused 404 on GitHub Pages) -->
   </body>
 </html>
