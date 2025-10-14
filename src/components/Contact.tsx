@@ -8,11 +8,11 @@ export default function Contact() {
         <p className="mt-4 max-w-3xl text-[var(--muted)]">
           Want to build something together? Reach me at{" "}
           <a
-            href="mailto:daniel.gutensohn@gmail.com"
+            href="mailto:dgutensohn@icloud.com"
             className="underline hover:opacity-80"
             style={{ color: "var(--accent)" }}
           >
-            daniel.gutensohn@gmail.com
+            dgutensohn@icloud.com
           </a>
           .
         </p>

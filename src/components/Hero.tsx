@@ -111,7 +111,7 @@ export default function Hero() {
               <span>GitHub</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/daniel-gutensohn"
+              href="https://www.linkedin.com/in/daniel-gutensohn-a2860a71"
               target="_blank"
               rel="noopener noreferrer"
               className="btn"
@@ -119,7 +119,7 @@ export default function Hero() {
               <FaLinkedin aria-hidden className="text-xl" />
               <span>LinkedIn</span>
             </a>
-            <a href="mailto:daniel.gutensohn@gmail.com" className="btn-solid">
+            <a href="mailto:dgutensohn@icloud.com" className="btn-solid">
               <FaEnvelope aria-hidden className="text-xl" />
               <span>Contact Me</span>
             </a>

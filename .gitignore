@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+.vite/
+*.log
+
+# Local environment
+.env
+.env.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+*.tsbuildinfo
+
+# GH Pages cache
+node_modules/.cache/
+.cache/
+.gh-pages-cache/
