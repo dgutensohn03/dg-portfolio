@@ -1,3 +1,4 @@
+// src/components/Projects.tsx
 import { projects } from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import { motion } from "framer-motion";
@@ -6,10 +7,10 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="section flex items-center relative"
+      className="section flex items-center min-h-[100dvh] relative"
       data-section="projects"
     >
-      {/* Invisible marker for observer */}
+      {/* Invisible activation marker */}
       <div className="absolute top-0 left-0 h-[1px] w-full -mt-1 pointer-events-none" />
 
       <div className="mx-auto max-w-6xl w-full">
@@ -28,15 +29,15 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
           viewport={{ once: true }}
-          className="mt-4 max-w-3xl text-[var(--muted)] leading-relaxed"
+          className="mt-3 mb-6 max-w-3xl text-[var(--muted)]"
         >
           A collection of work demonstrating full-stack development and digital learning experiences.
           <span className="block mt-2 text-sm opacity-70">
-            *Some demos open hosted client links in clean popups.
+            *Demo links open external popups.
           </span>
         </motion.p>
 
-        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

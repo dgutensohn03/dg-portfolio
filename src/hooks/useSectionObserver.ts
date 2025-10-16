@@ -1,3 +1,4 @@
+// src/hooks/useSectionObserver.ts
 import { useEffect, useState } from "react";
 
 export type SectionId = "home" | "about" | "projects" | "contact";
@@ -16,10 +17,9 @@ export default function useSectionObserver(sectionIds: SectionId[]) {
         });
       },
       {
-        // ✅ Activates section as soon as ~25% of it enters viewport
-        // Shifts detection zone upward so Projects is recognized immediately
-        rootMargin: "-25% 0px -65% 0px",
-        threshold: 0, // Trigger on first pixel entering instead of waiting for area coverage
+        // ✅ Projects and Contact activate slightly EARLIER to prevent fallback snap
+        rootMargin: "-20% 0px -70% 0px", // tuned margin for smoother transitions
+        threshold: 0.01,
       }
     );
 
