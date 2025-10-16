@@ -6,10 +6,10 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-[100dvh] px-6 md:px-8 lg:px-12 pt-4 pb-12 scroll-mt-24 relative"
+      className="section flex items-center relative"
       data-section="projects"
     >
-      {/* ✅ Invisible activation marker absolutely positioned so it doesn't affect layout */}
+      {/* Invisible marker for observer */}
       <div className="absolute top-0 left-0 h-[1px] w-full -mt-1 pointer-events-none" />
 
       <div className="mx-auto max-w-6xl w-full">
@@ -28,7 +28,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.4 }}
           viewport={{ once: true }}
-          className="mt-3 mb-6 max-w-3xl text-[var(--muted)]"
+          className="mt-4 max-w-3xl text-[var(--muted)] leading-relaxed"
         >
           A collection of work demonstrating full-stack development and digital learning experiences.
           <span className="block mt-2 text-sm opacity-70">
@@ -36,8 +36,7 @@ export default function Projects() {
           </span>
         </motion.p>
 
-        {/* ✅ Only grid area uses flex behavior now — layout stays consistent */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-6">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

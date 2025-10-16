@@ -1,4 +1,3 @@
-// src/App.tsx
 import Navbar from "./components/Navbar";
 import SectionDots from "./components/SectionDots";
 import Hero from "./components/Hero";
@@ -20,25 +19,23 @@ export default function App() {
       <Navbar />
       <SectionDots />
 
-      {/* Make this the scroll container and add scroll padding for the header */}
       <main
         className="snap-y snap-mandatory overflow-y-scroll h-[100dvh] scroll-pt-[60px]"
         data-scroll-container
       >
-        <section id="home" className="snap-start min-h-[100dvh]">
+        <section id="home" className="snap-start min-h-[100dvh] px-6 md:px-8 lg:px-12">
           <Hero />
         </section>
 
-        <section id="about" className="snap-start min-h-[100dvh]">
+        <section id="about" className="snap-start min-h-[100dvh] px-6 md:px-8 lg:px-12 pt-12 pb-16">
           <About />
         </section>
 
-        {/* Keep projects id ONLY inside <Projects /> (no nested duplicate id here) */}
-        <section className="snap-start">
+        <section className="snap-start min-h-[100dvh] px-6 md:px-8 lg:px-12 pt-12 pb-16">
           <Projects />
         </section>
 
-        <section id="contact" className="snap-start min-h-[100dvh]">
+        <section id="contact" className="snap-start min-h-[100dvh] px-6 md:px-8 lg:px-12 pt-12 pb-20">
           <Contact />
           <Footer />
         </section>

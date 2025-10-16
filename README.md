@@ -2,9 +2,9 @@
 # dg-portfolio
 =======
 # 🚀 DG Portfolio — Full-Stack Engineer & eLearning Technologist
-![Deploy Status](https://github.com/dgutensohn03/dg-portfolio/actions/workflows/deploy.yml/badge.svg)
+![Deploy Status](https://github.com/dgutensohn03/03/dg-portfolio/actions/workflows/deploy.yml/badge.svg)
 Live Demo ➜ **https://dgutensohn03.github.io/dg-portfolio/**  
-GitHub Repository ➜ **https://github.com/dgutensohn03/dg-portfolio**
+GitHub Repository ➜ **https://github.com/dgutensohn03/03/dg-portfolio**
 
 ---
 
@@ -48,7 +48,7 @@ Features smooth section scrolling, theme toggle, glass UI elements, and animated
 
 ```bash
 # Clone repository
-git clone https://github.com/dgutensohn03/dg-portfolio.git
+git clone https://github.com/dgutensohn03/03/dg-portfolio.git
 
 # Go into project
 cd dg-portfolio

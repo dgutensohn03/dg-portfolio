@@ -17,7 +17,7 @@ export default function SectionDots() {
   };
 
   return (
-    <div className="fixed top-1/2 -translate-y-1/2 right-8 sm:right-10 flex flex-col gap-2.5 z-40 pointer-events-auto">
+    <div className="fixed top-1/2 -translate-y-1/2 right-5 sm:right-5 flex flex-col gap-2.5 z-40 pointer-events-auto">
       {sections.map((id) => {
         const isActive = active === id;
         return (

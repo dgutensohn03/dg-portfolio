@@ -9,10 +9,10 @@ export default function Contact() {
       className="min-h-screen flex flex-col justify-center items-center text-center px-4"
     >
       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        viewport={{ once: true }}
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.2 }}
+  transition={{ duration: 0.5 }}
         className="text-3xl md:text-4xl font-semibold text-[var(--fg)]"
       >
         Let's Connect
@@ -29,7 +29,7 @@ export default function Contact() {
       </motion.p>
 
       <a
-        href="mailto:daniel.gutensohn@gmail.com"
+        href="mailto:dgutensohn@icloud.com"
         className="mt-6 inline-flex px-6 py-3 rounded-lg border border-[var(--hairline)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition"
       >
         Email Me →
