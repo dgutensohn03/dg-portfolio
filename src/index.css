@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
-/* Design tokens via CSS variables.
-   We avoid tailwind `dark:` variant entirely for reliability. */
+/* ------------------------------
+   Design tokens via CSS variables
+   ------------------------------ */
 :root {
   --bg: #ffffff;
   --fg: #111827; /* gray-900 */
   --muted: #4b5563; /* gray-600 */
   --hairline: color-mix(in oklab, var(--fg) 12%, transparent);
 
-  /* Accent (blue) */
-  --accent: #3b82f6; /* blue-500 */
-  --accent-weak: #60a5fa; /* blue-400 */
+  --accent: #3b82f6;       /* blue-500 */
+  --accent-weak: #60a5fa;  /* blue-400 */
 
-  /* Gradient stops (light) */
+  /* Gradient (light) */
   --grad-from: #ffffff;
   --grad-via: #f3f4f6;   /* gray-100 */
   --grad-to: #e5e7eb;    /* gray-200 */
@@ -24,37 +24,48 @@ html.dark {
   --muted: #d1d5db;     /* gray-300 */
   --hairline: color-mix(in oklab, var(--fg) 14%, transparent);
 
-  --accent: #60a5fa;    /* blue-400 for contrast on dark */
+  --accent: #60a5fa;
   --accent-weak: #93c5fd;
 
-  /* Gradient stops (dark) */
+  /* Gradient (dark) */
   --grad-from: #0a0a0a;
   --grad-via: #0d0d0d;
   --grad-to: #111111;
 }
 
-/* Global base */
-html {
-  transition: color 300ms, background-color 300ms;
-}
-
+/* Global base + snap on body */
+html, body { height: 100%; }
+html { transition: color 300ms, background-color 300ms; }
 body {
-  @apply min-h-screen;
   color: var(--fg);
-  background: var(--bg);
-  transition: background-color 300ms, color 300ms;
+  background: linear-gradient(to bottom, var(--grad-from), var(--grad-via), var(--grad-to));
+  transition: background-color 300ms, color 300ms, background 300ms;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
-/* A simple, reusable row helper */
-.row {
-  @apply flex items-center;
+/* Sections */
+.section {
+  min-height: 100svh;
+  scroll-snap-align: start;
+
+  /* keep content clear of right-side dots */
+  padding-right: clamp(28px, 6vw, 112px);
+  padding-left: clamp(16px, 4vw, 64px);
+
+  /* space for fixed navbar & footer area */
+  padding-top: 6.25rem; /* ~100px */
+  padding-bottom: 4.5rem;
 }
 
-/* Glass panel */
+.h-heading { color: var(--fg); }
+.h-muted  { color: var(--muted); }
+
+/* Glass */
 .glass {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  background-color: color-mix(in oklab, var(--bg) 40%, transparent);
+  background-color: color-mix(in oklab, var(--bg) 45%, transparent);
   border: 1px solid var(--hairline);
 }
 
@@ -63,26 +74,100 @@ body {
   @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
   color: var(--fg);
   border: 1px solid var(--hairline);
-  background: color-mix(in oklab, var(--bg) 65%, transparent);
+  background: color-mix(in oklab, var(--bg) 70%, transparent);
 }
 .btn:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
-
 .btn-solid {
   @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
   background: var(--accent);
   color: white;
 }
-.btn-solid:hover {
-  filter: brightness(1.08);
+.btn-solid:hover { filter: brightness(1.08); }
+
+/* Project grid: avoid shadow clipping anywhere */
+.projects-wrap { overflow: visible; }
+
+/* ------------------------------
+   Right-side section dots
+   ------------------------------ */
+.section-dots {
+  position: fixed;
+  right: clamp(12px, 2vw, 28px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
 }
 
-/* Make anchors look consistent when used inline */
-a {
-  color: var(--accent);
+.section-dots ul { position: relative; display: flex; flex-direction: column; gap: 14px; }
+
+.dot-wrap { position: relative; }
+
+.section-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--fg) 35%, transparent);
+  transition: transform 180ms, background-color 180ms, box-shadow 180ms;
+  cursor: pointer;
+  display: inline-block;
 }
-a:hover {
-  opacity: 0.85;
+.section-dots .dot:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 20%, transparent);
 }
+.section-dots .dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 0 8px color-mix(in oklab, var(--accent) 26%, transparent);
+}
+
+/* Tooltips (labels) */
+.dot-tip {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translate(0, -50%);
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1;
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  border: 1px solid var(--hairline);
+  color: var(--fg);
+  pointer-events: none;
+  opacity: 0;
+  translate: 4px 0;
+  transition: opacity 150ms, translate 150ms;
+}
+.dot-wrap:hover .dot-tip { opacity: 1; translate: 0 0; }
+
+/* Anchors */
+a { color: var(--accent); }
+a:hover { opacity: 0.9; }
+
+html, body {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* 🔥 Pulse Animation Layer */
+@layer utilities {
+  @keyframes pulse-glow {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.4);
+    }
+    50% {
+      transform: scale(1.15);
+      box-shadow: 0 0 8px 2px rgba(var(--accent-rgb), 0.6);
+    }
+  }
+
+  .pulse-active {
+    animation: pulse-glow 1.6s ease-in-out infinite;
+  }
+}
+

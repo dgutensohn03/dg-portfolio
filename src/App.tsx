@@ -1,4 +1,6 @@
+// src/App.tsx
 import Navbar from "./components/Navbar";
+import SectionDots from "./components/SectionDots";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
@@ -9,28 +11,38 @@ export default function App() {
   return (
     <div
       className="min-h-screen transition-colors duration-500"
-      // Gradient via CSS variables (works for both themes)
       style={{
         background:
           "linear-gradient(to bottom, var(--grad-from), var(--grad-via), var(--grad-to))",
+        color: "var(--fg)",
       }}
     >
       <Navbar />
-      <main className="snap-y snap-mandatory h-screen overflow-y-scroll">
-        <section id="home" className="snap-start min-h-screen">
+      <SectionDots />
+
+      {/* Make this the scroll container and add scroll padding for the header */}
+      <main
+        className="snap-y snap-mandatory overflow-y-scroll h-[100dvh] scroll-pt-[60px]"
+        data-scroll-container
+      >
+        <section id="home" className="snap-start min-h-[100dvh]">
           <Hero />
         </section>
-        <section id="about" className="snap-start min-h-screen">
+
+        <section id="about" className="snap-start min-h-[100dvh]">
           <About />
         </section>
-        <section id="projects" className="snap-start min-h-screen">
+
+        {/* Keep projects id ONLY inside <Projects /> (no nested duplicate id here) */}
+        <section className="snap-start">
           <Projects />
         </section>
-        <section id="contact" className="snap-start min-h-screen">
+
+        <section id="contact" className="snap-start min-h-[100dvh]">
           <Contact />
+          <Footer />
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

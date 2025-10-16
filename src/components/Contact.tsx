@@ -1,22 +1,39 @@
+// src/components/Contact.tsx
+import { motion } from "framer-motion";
+
 export default function Contact() {
   return (
-    <section className="h-[100dvh] flex items-center">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-semibold text-[var(--fg)]">
-          Contact
-        </h2>
-        <p className="mt-4 max-w-3xl text-[var(--muted)]">
-          Want to build something together? Reach me at{" "}
-          <a
-            href="mailto:dgutensohn@icloud.com"
-            className="underline hover:opacity-80"
-            style={{ color: "var(--accent)" }}
-          >
-            dgutensohn@icloud.com
-          </a>
-          .
-        </p>
-      </div>
+    <section
+      id="contact"
+      data-section="contact"
+      className="min-h-screen flex flex-col justify-center items-center text-center px-4"
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-semibold text-[var(--fg)]"
+      >
+        Let's Connect
+      </motion.h2>
+
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        viewport={{ once: true }}
+        className="mt-4 max-w-md text-[var(--muted)]"
+      >
+        Open to collaborations, freelance work, or full-time opportunities.
+      </motion.p>
+
+      <a
+        href="mailto:daniel.gutensohn@gmail.com"
+        className="mt-6 inline-flex px-6 py-3 rounded-lg border border-[var(--hairline)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition"
+      >
+        Email Me →
+      </a>
     </section>
   );
 }

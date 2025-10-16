@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daniel Gutensohn — Portfolio</title>
 
-    <!-- 🌓 Prevent theme flash -->
+    <!-- Prevent theme flash before React mounts -->
     <script>
       (() => {
         const saved = localStorage.getItem("theme");
@@ -22,8 +22,7 @@
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- ✅ IMPORTANT — must be EXACTLY this -->
-    <script type="module" src="./src/main.tsx"></script>
+    <!-- local dev -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
