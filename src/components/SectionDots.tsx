@@ -1,8 +1,6 @@
-// src/components/SectionDots.tsx
 import useSectionObserver, { SectionId } from "../hooks/useSectionObserver";
 
 const sections: SectionId[] = ["home", "about", "projects", "contact"];
-const NAV_HEIGHT = 60; // ensure matching scroll padding
 
 export default function SectionDots() {
   const active = useSectionObserver(sections);
@@ -11,45 +9,40 @@ export default function SectionDots() {
     const el = document.getElementById(id);
     const container = document.querySelector<HTMLElement>("[data-scroll-container]");
     if (!el || !container) return;
-
-    // ✅ Maintain your current offset logic, just safer
     const target =
       el.getBoundingClientRect().top -
       container.getBoundingClientRect().top +
       container.scrollTop -
-      NAV_HEIGHT;
-
+      60;
     container.scrollTo({ top: target, behavior: "smooth" });
   };
 
   return (
-    <div className="fixed top-1/2 -translate-y-1/2 right-5 sm:right-5 flex flex-col gap-2.5 z-40 pointer-events-auto">
+    <div className="fixed top-1/2 -translate-y-1/2 right-5 flex flex-col gap-2.5 z-40 pointer-events-auto">
       {sections.map((id) => {
         const isActive = active === id;
         return (
           <div key={id} className="relative w-24 sm:w-28 h-4 flex items-center justify-end group">
-            {/* Floating glass label on the left */}
+            {/* ✅ Glass Tooltip Label */}
             <span
               className={[
-                "pointer-events-none absolute right-4 sm:right-5",
-                "px-2 py-[1px] rounded-md text-[10px] sm:text-[11px] font-medium select-none",
-                "backdrop-blur-md bg-[var(--glass)]/50 shadow-sm",
-                "opacity-0 translate-x-2 group-hover:translate-x-0 group-hover:opacity-100",
-                "transition-all duration-200",
+                "ui-tooltip ui-tooltip--left",
+                "right-4 sm:right-5",
                 isActive ? "text-[var(--accent)]" : "text-[var(--fg)]/60",
               ].join(" ")}
             >
               {id.charAt(0).toUpperCase() + id.slice(1)}
             </span>
 
+            {/* ✅ Smaller Dot Size */}
             <button
               onClick={() => scrollToSection(id)}
               aria-label={id}
               className={[
-                "w-2 h-2 rounded-full transition-all cursor-pointer", // ✅ Added pointer
+                "w-2.5 h-2.5 rounded-full transition-all duration-200 cursor-pointer",
                 isActive
-                  ? "bg-[var(--accent)] scale-110 ring-[1.5px] ring-[var(--accent)] ring-offset-2 pulse-active"
-                  : "bg-[var(--hairline)] hover:bg-[var(--accent-weak)]",
+                  ? "bg-[var(--accent)] ring-2 ring-[var(--accent)]/50 scale-[1.15]"
+                  : "bg-[var(--hairline)] hover:bg-[var(--accent)]/70",
               ].join(" ")}
             />
           </div>

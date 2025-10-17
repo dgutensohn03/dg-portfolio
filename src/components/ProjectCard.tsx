@@ -1,45 +1,46 @@
 // src/components/ProjectCard.tsx
 import { motion } from "framer-motion";
-import { getAssetPath } from "../utils/getAssetPath";
 
 export default function ProjectCard({ project }) {
-  const openDemo = () => {
-    if (project.href) {
-      window.open(
-        project.href,
-        "_blank",
-        "width=1280,height=720,toolbar=no,menubar=no,location=no,status=no"
-      );
-    }
-  };
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.35 }}
-      className="rounded-xl overflow-hidden border border-[var(--hairline)] bg-[var(--bg)] shadow-md hover:shadow-xl hover:-translate-y-1 transition-all"
-    >
-      <div className="aspect-video overflow-hidden">
+    <div className="glass border border-[var(--hairline)] rounded-xl overflow-hidden flex flex-col h-full">
+      {/* Thumbnail */}
+      <div className="w-full h-44 overflow-hidden">
         <img
-          src={getAssetPath(project.thumb)}
+          src={project.thumb}
           alt={project.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300"
         />
       </div>
 
-      <div className="p-4">
+      {/* Content */}
+      <div className="flex flex-col flex-grow p-4">
         <h3 className="text-lg font-semibold text-[var(--fg)]">{project.title}</h3>
-        <p className="text-sm text-[var(--muted)]">{project.client}</p>
+        {project.client && (
+          <p className="text-[12px] text-[var(--muted)] mt-1 opacity-70">
+            {project.client}
+          </p>
+        )}
+        {project.description && (
+          <p className="text-sm text-[var(--muted)] mt-3 leading-snug">{project.description}</p>
+        )}
 
-        <button
-          onClick={openDemo}
-          className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm border border-[var(--hairline)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-        >
-          Open Demo ↗
-        </button>
+        {/* Sticky footer area */}
+        <div className="mt-auto pt-4">
+          <button
+            onClick={() => window.open(
+              project.href,
+              "demoWindow",
+              "width=1280,height=800,top=50,left=50,toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1"
+            )
+            }
+            className="inline-block w-full px-4 py-2 text-sm text-center border border-[var(--hairline)] rounded-lg 
+                       hover:border-[var(--accent)] hover:text-[var(--accent)] transition cursor-pointer"
+          >
+            Open Demo →
+          </button>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
