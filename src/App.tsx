@@ -70,7 +70,7 @@ export default function App() {
         <section id="contact" className="snap-center flex" style={{ minHeight: "calc(100vh - 60px)" }}>
           <div
             ref={contactRef}
-            className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex items-center"
+            className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex items-center justify-center"
           >
             <FadeSection>
               <Contact />
