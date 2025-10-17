@@ -12,11 +12,10 @@ export default function Hero() {
     <section
       id="home"
       data-section="home"
-      className="min-h-[calc(100vh-60px)] flex flex-col justify-center items-center text-center px-6 md:px-8 lg:px-12 pt-16" // ✅ Hero avoids navbar overlap
+      className="min-h-[calc(100vh-60px)] flex flex-col justify-center items-center text-center px-6 md:px-8 lg:px-12 pt-16"
     >
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
 
-      {/* Heading */}
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -26,7 +25,6 @@ export default function Hero() {
         Hello, I'm Daniel.
       </motion.h1>
 
-      {/* Type Animation */}
       <TypeAnimation
         sequence={[
           "Full-Stack Engineer", 2000,
@@ -39,7 +37,6 @@ export default function Hero() {
         className="mt-4 text-xl md:text-2xl text-[var(--accent)] font-medium"
       />
 
-      {/* Sub Text */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -49,7 +46,7 @@ export default function Hero() {
         I design and build interactive learning platforms and data-rich web applications.
       </motion.p>
 
-      {/* ✅ Icon Row with Hover Labels (Below) */}
+      {/* ✅ Icon Row with Theme-Safe Hover + Glass Style + Resume Trigger */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,12 +57,18 @@ export default function Hero() {
           { icon: <FaGithub size={22} />, label: "GitHub", action: () => window.open("https://github.com/dgutensohn", "_blank") },
           { icon: <FaLinkedin size={22} />, label: "LinkedIn", action: () => window.open("https://linkedin.com/in/dgutensohn", "_blank") },
           { icon: <FaEnvelope size={22} />, label: "Email", action: () => (window.location.href = "mailto:dgutensohn@icloud.com") },
-          { icon: <FaFileAlt size={22} />, label: "Resume", action: () => setIsResumeOpen(true) },
-        ].map(({ icon, label, action }, i) => (
+          { 
+            icon: <FaFileAlt size={22} />, 
+            label: "Resume",
+            action: () => setIsResumeOpen(true),
+            // ✅ Styled like Project demo buttons — glass + accent hover + theme-safe border
+            className: "glass border border-[var(--hairline)] hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          },
+        ].map(({ icon, label, action, className = "" }, i) => (
           <button
             key={i}
             onClick={action}
-            className="relative group text-[var(--fg)]/70 hover:text-[var(--accent)] transition-all hover:scale-110 hover:drop-shadow-[0_0_6px_var(--accent)]"
+            className={`relative group text-[var(--fg)]/70 hover:text-[var(--accent)] transition-all hover:scale-110 hover:drop-shadow-[0_0_6px_var(--accent)] ${className}`}
           >
             {icon}
             {/* Tooltip BELOW */}

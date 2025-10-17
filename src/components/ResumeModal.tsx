@@ -1,5 +1,5 @@
-import { FaTimes, FaDownload, FaSpinner } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+// src/components/ResumeModal.tsx
+import { FaTimes, FaFileDownload, FaSpinner } from "react-icons/fa";
 import { useState } from "react";
 
 interface ResumeModalProps {
@@ -7,66 +7,44 @@ interface ResumeModalProps {
   onClose: () => void;
 }
 
-const RESUME_PREVIEW_URL =
-  "https://docs.google.com/document/d/1pNjtAP6pkoGphC8RW4Vq3Z41L-wc9hr3PGGzFL8p4J0/preview";
-
-const RESUME_DOWNLOAD_URL =
-  "https://docs.google.com/document/d/1pNjtAP6pkoGphC8RW4Vq3Z41L-wc9hr3PGGzFL8p4J0/export?format=pdf";
-
 export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
   const [loading, setLoading] = useState(true);
+  if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-[999]"
+    <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-md bg-[var(--glass)]/60">
+      <div className="relative w-[90%] max-w-3xl h-[80%] glass rounded-xl overflow-hidden border border-[var(--hairline)]">
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 text-[var(--fg)]/70 hover:text-[var(--accent)] transition"
         >
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="relative glass rounded-xl shadow-2xl w-[90vw] max-w-4xl h-[80vh] overflow-hidden"
+          <FaTimes size={20} />
+        </button>
+
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-[var(--glass)]/70 backdrop-blur-md">
+            <FaSpinner className="animate-spin text-[var(--accent)]" size={26} />
+          </div>
+        )}
+
+        <iframe
+          src="https://docs.google.com/document/d/1pNjtAP6pkoGphC8RW4Vq3Z41L-wc9hr3PGGzFL8p4J0/preview"
+          className="w-full h-full"
+          onLoad={() => setLoading(false)}
+        ></iframe>
+
+        <div className="absolute bottom-3 left-0 w-full flex justify-center">
+          <a
+            href="https://docs.google.com/document/d/1pNjtAP6pkoGphC8RW4Vq3Z41L-wc9hr3PGGzFL8p4J0/export?format=pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 glass border border-[var(--hairline)] rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition inline-flex items-center gap-2"
           >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-3 right-3 text-[var(--fg)]/70 hover:text-[var(--accent)] transition-colors"
-            >
-              <FaTimes size={18} />
-            </button>
-
-            {/* Spinner Overlay */}
-            {loading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-[var(--glass)]/40 backdrop-blur-sm z-50">
-                <FaSpinner size={20} className="animate-spin text-[var(--accent)]" />
-              </div>
-            )}
-
-            {/* Embedded Resume */}
-            <iframe
-              src={RESUME_PREVIEW_URL}
-              className="w-full h-full border-none rounded-lg"
-              allow="autoplay; fullscreen"
-              onLoad={() => setLoading(false)}
-            />
-
-            {/* Download Button - styled like project card CTA */}
-            <a
-              href={RESUME_DOWNLOAD_URL}
-              download
-              className="absolute bottom-4 right-4 px-4 py-2 text-sm font-medium bg-[var(--accent)] text-white rounded-lg shadow-md flex items-center gap-2 hover:scale-105 hover:shadow-[0_0_8px_var(--accent)] transition-all"
-            >
-              <FaDownload size={14} />
-              Download PDF
-            </a>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <FaFileDownload size={16} />
+            Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }

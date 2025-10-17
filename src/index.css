@@ -171,3 +171,9 @@ html, body {
   }
 }
 
+/* ✅ Ensure scroll waits for offset before snapping */
+[data-scroll-container] {
+  scroll-snap-stop: always;
+}
+
+

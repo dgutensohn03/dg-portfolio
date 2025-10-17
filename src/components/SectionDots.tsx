@@ -1,6 +1,8 @@
+// src/components/SectionDots.tsx
 import useSectionObserver, { SectionId } from "../hooks/useSectionObserver";
 
 const sections: SectionId[] = ["home", "about", "projects", "contact"];
+const NAV_HEIGHT = 60; // ensure matching scroll padding
 
 export default function SectionDots() {
   const active = useSectionObserver(sections);
@@ -10,8 +12,12 @@ export default function SectionDots() {
     const container = document.querySelector<HTMLElement>("[data-scroll-container]");
     if (!el || !container) return;
 
+    // ✅ Maintain your current offset logic, just safer
     const target =
-      el.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop - 60;
+      el.getBoundingClientRect().top -
+      container.getBoundingClientRect().top +
+      container.scrollTop -
+      NAV_HEIGHT;
 
     container.scrollTo({ top: target, behavior: "smooth" });
   };
@@ -40,7 +46,7 @@ export default function SectionDots() {
               onClick={() => scrollToSection(id)}
               aria-label={id}
               className={[
-                "w-2 h-2 rounded-full transition-all",
+                "w-2 h-2 rounded-full transition-all cursor-pointer", // ✅ Added pointer
                 isActive
                   ? "bg-[var(--accent)] scale-110 ring-[1.5px] ring-[var(--accent)] ring-offset-2 pulse-active"
                   : "bg-[var(--hairline)] hover:bg-[var(--accent-weak)]",
