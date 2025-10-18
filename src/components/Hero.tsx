@@ -35,7 +35,7 @@ export default function Hero() {
     <section
       id="home"
       data-section="home"
-      className="min-h-[calc(100vh-60px)] flex flex-col justify-center items-center text-left px-6 md:px-8 lg:px-12 pt-16"
+      className="min-h-[calc(100vh-60px)] flex flex-col justify-center items-center text-left  md:px-8 lg:px-12 pt-16"
     >
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
 
@@ -51,10 +51,11 @@ export default function Hero() {
       {/* ✅ Updated Type Animation Roles */}
       <TypeAnimation
         sequence={[
-          "Full-Stack Engineer with a UX Obsession", 2000,
-          "Platform & Workflow Architect", 2000,
-          "Internal Systems & Tools Developer", 2000,
-          "Data-Driven Interface Builder", 2000,
+          "Full-Stack Engineer",  2000,
+"UX-Obsessed Builder",  2000,
+"Platform & Workflow Architect",  2000,
+"Learning Tools Developer",  2000,
+"Data-Driven Interface Architect", 2000,
         ]}
         wrapper="span"
         speed={50}
@@ -67,9 +68,9 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="mt-6 max-w-xl text-[var(--muted)] text-lg leading-relaxed"
+        className="mt-6 max-w-xl text-[var(--muted)] text-lg text-center leading-relaxed px-8 sm:px-12 md:px-0"
       >
-        I don’t just build. I engineer with intent.
+        I don’t just build. I turn ideas into systems with intent, insight, and craft.
       </motion.p>
 
       {/* ✅ Icon row (unchanged except consistent spacing retention) */}

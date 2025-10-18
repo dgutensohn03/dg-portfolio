@@ -28,9 +28,11 @@ export default function App() {
       <SectionDots />
       <FooterPortal visible={activeSection === "contact"} forceHide={!isContactMostlyVisible} />
 
-      {/* ✅ Global Snap Container */}
-      <main data-scroll-container className="snap-y snap-mandatory scroll-smooth overflow-y-auto h-screen">
-
+      {/* ✅ Global Snap Container with Mobile-Friendly Scroll */}
+      <main
+        data-scroll-container
+        className="snap-y md:snap-mandatory snap-proximity scroll-smooth overflow-y-auto h-screen touch-pan-y"
+      >
         {/* ✅ HERO — Snap Start */}
         <section id="home" className="snap-start h-screen flex items-center justify-center">
           <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
@@ -40,22 +42,22 @@ export default function App() {
           </div>
         </section>
 
+        {/* ✅ ABOUT — Less Sticky Scrolling on Mobile */}
         <section
-  id="about"
-  className="relative min-h-[calc(100vh-60px)] flex snap-start md:snap-center"
->
-  <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex flex-col md:items-center md:justify-center pt-[60px] md:pt-0">
-    <FadeSection>
-      <About />
-    </FadeSection>
-  </div>
-</section>
+          id="about"
+          className="relative min-h-[calc(100vh-60px)] flex snap-start md:snap-center overscroll-contain touch-pan-y"
+        >
+          <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex flex-col md:items-center md:justify-center pt-[60px] md:pt-0">
+            <FadeSection>
+              <About />
+            </FadeSection>
+          </div>
+        </section>
 
-
-        {/* ✅ PROJECTS — Snap Start under navbar */}
+        {/* ✅ PROJECTS — Smooth Scroll & No Scroll Trap */}
         <section
           id="projects"
-          className="relative snap-start flex flex-col pb-24 md:pb-36"
+          className="relative snap-start flex flex-col pb-24 md:pb-36 overscroll-contain touch-pan-y"
           style={{ minHeight: "calc(100vh - 60px)", paddingTop: "60px" }}
         >
           <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
@@ -66,8 +68,12 @@ export default function App() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--bg)] to-transparent opacity-[0.03]" />
         </section>
 
-        {/* ✅ CONTACT — Also vertically stable and navbar-safe */}
-        <section id="contact" className="snap-center flex" style={{ minHeight: "calc(100vh - 60px)" }}>
+        {/* ✅ CONTACT — Now Always Reachable & Smooth */}
+        <section
+          id="contact"
+          className="snap-end md:snap-center flex touch-pan-y"
+          style={{ minHeight: "calc(100vh - 60px)" }}
+        >
           <div
             ref={contactRef}
             className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex items-center justify-center"
@@ -78,7 +84,6 @@ export default function App() {
           </div>
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--bg)] to-transparent opacity-[0.03]" />
         </section>
-
       </main>
     </div>
   );
