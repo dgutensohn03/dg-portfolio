@@ -187,7 +187,7 @@ export const projects: ProjectItem[] = [
     thumb: "images/projects/jj/jj-passport-innovation-thumb-title.jpg",
     tech: ["Learning"],
     tags: ["Innovation"],
-    desktopOnly: false,
+    desktopOnly: true,
     modalDescription: "Engineered as a passport innovation training system for J&J. Built with modular architecture, content branching and analytics-ready tracking in a SCORM wrapper."
   },
   {
