@@ -33,7 +33,7 @@ export default function Footer() {
         ))}
       </div>
 
-      <p className="text-[10px] text-[var(--muted)] opacity-50 mt-1">
+      <p className="text-[10px] text-[var(--muted)] opacity-50 mt-1 px-8">
       *Demo links open in a secure external window and are provided strictly for demonstration purposes. All content remains the property of the respective clients.
       </p>
     </footer>
