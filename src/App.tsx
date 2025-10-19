@@ -28,13 +28,13 @@ export default function App() {
       <SectionDots />
       <FooterPortal visible={activeSection === "contact"} forceHide={!isContactMostlyVisible} />
 
-      {/* ✅ Global Snap Container with Mobile-Friendly Scroll */}
+      {/* ✅ Snap ONLY on Desktop for Better Mobile Scrolling */}
       <main
         data-scroll-container
-        className="snap-y md:snap-mandatory snap-proximity scroll-smooth overflow-y-auto h-screen touch-pan-y"
+        className="md:snap-y md:snap-mandatory scroll-smooth overflow-y-auto h-screen touch-pan-y"
       >
-        {/* ✅ HERO — Snap Start */}
-        <section id="home" className="snap-start h-screen flex items-center justify-center">
+        {/* ✅ HERO */}
+        <section id="home" className="md:snap-start h-screen flex items-center justify-center">
           <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
             <FadeSection>
               <Hero />
@@ -42,10 +42,10 @@ export default function App() {
           </div>
         </section>
 
-        {/* ✅ ABOUT — Less Sticky Scrolling on Mobile */}
+        {/* ✅ ABOUT — Add bottom padding on mobile to avoid jumpy scroll */}
         <section
           id="about"
-          className="relative min-h-[calc(100vh-60px)] flex snap-start md:snap-center overscroll-contain touch-pan-y"
+          className="relative min-h-[calc(100vh-60px)] flex md:snap-start md:snap-center pb-12 md:pb-0"
         >
           <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex flex-col md:items-center md:justify-center pt-[60px] md:pt-0">
             <FadeSection>
@@ -54,10 +54,10 @@ export default function App() {
           </div>
         </section>
 
-        {/* ✅ PROJECTS — Smooth Scroll & No Scroll Trap */}
+        {/* ✅ PROJECTS — Smooth Scroll + Mobile Padding */}
         <section
           id="projects"
-          className="relative snap-start flex flex-col pb-24 md:pb-36 overscroll-contain touch-pan-y"
+          className="relative md:snap-start flex flex-col pb-20 md:pb-36"
           style={{ minHeight: "calc(100vh - 60px)", paddingTop: "60px" }}
         >
           <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
@@ -68,10 +68,10 @@ export default function App() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--bg)] to-transparent opacity-[0.03]" />
         </section>
 
-        {/* ✅ CONTACT — Now Always Reachable & Smooth */}
+        {/* ✅ CONTACT — Leave snap on Desktop Only */}
         <section
           id="contact"
-          className="snap-end md:snap-center flex touch-pan-y"
+          className="md:snap-end md:snap-center flex"
           style={{ minHeight: "calc(100vh - 60px)" }}
         >
           <div
