@@ -68,7 +68,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="mt-6 max-w-xl text-[var(--muted)] text-lg text-center leading-relaxed px-8 sm:px-12 md:px-0"
+        className="mt-6 max-w-xl text-[var(--muted)] text-lg text-center leading-relaxed px-8 sm:px-12 md:px-20"
       >
         I don’t just build. I turn ideas into systems with intent, insight, and craft.
       </motion.p>
