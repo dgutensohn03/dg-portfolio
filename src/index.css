@@ -1,89 +1,93 @@
+/* === FONT IMPORTS === */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /* ------------------------------
-   Design tokens via CSS variables
+   Design Tokens via CSS variables
    ------------------------------ */
 :root {
+  /* Core Neutrals */
   --bg: #ffffff;
-  --fg: #111827;
-  --muted: #4b5563;
+  --fg: #1e293b;       /* slate-800 */
+  --muted: #475569;    /* slate-600 */
   --hairline: color-mix(in oklab, var(--fg) 12%, transparent);
 
-  --accent: #3b82f6;
-  --accent-weak: #60a5fa;
-  --accent-rgb: 59, 130, 246;
+  /* Warm Orange Accent */
+  --accent: #ea580c;       /* orange-600 */
+  --accent-weak: #fb923c;  /* orange-400 */
+  --accent-rgb: 234, 88, 12;
 
-  --grad-from: #ffffff;
+  /* Gradient Background (subtle neutral fade) */
+  --grad-from: #f9fafb;
   --grad-via: #f3f4f6;
   --grad-to: #e5e7eb;
+
+  /* Section-dot themed gray (light) */
+  --dot: #cbd5e1;
+  --dot-hover: #9ca3af;
+  --dot-active: var(--accent);
 }
 
 html.dark {
-  --bg: #0a0a0a;
+  --bg: #0b0b0b;
   --fg: #f3f4f6;
   --muted: #d1d5db;
   --hairline: color-mix(in oklab, var(--fg) 14%, transparent);
 
-  --accent: #60a5fa;
-  --accent-weak: #93c5fd;
-  --accent-rgb: 96, 165, 250;
+  --accent: #fb923c;       /* orange-400 glow in dark */
+  --accent-weak: #fdba74;  /* orange-300 */
+  --accent-rgb: 251, 146, 60;
 
   --grad-from: #0a0a0a;
   --grad-via: #0d0d0d;
   --grad-to: #111111;
+
+  /* Section-dot themed gray (dark) */
+  --dot: #374151;
+  --dot-hover: #6b7280;
+  --dot-active: var(--accent);
 }
 
-/* Global base */
+/* Global Base */
 html, body { height: 100%; }
-html { transition: color 300ms, background-color 300ms; }
 body {
   color: var(--fg);
   background: linear-gradient(to bottom, var(--grad-from), var(--grad-via), var(--grad-to));
-  transition: background-color 300ms, color 300ms, background 300ms;
+  transition: background 300ms, color 300ms;
   scroll-behavior: smooth;
-  overscroll-behavior: contain;
 }
 
-/* If you use the .section utility anywhere, keep it minimal to avoid layout drift */
-.section {
-  min-height: 100svh;
-  scroll-snap-align: start;
-}
-
-/* Tokens */
-.h-heading { color: var(--fg); }
-.h-muted  { color: var(--muted); }
-
-/* Glass */
-.glass {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: color-mix(in oklab, var(--bg) 45%, transparent);
-  border: 1px solid var(--hairline);
+/* Typography */
+html { font-family: "Inter", system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* Buttons */
 .btn {
-  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors;
+  border-color: var(--hairline);
   color: var(--fg);
-  border: 1px solid var(--hairline);
-  background: color-mix(in oklab, var(--bg) 70%, transparent);
 }
 .btn:hover { border-color: var(--accent); color: var(--accent); }
 
 .btn-solid {
   @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
   background: var(--accent);
-  color: white;
+  color: #fff;
 }
-.btn-solid:hover { filter: brightness(1.08); }
+.btn-solid:hover { filter: brightness(1.1); }
 
-/* Project grid: avoid shadow clipping anywhere */
-.projects-wrap { overflow: visible; }
+/* Glass cards */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: color-mix(in oklab, var(--bg) 55%, transparent);
+  border: 1px solid var(--hairline);
+}
 
-/* ------------------------------
-   Right-side section dots
-   ------------------------------ */
+/* === Section Dots === */
 .section-dots {
   position: fixed;
   right: clamp(12px, 2vw, 28px);
@@ -94,72 +98,34 @@ body {
 .section-dots ul { display: flex; flex-direction: column; gap: 14px; }
 .dot-wrap { position: relative; }
 .section-dots .dot {
-  width: 10px; height: 10px; border-radius: 9999px;
-  background: color-mix(in oklab, var(--fg) 35%, transparent);
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--dot);
   transition: transform 180ms, background-color 180ms, box-shadow 180ms;
-  cursor: pointer; display: inline-block;
+  cursor: pointer;
 }
 .section-dots .dot:hover {
-  transform: scale(1.15);
-  box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent) 20%, transparent);
+  transform: scale(1.2);
+  background: var(--dot-hover);
 }
 .section-dots .dot.active {
-  background: var(--accent);
-  box-shadow: 0 0 0 8px color-mix(in oklab, var(--accent) 26%, transparent);
+  background: var(--dot-active);
+  box-shadow: 0 0 8px 2px rgba(var(--accent-rgb), 0.4);
 }
 .dot-tip {
-  position: absolute; top: 50%; right: 16px; transform: translate(0, -50%);
-  white-space: nowrap; padding: 4px 8px; border-radius: 8px; font-size: 12px; line-height: 1;
-  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  position: absolute; top: 50%; right: 16px; transform: translate(0,-50%);
+  white-space: nowrap; padding: 4px 8px; border-radius: 8px;
+  font-size: 12px; line-height: 1;
+  background: color-mix(in oklab, var(--bg) 95%, transparent);
   border: 1px solid var(--hairline); color: var(--fg);
   pointer-events: none; opacity: 0; translate: 4px 0;
   transition: opacity 150ms, translate 150ms;
 }
 .dot-wrap:hover .dot-tip { opacity: 1; translate: 0 0; }
 
-/* 🔥 Pulse + Magnetic + Glow */
-@layer utilities {
-  @keyframes pulse-glow {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.35); }
-    50% { transform: scale(1.12); box-shadow: 0 0 10px 3px rgba(var(--accent-rgb), 0.55); }
-  }
-  .pulse-active { animation: pulse-glow 1.6s ease-in-out infinite; }
-
-  .mag-hover { transition: transform 0.2s ease-out; will-change: transform; }
-  .mag-hover:hover { transform: translateY(-2px) scale(1.04); }
-
-  .glow-active { position: relative; }
-  .glow-active::after {
-    content: ""; position: absolute; inset: -4px; border-radius: inherit;
-    box-shadow: 0 0 8px rgba(var(--accent-rgb), 0);
-    transition: box-shadow 0.25s ease;
-  }
-  .glow-on::after { box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.6); }
-}
-
-/* ✅ Snap offsets controlled here (single source of truth) */
+/* === Snap Layout Utility === */
 [data-scroll-container] {
   scroll-snap-type: y mandatory;
   scroll-snap-stop: always;
-  scroll-padding-top: 60px;   /* navbar height */
-  scroll-padding-bottom: 70px;/* footer overlay breathing room */
-}
-
-/* === Tooltip Utility System === */
-.ui-tooltip {
-  @apply pointer-events-none absolute px-2 py-[2px] text-[11px] rounded-md 
-         backdrop-blur-md bg-[var(--glass)]/70 text-[var(--fg)]/85 
-         border border-[var(--hairline)] shadow-sm opacity-0 
-         transition-all duration-200;
-}
-
-/* Directional Variants */
-.ui-tooltip--up {
-  @apply translate-y-1 group-hover:translate-y-0 group-hover:opacity-100;
-}
-.ui-tooltip--down {
-  @apply -translate-y-1 group-hover:translate-y-0 group-hover:opacity-100;
-}
-.ui-tooltip--left {
-  @apply translate-x-1 group-hover:translate-x-0 group-hover:opacity-100;
+  scroll-padding-top: 60px;
+  scroll-padding-bottom: 70px;
 }

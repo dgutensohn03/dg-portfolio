@@ -28,14 +28,14 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         )}
 
         <iframe
-          src="https://docs.google.com/document/d/1pNjtAP6pkoGphC8RW4Vq3Z41L-wc9hr3PGGzFL8p4J0/preview"
+          src="https://docs.google.com/document/d/1ZnLTwhfNUJ_ser5COGP3ShULy8U2B7XN2mzyXjEgVu8/preview"
           className="w-full h-full"
           onLoad={() => setLoading(false)}
         ></iframe>
 
         <div className="absolute bottom-3 left-0 w-full flex justify-center">
           <a
-            href="https://docs.google.com/document/d/1pNjtAP6pkoGphC8RW4Vq3Z41L-wc9hr3PGGzFL8p4J0/export?format=pdf"
+            href="https://docs.google.com/document/d/1ZnLTwhfNUJ_ser5COGP3ShULy8U2B7XN2mzyXjEgVu8/export?format=pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 glass border border-[var(--hairline)] rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition inline-flex items-center gap-2"

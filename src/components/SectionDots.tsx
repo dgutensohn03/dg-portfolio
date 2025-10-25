@@ -18,36 +18,29 @@ export default function SectionDots() {
   };
 
   return (
-    <div className="fixed top-1/2 -translate-y-1/2 right-5 flex flex-col gap-2.5 z-40 pointer-events-auto">
-      {sections.map((id) => {
-        const isActive = active === id;
-        return (
-          <div key={id} className="relative w-24 sm:w-28 h-4 flex items-center justify-end group">
-            {/* ✅ Glass Tooltip Label */}
-            <span
-              className={[
-                "ui-tooltip ui-tooltip--left",
-                "right-4 sm:right-5",
-                isActive ? "text-[var(--accent)]" : "text-[var(--fg)]/60",
-              ].join(" ")}
-            >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
-            </span>
-
-            {/* ✅ Smaller Dot Size */}
-            <button
-              onClick={() => scrollToSection(id)}
-              aria-label={id}
-              className={[
-                "w-2.5 h-2.5 rounded-full transition-all duration-200 cursor-pointer",
-                isActive
-                  ? "bg-[var(--accent)] ring-2 ring-[var(--accent)]/50 scale-[1.15]"
-                  : "bg-[var(--hairline)] hover:bg-[var(--accent)]/70",
-              ].join(" ")}
-            />
-          </div>
-        );
-      })}
+    <div className="section-dots pointer-events-auto">
+      <ul>
+        {sections.map((id) => {
+          const isActive = active === id;
+          return (
+            <li key={id} className="dot-wrap group">
+              <button
+                onClick={() => scrollToSection(id)}
+                aria-label={id}
+                className={[
+                  "dot transition-all duration-200 cursor-pointer",
+                  isActive
+                    ? "bg-[var(--dot-active)] scale-110 ring-[1.5px] ring-[var(--accent)] ring-offset-2 pulse-active"
+                    : "bg-[var(--dot)] hover:bg-[var(--dot-hover)]",
+                ].join(" ")}
+              />
+              <span className="dot-tip opacity-0 group-hover:opacity-100 group-hover:translate-x-0">
+                {id.charAt(0).toUpperCase() + id.slice(1)}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

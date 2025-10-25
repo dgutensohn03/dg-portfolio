@@ -2,7 +2,7 @@
 # dg-portfolio
 =======
 # 🚀 DG Portfolio — Full-Stack Engineer & eLearning Technologist
-![Deploy Status](https://github.com/dgutensohn03/03/03/dg-portfolio/actions/workflows/deploy.yml/badge.svg)
+![Deploy Status](font03/03/dg-portfolio/actions/workflows/deploy.yml/badge.svg)
 Live Demo ➜ **https://dgutensohn03.github.io/dg-portfolio/**  
 GitHub Repository ➜ **https://github.com/dgutensohn03/03/03/dg-portfolio**
 

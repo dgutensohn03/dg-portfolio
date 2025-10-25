@@ -1,6 +1,6 @@
-// src/components/ProjectCard.tsx
 import type { ProjectItem } from "../data/projects";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 type ProjectCardProps = {
   project: ProjectItem;
@@ -8,7 +8,32 @@ type ProjectCardProps = {
 };
 
 export default function ProjectCard({ project, openModal }: ProjectCardProps) {
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const [isDark, setIsDark] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // ✅ Detect theme (dark / light)
+  useEffect(() => {
+    const html = document.documentElement;
+    const updateTheme = () => setIsDark(html.classList.contains("dark"));
+    updateTheme();
+
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(html, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  // ✅ Responsive detection that updates on resize
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.matchMedia("(max-width: 767px)").matches);
+    checkScreen();
+
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  const glowColor = isDark
+    ? "0 0 18px 2px rgba(251,146,60,0.45)" // orange glow in dark
+    : "0 0 18px 2px rgba(234,88,12,0.4)";  // subtle orange glow in light
 
   const handleAction = () => {
     if (isMobile && project.desktopOnly) {
@@ -23,8 +48,15 @@ export default function ProjectCard({ project, openModal }: ProjectCardProps) {
   };
 
   return (
-    <div className="relative group glass border border-[var(--hairline)] rounded-xl overflow-hidden flex flex-col h-full">
-
+    <motion.div
+      whileHover={{
+        y: -4,
+        boxShadow: glowColor,
+        borderColor: "#ea580c",
+      }}
+      transition={{ type: "spring", stiffness: 220, damping: 18 }}
+      className="relative group glass border border-[var(--hairline)] rounded-xl overflow-hidden flex flex-col h-full transition-all duration-300"
+    >
       {/* Desktop Only Badge */}
       {project.desktopOnly && (
         <span className="absolute z-10 top-3 right-3 text-[10px] font-medium tracking-wide bg-[var(--bg)]/80 px-2 py-0.5 rounded border border-[var(--hairline)] backdrop-blur-sm">
@@ -47,7 +79,6 @@ export default function ProjectCard({ project, openModal }: ProjectCardProps) {
         {project.client && (
           <p className="text-[12px] text-[var(--muted)] mt-1 opacity-70">{project.client}</p>
         )}
-
         {project.description && (
           <p className="text-sm text-[var(--muted)] mt-3 leading-snug">
             {project.description}
@@ -57,12 +88,14 @@ export default function ProjectCard({ project, openModal }: ProjectCardProps) {
         <div className="mt-auto pt-4">
           <button
             onClick={handleAction}
-            className="w-full px-4 py-2 text-sm text-center border border-[var(--hairline)] rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition cursor-pointer"
+            className="w-full px-4 py-2 text-sm text-center border border-[var(--hairline)] rounded-lg 
+                       hover:border-[#ea580c] hover:text-[#ea580c]
+                       transition-colors duration-200 cursor-pointer"
           >
             {isMobile && project.desktopOnly ? "Learn More →" : "Open Demo →"}
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
