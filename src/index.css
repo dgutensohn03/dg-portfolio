@@ -132,8 +132,24 @@ h1, h2, h3, h4, h5, h6 {
 
 
 @media (max-width: 640px) {
-  iframe {
+  iframe[src*="docs.google.com/document/"] {
     transform: scale(0.85);
     transform-origin: top center;
+    width: 118%;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Prevent rubber-band bouncing behind the modal on iOS */
+html, body {
+  overscroll-behavior: none;
 }
