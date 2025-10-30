@@ -130,26 +130,50 @@ h1, h2, h3, h4, h5, h6 {
   scroll-padding-bottom: 70px;
 }
 
+/* --- GLOBAL STACKING FIXES --- */
 
-@media (max-width: 640px) {
-  iframe[src*="docs.google.com/document/"] {
-    transform: scale(0.85);
-    transform-origin: top center;
-    width: 118%;
-  }
+/* Navbar sits above content but below modals */
+nav {
+  position: relative;
+  z-index: 40 !important;
 }
+
+/* Modals always float above everything */
+.ResumeModal,
+[data-modal-root] {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+}
+
+footer {
+  position: relative;
+  z-index: -10;
+  pointer-events: none;
+}
+
+footer > button {
+  pointer-events: none;
+}
+
+footer[data-visible="true"] > button {
+  pointer-events: auto;
+}
+
+footer[data-visible="true"] {
+  z-index: 10;          /* rises above background when actually shown */
+  pointer-events: auto; /* clickable only when visible */
+}
+
+
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: scale(0.98);
   }
   to {
     opacity: 1;
+    transform: scale(1);
   }
-}
-
-
-/* Prevent rubber-band bouncing behind the modal on iOS */
-html, body {
-  overscroll-behavior: none;
 }

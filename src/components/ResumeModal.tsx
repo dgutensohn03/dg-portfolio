@@ -1,6 +1,5 @@
-// src/components/ResumeModal.tsx
 import { FaTimes, FaFileDownload, FaSpinner } from "react-icons/fa";
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -9,64 +8,36 @@ interface ResumeModalProps {
 
 export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
   const [loading, setLoading] = useState(true);
-  const [viewerHeight, setViewerHeight] = useState<number | undefined>(undefined);
+  const [downloaded, setDownloaded] = useState(false);
 
-  const headerRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-
-  // Lock background scroll
   useEffect(() => {
+    // Disable background scrolling when modal is open
     document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
-
-  // Compute the exact viewer height (accounts for mobile chrome + safe areas)
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const compute = () => {
-      const hdr = headerRef.current?.offsetHeight ?? 0;
-      const ftr = footerRef.current?.offsetHeight ?? 0;
-
-      // Use visualViewport when available (iOS/Android), fallback to innerHeight
-      const vpH =
-        (window.visualViewport && Math.round(window.visualViewport.height)) ||
-        window.innerHeight;
-
-      // Extra padding to avoid any collision (tiny safety margin)
-      const safe = 2;
-
-      setViewerHeight(Math.max(0, vpH - hdr - ftr - safe));
-    };
-
-    compute();
-    window.addEventListener("resize", compute);
-    window.addEventListener("orientationchange", compute);
-    if (window.visualViewport) window.visualViewport.addEventListener("resize", compute);
-
     return () => {
-      window.removeEventListener("resize", compute);
-      window.removeEventListener("orientationchange", compute);
-      if (window.visualViewport) window.visualViewport.removeEventListener("resize", compute);
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
+
+  if (!isOpen) return null;
 
   const handleDownload = async () => {
     try {
-      const url =
+      const fileUrl =
         "https://docs.google.com/document/d/1ZnLTwhfNUJ_ser5COGP3ShULy8U2B7XN2mzyXjEgVu8/export?format=pdf";
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const obj = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = obj;
-      a.download = "Daniel_Gutensohn_Resume.pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(obj);
-    } catch (e) {
-      // Fallback: open in new tab if fetch is blocked
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Daniel_Gutensohn_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+      setDownloaded(true);
+      setTimeout(() => setDownloaded(false), 2000); // small visual feedback
+    } catch (err) {
+      console.error("Download failed:", err);
       window.open(
         "https://docs.google.com/document/d/1ZnLTwhfNUJ_ser5COGP3ShULy8U2B7XN2mzyXjEgVu8/export?format=pdf",
         "_blank"
@@ -74,73 +45,77 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Overlay to hide root hero/footer */}
-      <div className="absolute inset-0 bg-[var(--bg)]/60 backdrop-blur-md" />
+    <div className="ResumeModal fixed inset-0 z-[9999] flex items-center justify-center">
+      {/* Background overlay */}
+      <div
+        className="absolute inset-0 bg-[var(--bg)]/70 backdrop-blur-md transition-opacity"
+        onClick={onClose}
+      ></div>
 
       {/* Modal shell */}
-      <div className="relative z-10 flex w-full h-full flex-col bg-[var(--glass)]/80 backdrop-blur-lg border border-[var(--hairline)] text-[var(--fg)]">
-        {/* Header (measured) */}
-        <div
-          ref={headerRef}
-          className="flex items-center justify-between px-5 py-3 sm:px-6 sm:py-4 border-b border-[var(--hairline)] bg-[var(--glass)]/70 backdrop-blur-lg flex-shrink-0"
-        >
+      <div
+        className="
+          relative z-10 flex flex-col w-[90%] max-w-4xl h-[85vh]
+          bg-[var(--glass)]/90 backdrop-blur-xl
+          border border-[var(--hairline)] rounded-xl
+          shadow-2xl overflow-hidden
+        "
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-3 border-b border-[var(--hairline)] bg-[var(--glass)]/70 backdrop-blur-md flex-shrink-0">
           <h2 className="text-sm sm:text-base font-medium text-[var(--fg)]/80 tracking-wide">
             Resume Preview
           </h2>
           <button
             onClick={onClose}
-            className="p-2 sm:p-2.5 rounded-full text-[var(--fg)]/70 hover:text-[var(--accent)] hover:bg-[var(--glass)]/50 transition"
+            className="
+              p-2 rounded-full text-[var(--fg)]/70
+              hover:text-[var(--accent)] hover:bg-[var(--glass)]/40
+              transition cursor-pointer
+            "
             aria-label="Close"
           >
             <FaTimes size={18} />
           </button>
         </div>
 
-        {/* Viewer: single scroll inside iframe; exact pixel height */}
-        <div
-          className="relative border-t border-b border-[var(--hairline)] bg-white"
-          style={{
-            // Avoid double scroll: the outer div is NOT scrollable
-            // The iframe will own the scroll internally
-            height: viewerHeight ? `${viewerHeight}px` : undefined,
-          }}
-        >
+        {/* Google Docs Viewer */}
+        <div className="relative flex-1 bg-white">
           {loading && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-[var(--glass)]/60 backdrop-blur-md">
-              <FaSpinner className="animate-spin text-[var(--accent)]" size={26} />
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-[var(--glass)]/60 backdrop-blur-md">
+              <FaSpinner className="animate-spin text-[var(--accent)]" size={28} />
             </div>
           )}
 
           <iframe
-            // Live, auto-updating Google Doc
             src="https://docs.google.com/document/d/1ZnLTwhfNUJ_ser5COGP3ShULy8U2B7XN2mzyXjEgVu8/preview"
-            title="Live Resume"
-            className="absolute inset-0 w-full h-full border-0"
-            // Make scrolling smooth inside the iframe on iOS
-            style={{
-              background: "white",
-              WebkitOverflowScrolling: "touch" as any,
-              // No transform scaling: we’re using precise height instead
-            }}
+            className="absolute inset-0 w-full h-full border-0 z-10"
+            title="Live Resume Preview"
             onLoad={() => setLoading(false)}
           />
         </div>
 
-        {/* Footer (measured) */}
+        {/* Footer */}
         <div
-          ref={footerRef}
-          className="flex justify-center items-center px-5 py-3 sm:px-6 sm:py-4 border-t border-[var(--hairline)] bg-[var(--glass)]/80 backdrop-blur-lg flex-shrink-0 z-10 relative"
+          className="
+            relative z-30 flex justify-center items-center gap-3
+            px-5 py-3 border-t border-[var(--hairline)]
+            bg-[var(--glass)]/70 backdrop-blur-lg flex-shrink-0
+          "
         >
           <button
             onClick={handleDownload}
-            className="px-4 py-2 glass border border-[var(--hairline)] rounded-lg hover:border-[var(--accent)] hover:text-[var(--accent)] transition inline-flex items-center gap-2 text-sm sm:text-base"
+            className={`
+              inline-flex items-center gap-2 px-4 py-2 rounded-lg
+              border border-[var(--hairline)] glass cursor-pointer
+              transition text-sm sm:text-base
+              hover:border-[var(--accent)] hover:text-[var(--accent)]
+              ${downloaded ? "text-[var(--accent)] border-[var(--accent)]" : ""}
+            `}
           >
             <FaFileDownload size={16} />
-            Download PDF
+            {downloaded ? "Downloaded!" : "Download PDF"}
           </button>
         </div>
       </div>
