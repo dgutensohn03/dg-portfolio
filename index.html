@@ -2,8 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
     <title>Daniel Gutensohn — Portfolio</title>
+<script>
+  // List all your SPA routes here
+  const routes = ["/", "/react-debug-guide"];
+
+  const path = window.location.pathname;
+
+  // If user navigates directly to a route without #, redirect to hash route
+  if (!window.location.hash && routes.includes(path)) {
+    window.location.replace(`#${path}`);
+  }
+</script>
 
     <!-- Prevent theme flash before React mounts -->
     <script>

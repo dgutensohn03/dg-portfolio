@@ -12,17 +12,50 @@ export type ProjectItem = {
 };
 
 export const projects: ProjectItem[] = [
+  // {
+  //   id: "kenvue-cybersecurity",
+  //   title: "Cybersecurity Training",
+  //   client: "Kenvue",
+  //   href: "https://lhtclients.com/Projects/Kenvue/Cyber_Training/final_v15/story.html",
+  //   thumb: "images/projects/kenvue/kenvue-cybersecurity-thumb-title.jpg",
+  //   tech: ["SCORM", "xAPI", "React"],
+  //   tags: ["Security", "Compliance"],
+  //   description: "Interactive cybersecurity training experience.",
+  //   desktopOnly: false,
+  //   modalDescription: "Designed to enhance cybersecurity awareness through scenario-based training. Built as a SCORM package using custom navigation logic and xAPI tracking to capture decision-based metrics."
+  // },
   {
-    id: "kenvue-cybersecurity",
-    title: "Cybersecurity Training",
-    client: "Kenvue",
-    href: "https://lhtclients.com/Projects/Kenvue/Cyber_Training/final_v15/story.html",
-    thumb: "images/projects/kenvue/kenvue-cybersecurity-thumb-title.jpg",
-    tech: ["SCORM", "xAPI", "React"],
-    tags: ["Security", "Compliance"],
-    description: "Interactive cybersecurity training experience.",
+    id: "valvoline-vcert-2024",
+    title: "VCert (2024)",
+    client: "Valvoline",
+    href: "https://lhtclients.com/Projects/Valvoline/VCert/2024/dev/",
+    thumb: "images/projects/valvoline/valvoline-vcert-thumb-title.jpg",
+    tech: ["Certification"],
+    tags: ["Internal Enablement"],
     desktopOnly: false,
-    modalDescription: "Designed to enhance cybersecurity awareness through scenario-based training. Built as a SCORM package using custom navigation logic and xAPI tracking to capture decision-based metrics."
+    modalDescription: "Engineered the VCert upskilling platform for Valvoline’s internal certification program. Built with analytics integration, workflow gating and SCORM-compliant packaging."
+  },
+  {
+    id: "om-ethics-portal",
+    title: "Ethics & Compliance Portal",
+    client: "Owens & Minor",
+    href: "https://compliance.owens-minor.com/",
+    thumb: "images/projects/owens-minor/om-ethics-portal-thumb-title.jpg",
+    tech: ["Portal"],
+    tags: ["Ethics", "Compliance"],
+    desktopOnly: false,
+    modalDescription: "Designed a full ethics & compliance portal for Owens & Minor. Built as a multi-module web application with dashboarding, user management and data-driven tracking."
+  },
+      {
+    id: "valvoline-v813",
+    title: "VIOC V813 Updates",
+    client: "Valvoline",
+    href: "https://lhtclients.com/Projects/Valvoline/VIOC/V813/updates/a1/",
+    thumb: "images/projects/valvoline/valvoline-v813-thumb-title.jpg",
+    tech: ["Ops"],
+    tags: ["Quick Lube"],
+    desktopOnly: false,
+    modalDescription: "Created to deliver V813 updates training for Valvoline’s operations team. Built with a streamlined interface and SCORM delivery to support large-scale rollout."
   },
   {
     id: "valvoline-napa-oils",
@@ -200,38 +233,5 @@ export const projects: ProjectItem[] = [
     tags: ["Tech"],
     desktopOnly: true,
     modalDescription: "Designed a 3D printing training module for J&J’s tech teams. Built as a SCORM training experience with interactive content and progress tracking."
-  },
-  {
-    id: "valvoline-v813",
-    title: "VIOC V813 Updates",
-    client: "Valvoline",
-    href: "https://lhtclients.com/Projects/Valvoline/VIOC/V813/updates/a1/",
-    thumb: "images/projects/valvoline/valvoline-v813-thumb-title.jpg",
-    tech: ["Ops"],
-    tags: ["Quick Lube"],
-    desktopOnly: false,
-    modalDescription: "Created to deliver V813 updates training for Valvoline’s operations team. Built with a streamlined interface and SCORM delivery to support large-scale rollout."
-  },
-  {
-    id: "valvoline-vcert-2024",
-    title: "VCert (2024)",
-    client: "Valvoline",
-    href: "https://lhtclients.com/Projects/Valvoline/VCert/2024/dev/",
-    thumb: "images/projects/valvoline/valvoline-vcert-thumb-title.jpg",
-    tech: ["Certification"],
-    tags: ["Internal Enablement"],
-    desktopOnly: false,
-    modalDescription: "Engineered the VCert upskilling platform for Valvoline’s internal certification program. Built with analytics integration, workflow gating and SCORM-compliant packaging."
-  },
-  {
-    id: "om-ethics-portal",
-    title: "Ethics & Compliance Portal",
-    client: "Owens & Minor",
-    href: "https://compliance.owens-minor.com/",
-    thumb: "images/projects/owens-minor/om-ethics-portal-thumb-title.jpg",
-    tech: ["Portal"],
-    tags: ["Ethics", "Compliance"],
-    desktopOnly: false,
-    modalDescription: "Designed a full ethics & compliance portal for Owens & Minor. Built as a multi-module web application with dashboarding, user management and data-driven tracking."
   }
 ];
