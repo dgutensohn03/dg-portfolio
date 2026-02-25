@@ -1,212 +1,82 @@
-import { createPortal } from "react-dom";
-import { FaTimes, FaFileDownload, FaSpinner } from "react-icons/fa";
-import { useEffect, useRef, useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
+import BaseModal from "./BaseModal";
+import CloseButton from "./CloseButton";
+import { FaSpinner, FaFileDownload } from "react-icons/fa";
 
 interface ResumeModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const DOC_ID = "1ZnLTwhfNUJ_ser5COGP3ShULy8U2B7XN2mzyXjEgVu8";
+const DOC_ID = "1frlSi9bT9QtBY5BYu98k6-7UcUDvHWtnKMUoygTRnrE";
 const DOC_PDF = `https://docs.google.com/document/d/${DOC_ID}/export?format=pdf`;
 
 export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
+  const [isDark, setIsDark] = useState(false);
   const [loading, setLoading] = useState(true);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-  const [downloading, setDownloading] = useState(false);
 
-  // Lock background scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+    const updateTheme = () => setIsDark(document.documentElement.classList.contains("dark"));
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
-  // Fetch the latest PDF, convert to blob URL (bypasses X-Frame-Options)
   useEffect(() => {
     if (!isOpen) return;
-    let alive = true;
-    let objectUrl: string | null = null;
 
-    (async () => {
+    let objectUrl: string | undefined;
+    const loadPdf = async () => {
       try {
         setLoading(true);
-        const res = await fetch(DOC_PDF, { credentials: "omit" });
-        if (!res.ok) throw new Error(`PDF fetch failed: ${res.status}`);
+        const res = await fetch(DOC_PDF);
         const blob = await res.blob();
         objectUrl = URL.createObjectURL(blob);
-        if (alive) setPdfUrl(objectUrl);
-      } catch (e) {
-        console.error(e);
-        // Fallback: open PDF in new tab and close modal
-        window.open(DOC_PDF, "_blank");
-        if (alive) onClose();
-      } finally {
-        if (alive) setLoading(false);
-      }
-    })();
-
-    return () => {
-      alive = false;
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
-      setPdfUrl(null);
+        setPdfUrl(objectUrl);
+      } finally { setLoading(false); }
     };
-  }, [isOpen, onClose]);
+    loadPdf();
+    return () => { if (objectUrl) URL.revokeObjectURL(objectUrl); setPdfUrl(null); };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
-  const handleDownload = async () => {
-    try {
-      setDownloading(true);
-      if (pdfUrl?.startsWith("blob:")) {
-        const a = document.createElement("a");
-        a.href = pdfUrl;
-        a.download = "Daniel_Gutensohn_Resume.pdf";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      } else {
-        const res = await fetch(DOC_PDF, { credentials: "omit" });
-        const blob = await res.blob();
-        const obj = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = obj;
-        a.download = "Daniel_Gutensohn_Resume.pdf";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(obj);
-      }
-    } catch {
-      window.open(DOC_PDF, "_blank");
-    } finally {
-      setDownloading(false);
-    }
-  };
+  return (
+    <BaseModal isOpen={isOpen} onClose={onClose}>
+      <div className="w-[92vw] max-w-5xl h-[96vh] rounded-2xl shadow-xl border-1 border-[var(--modal-border)] overflow-hidden flex flex-col bg-[var(--modal-surface)] text-[var(--modal-text)]">
+        <div className="relative sticky top-0 z-20 px-8 py-6 border-b bg-[var(--modal-header)] border-[var(--modal-border)]">
+          <CloseButton onClick={onClose} isDark={isDark} />
 
-  const modal = (
-    <div className="ResumeModal fixed inset-0 z-[9999]">
-      {/* Light glass backdrop (no dark dimmer) */}
-      <div
-        className="absolute inset-0 bg-[var(--glass)]/40 backdrop-blur-md"
-        onClick={onClose}
-      />
+          <h2 className="text-3xl sm:text-4xl font-bold">Resume</h2>
+          <p className="mt-2 text-[var(--modal-text-secondary)]">
+            Full Resume PDF download
+          </p>
 
-      {/* Modal shell */}
-      <div
-        className="
-          absolute inset-0 flex items-center justify-center p-3 sm:p-6
-        "
-        aria-modal="true"
-        role="dialog"
-      >
-        <div
-          className="
-            relative flex flex-col w-full max-w-4xl
-            h-[90vh] sm:h-[85vh]
-            [@supports(height:100dvh)]:h-[90dvh]
-            bg-[var(--glass)]/90 backdrop-blur-xl
-            border border-[var(--hairline)] rounded-xl shadow-2xl
-            overflow-hidden
-          "
-        >
-          {/* Header (fixed) */}
-          <div
-            className="
-              flex items-center justify-between
-              px-4 sm:px-5 py-3
-              border-b border-[var(--hairline)]
-              bg-[var(--glass)]/70 backdrop-blur-md
-              flex-shrink-0
-            "
+          <a
+            href={DOC_PDF}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 mt-4 rounded-md border border-[var(--modal-button-border)] text-[var(--modal-accent)] hover:bg-[var(--accent)] hover:text-white"
           >
-            <h2 className="text-sm sm:text-base font-medium text-[var(--fg)]/80">
-              Resume Preview
-            </h2>
-            <button
-              onClick={onClose}
-              className="
-                p-2 rounded-full text-[var(--fg)]/75
-                hover:text-[var(--accent)] hover:bg-[var(--glass)]/40
-                transition cursor-pointer
-              "
-              aria-label="Close"
-            >
-              <FaTimes size={18} />
-            </button>
-          </div>
+            Download <FaFileDownload size={16} />
+          </a>
+        </div>
 
-          {/* Viewer container: flex-1 + min-h-0 makes the middle area
-              auto-resize and be the ONLY scroll region */}
-          <div
-            className="
-              relative flex-1 min-h-0
-              px-2 py-2
-              bg-transparent
-            "
-          >
-            {/* Glass frame around the doc */}
-            <div
-              className="
-                relative w-full h-full
-                rounded-lg border border-[var(--hairline)]
-                bg-[var(--glass)]/40 backdrop-blur-sm
-                overflow-hidden
-              "
-            >
-              {loading && (
-                <div className="absolute inset-0 z-20 flex items-center justify-center bg-[var(--glass)]/60 backdrop-blur-md">
-                  <FaSpinner className="animate-spin text-[var(--accent)]" size={28} />
-                </div>
-              )}
-
-              {/* PDF fills the available area and scrolls if needed */}
-              {pdfUrl && (
-                <iframe
-                  key={pdfUrl}
-                  src={pdfUrl}
-                  title="Live Resume PDF"
-                  className="absolute inset-0 w-full h-full border-0 z-10"
-                  style={{
-                    backgroundColor: "white", // pure white doc surface
-                    WebkitOverflowScrolling: "touch" as any,
-                    display: "block",
-                  }}
-                />
-              )}
-            </div>
-          </div>
-
-          {/* Footer (fixed) */}
-          <div
-            className="
-              flex justify-center items-center gap-3
-              px-4 sm:px-5 py-3
-              border-t border-[var(--hairline)]
-              bg-[var(--glass)]/70 backdrop-blur-lg
-              flex-shrink-0
-            "
-          >
-            <button
-              onClick={handleDownload}
-              disabled={downloading}
-              className={`
-                inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                border border-[var(--hairline)] glass cursor-pointer
-                transition text-sm sm:text-base
-                hover:border-[var(--accent)] hover:text-[var(--accent)]
-                ${downloading ? "opacity-60 cursor-not-allowed" : ""}
-              `}
-            >
-              <FaFileDownload size={16} />
-              {downloading ? "Preparing…" : "Download PDF"}
-            </button>
-          </div>
+        <div className="flex-1 overflow-auto flex justify-center items-center p-6">
+          {loading && <FaSpinner className="animate-spin text-[var(--accent)] text-4xl" />}
+          {pdfUrl && !loading && (
+            <iframe
+              src={pdfUrl}
+              title="Resume PDF"
+              className="w-full h-full border-0 rounded-md"
+            />
+          )}
         </div>
       </div>
-    </div>
+    </BaseModal>
   );
-
-  return createPortal(modal, document.body);
 }

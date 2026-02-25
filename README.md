@@ -1,64 +1,36 @@
-# 🚀 DG Portfolio — Full-Stack Engineer & eLearning Technologist
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-![Deploy Status](https://github.com/dgutensohn03/dg-portfolio/actions/workflows/deploy.yml/badge.svg)
-![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind-38B2AC?style=flat&logo=tailwindcss&logoColor=white)
+## Getting Started
 
-Live Demo ➜ **https://dgutensohn03.github.io/dg-portfolio/**  
-GitHub Repository ➜ **https://github.com/dgutensohn03/dg-portfolio**
+First, run the development server:
 
----
-
-## 🎨 Overview
-A modern, animated developer portfolio built with **React + TypeScript + TailwindCSS + Framer Motion**.  
-Features smooth section scrolling, theme toggle, glass UI elements, and animated hero section with typing effect.
-
----
-
-## 🛠 Tech Stack
-
-| Technology | Purpose |
-|-------------|----------|
-| **React + TypeScript** | Component-driven UI |
-| **TailwindCSS v4** | Utility-first styling with theme support |
-| **Framer Motion** | Smooth animations and transitions |
-| **React Icons** | Clean iconography |
-| **Vite** | Lightning-fast build and dev environment |
-
----
-
-## ✨ Features
-✅ Animated landing hero with typing effect  
-✅ Smooth section-based scroll (snap scrolling)  
-✅ Glassmorphism UI elements  
-✅ Dark/Light theme toggle with localStorage persistence  
-✅ Modern responsive layout with mobile optimizations  
-✅ GitHub Pages ready build setup  
-
----
-
-## 📸 Preview
-> _(Screenshot coming soon — visual preview will be added in a future update.)_
-
----
-
-## 🚀 Run Locally
 ```bash
-# Clone repository
-git clone https://github.com/dgutensohn03/dg-portfolio.git
-
-# Go into project
-cd dg-portfolio
-
-# Install dependencies
-npm install
-
-# Start development server
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-# Build for production
-npm run build
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-# Preview build locally
-npm run preview
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

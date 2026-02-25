@@ -1,0 +1,173 @@
+/* === FONT IMPORTS === */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* === Core Neutrals === */
+  --bg: #ffffff;
+  --fg: #1e293b;
+  --muted: #475569;
+  --hairline: color-mix(in oklab, var(--fg) 12%, transparent);
+
+  /* === Warm Orange Accent === */
+  --accent: #ea580c;
+  --accent-weak: #fb923c;
+  --accent-rgb: 234, 88, 12;
+
+  /* === Gradient Background === */
+  --grad-from: #f9fafb;
+  --grad-via: #f3f4f6;
+  --grad-to: #e5e7eb;
+
+  /* === Section Dot === */
+  --dot: #cbd5e1;
+  --dot-hover: #9ca3af;
+  --dot-active: var(--accent);
+
+  /* === Modal Variables === */
+  --modal-surface: #ffffff;
+  --modal-header: #f9fafb;
+  --modal-card: #ffffff;
+  --modal-keytakeaway: #ffedd5;
+  --modal-techtag: #f3f4f6;
+
+  --modal-text: #1e293b;
+  --modal-text-secondary: #475569;
+  --modal-border: #e5e7eb;
+  --modal-button-border: #ea580c;
+  --modal-accent: #ea580c;
+}
+
+html.dark {
+  --bg: #121212; /* slightly lighter than pure black */
+  --fg: #f3f4f6;
+  --muted: #d1d5db;
+  --hairline: color-mix(in oklab, var(--fg) 14%, transparent);
+
+  --accent: #fb923c;
+  --accent-weak: #fdba74;
+  --accent-rgb: 251, 146, 60;
+
+  /* === Softer Dark Gradient === */
+  --grad-from: #1c1c1c; /* dark gray start */
+  --grad-via: #222222;  /* slightly lighter mid */
+  --grad-to: #2a2a2a;   /* even lighter end for subtle depth */
+
+  --dot: #4b5563;
+  --dot-hover: #6b7280;
+  --dot-active: var(--accent);
+
+  /* === Modal Variables === */
+  --modal-surface: #1f1f1f;
+  --modal-header: #292929;
+  --modal-card: #2e2e2e;
+  --modal-keytakeaway: #78350f;
+  --modal-techtag: #373737;
+
+  --modal-text: #f3f4f6;
+  --modal-text-secondary: #d1d5db;
+  --modal-border: #4b5563;
+  --modal-button-border: #fb923c;
+  --modal-accent: #fb923c;
+}
+
+/* Global Base */
+html, body { height: 100%; }
+body {
+  color: var(--fg);
+  background: linear-gradient(to bottom, var(--grad-from), var(--grad-via), var(--grad-to));
+  transition: background 300ms, color 300ms;
+  scroll-behavior: smooth;
+}
+
+/* Typography */
+html { font-family: "Inter", system-ui, sans-serif; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors;
+  border-color: var(--hairline);
+  color: var(--fg);
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-solid {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
+  background: var(--accent);
+  color: #fff;
+}
+.btn-solid:hover { filter: brightness(1.1); }
+
+/* Glass cards */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: color-mix(in oklab, var(--bg) 55%, transparent);
+  border: 1px solid var(--hairline);
+}
+
+/* === Section Dots === */
+.section-dots {
+  position: fixed;
+  right: clamp(12px, 2vw, 28px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+}
+.section-dots ul { display: flex; flex-direction: column; gap: 14px; }
+.dot-wrap { position: relative; }
+.section-dots .dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--dot);
+  transition: transform 180ms, background-color 180ms, box-shadow 180ms;
+  cursor: pointer;
+}
+.section-dots .dot:hover {
+  transform: scale(1.2);
+  background: var(--dot-hover);
+}
+.section-dots .dot.active {
+  background: var(--dot-active);
+  box-shadow: 0 0 8px 2px rgba(var(--accent-rgb), 0.4);
+}
+.dot-tip {
+  position: absolute; top: 50%; right: 16px; transform: translate(0,-50%);
+  white-space: nowrap; padding: 4px 8px; border-radius: 8px;
+  font-size: 12px; line-height: 1;
+  background: color-mix(in oklab, var(--bg) 95%, transparent);
+  border: 1px solid var(--hairline); color: var(--fg);
+  pointer-events: none; opacity: 0; translate: 4px 0;
+  transition: opacity 150ms, translate 150ms;
+}
+.dot-wrap:hover .dot-tip { opacity: 1; translate: 0 0; }
+
+/* === Snap Layout Utility === */
+[data-scroll-container] {
+  scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
+  scroll-padding-top: 60px;
+  scroll-padding-bottom: 70px;
+}
+
+/* --- GLOBAL STACKING FIXES --- */
+nav { position: relative; z-index: 40 !important; }
+.ResumeModal,
+[data-modal-root] { position: fixed !important; inset: 0 !important; z-index: 9999 !important; }
+
+footer { position: relative; z-index: -10; pointer-events: none; }
+footer > button { pointer-events: none; }
+footer[data-visible="true"] > button { pointer-events: auto; }
+footer[data-visible="true"] { z-index: 10; pointer-events: auto; }
+
+/* Hide scrollbar but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}

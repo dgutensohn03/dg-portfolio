@@ -1,14 +1,16 @@
-// ✅ tailwind.config.js
+// tailwind.config.js
 export default {
   darkMode: "class",
-  extend: {
-    fontFamily: {
-      sans: ["Inter", "sans-serif"],
-      display: ["Space Grotesk", "sans-serif"],
-      mono: ["Fira Code", "monospace"],
+  content: ["./src/**/*.{js,ts,jsx,tsx}", "./src/app/**/*.{ts,tsx}"],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        display: ["Space Grotesk", "sans-serif"],
+        mono: ["Fira Code", "monospace"],
+      },
     },
   },
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   plugins: [
     function ({ addBase }) {
       addBase({

@@ -51,11 +51,11 @@ export default function Hero() {
       {/* ✅ Updated Type Animation Roles */}
       <TypeAnimation
         sequence={[
-          "Full-Stack Engineer",  2000,
-"UX-Obsessed Builder",  2000,
-"Platform & Workflow Architect",  2000,
-"Learning Tools Developer",  2000,
-"Data-Driven Interface Architect", 2000,
+          "Full-Stack Engineer", 2000,
+          "UX-Obsessed Builder", 2000,
+          "Platform & Workflow Architect", 2000,
+          "Learning Tools Developer", 2000,
+          "Data-Driven Interface Architect", 2000,
         ]}
         wrapper="span"
         speed={50}
@@ -86,9 +86,16 @@ export default function Hero() {
             onClick={action}
             type="button"
             aria-label={label}
-            className="relative group p-3 rounded-xl transition-colors text-[var(--fg)]/70 
-                       hover:text-[var(--fg)] cursor-pointer focus:outline-none 
-                       focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
+            className="
+  relative group p-3 rounded-xl
+  text-[var(--fg)]/70
+  hover:text-[var(--accent)]
+  cursor-pointer
+  focus:outline-none
+  focus-visible:ring-2
+  focus-visible:ring-[var(--accent)]/50
+"
+
           >
             {icon}
             <span

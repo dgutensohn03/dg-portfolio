@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "./Footer";
 import { motion, AnimatePresence } from "framer-motion";
 

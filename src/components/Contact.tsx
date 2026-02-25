@@ -36,7 +36,7 @@ export default function Contact() {
           href="mailto:dgutensohn@icloud.com?subject=Let's%20Talk"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[var(--hairline)]
                      hover:border-[var(--accent)] hover:text-[var(--accent)]
-                     transition-colors duration-200 cursor-pointer text-[var(--fg)]/80"
+                     cursor-pointer text-[var(--fg)]/80"
         >
           <Mail size={18} strokeWidth={1.5} />
           <span>Let’s Talk</span>

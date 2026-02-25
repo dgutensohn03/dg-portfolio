@@ -1,3 +1,5 @@
+"use client";
+
 import { Github, Linkedin, Mail, FileText } from "lucide-react";
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -59,7 +61,7 @@ export default function Footer() {
                 title={label}
                 className="
                   relative group text-[var(--fg)]/70 hover:text-[var(--accent)]
-                  transition-all duration-200 cursor-pointer p-2 rounded-lg
+                  cursor-pointer p-2 rounded-lg
                   hover:-translate-y-[2px]
                   hover:drop-shadow-[0_0_6px_rgba(var(--accent-rgb),0.45)]
                   flex items-center justify-center
