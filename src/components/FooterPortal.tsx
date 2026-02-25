@@ -37,7 +37,7 @@ export default function FooterPortal({
           exit={{ opacity: 0 }}
           className="fixed bottom-0 left-0 w-full z-[-10] pointer-events-none"
           data-visible="false"
-          style={{ minHeight: `${FOOTER_PX}px` }}
+          style={showFooter ? { minHeight: `${FOOTER_PX}px` } : undefined}
         />
       )}
     </AnimatePresence>

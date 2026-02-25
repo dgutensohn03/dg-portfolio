@@ -16,29 +16,42 @@ import useActiveSection, { SectionId } from "../hooks/useActiveSection";
 export default function AppShell() {
   const sectionIds: SectionId[] = ["home", "about", "projects", "contact"];
 
-  // Track active section
-  const { active, scrollTo } = useActiveSection(sectionIds, 80, "[data-scroll-container]");
+  const { active, scrollTo } = useActiveSection(
+    sectionIds,
+    80,
+    "[data-scroll-container]"
+  );
 
-  // Check if contact section is mostly visible
   const contactRef = useRef<HTMLDivElement | null>(null);
   const isContactMostlyVisible = useInView(contactRef, { amount: 0.6 });
 
   return (
-    <div
-      className="min-h-screen transition-colors duration-500 relative bg-linear-to-b from-grad-from via-grad-via to-grad-to text-fg"
-    >
-      {/* Navbar & floating elements */}
-<Navbar active={active} scrollToId={scrollTo} />
-<SectionDots active={active} scrollToId={scrollTo} />
-<FooterPortal visible={active === "contact"} forceHide={!isContactMostlyVisible} />
+    <div className="relative min-h-[100dvh] transition-colors duration-500 bg-linear-to-b from-grad-from via-grad-via to-grad-to text-fg">
+      
+      <Navbar active={active} scrollToId={scrollTo} />
+      <SectionDots active={active} scrollToId={scrollTo} />
+      <FooterPortal
+        visible={active === "contact"}
+        forceHide={!isContactMostlyVisible}
+      />
 
-      {/* Main scrollable container */}
+      {/* Scroll Container */}
       <main
         data-scroll-container
-        className="md:snap-y md:snap-mandatory scroll-smooth overflow-y-auto h-screen touch-pan-y"
+        className="
+          overflow-y-auto
+          h-[100dvh]
+          scroll-smooth
+          touch-pan-y
+          pb-[80px]
+          md:snap-y md:snap-mandatory
+        "
       >
-        {/* HERO Section */}
-        <section id="home" className="md:snap-start h-screen flex items-center justify-center">
+        {/* HERO */}
+        <section
+          id="home"
+          className="h-[100dvh] flex items-center justify-center md:snap-start"
+        >
           <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
             <FadeSection>
               <Hero />
@@ -46,44 +59,71 @@ export default function AppShell() {
           </div>
         </section>
 
-        {/* ABOUT Section */}
+        {/* ABOUT */}
         <section
           id="about"
-          className="relative min-h-[calc(100vh-60px)] flex md:snap-start pb-12 md:pb-0"
+          className="
+            relative
+            flex
+            min-h-[calc(100dvh-60px)]
+            pt-15
+            pb-12 md:pb-0
+            md:snap-start
+          "
         >
-          <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex flex-col md:items-center md:justify-center pt-15 md:pt-0">
+          <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl flex flex-col md:items-center md:justify-center">
             <FadeSection>
               <About />
             </FadeSection>
           </div>
         </section>
 
-        {/* PROJECTS Section */}
+        {/* PROJECTS */}
         <section
           id="projects"
-          className="relative md:snap-start flex flex-col pb-20 md:pb-36 min-h-[calc(100vh-60px)] pt-15"
+          className="
+            relative
+            flex flex-col
+            min-h-[calc(100dvh-60px)]
+            pt-15
+            pb-20 md:pb-36
+            md:snap-start
+          "
         >
           <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
             <FadeSection>
               <Projects />
             </FadeSection>
           </div>
+
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-bg to-transparent opacity-3" />
         </section>
 
-        {/* CONTACT Section */}
+        {/* CONTACT */}
         <section
           id="contact"
-          className="md:snap-end flex min-h-[calc(100vh-60px)] pt-15"
+          className="
+            relative
+            flex
+            min-h-[calc(100dvh-60px)]
+            pt-15
+            md:snap-end
+          "
         >
           <div
             ref={contactRef}
-            className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center"
+            className="
+              w-full
+              px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40
+              mx-auto
+              flex items-center justify-center
+            "
           >
             <FadeSection>
               <Contact />
             </FadeSection>
           </div>
+
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-bg to-transparent opacity-3" />
         </section>
       </main>

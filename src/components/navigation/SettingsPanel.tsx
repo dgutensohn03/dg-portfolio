@@ -21,7 +21,7 @@ export default function SettingsPanel({ theme, toggleTheme }: Props) {
           <button
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
-            className={`cursor-pointer relative w-12 h-6 rounded-full ${theme === "light" ? "bg-white/30" : "bg-gray-700/50"}`}
+            className={`cursor-pointer relative w-12 h-6 rounded-full ${theme === "light" ? "bg-(--accent-light-gray)" : "bg-(--accent-light-gray)"} border border-(--modal-border)`}
           >
             <div
               className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-orange-400 transition-transform duration-300 ${

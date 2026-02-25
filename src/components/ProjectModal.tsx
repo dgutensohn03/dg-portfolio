@@ -106,10 +106,12 @@ export default function ProjectModal({ project, onClose }: Props) {
       <div
         className={`
           relative
-          w-[92vw] max-w-5xl max-h-[96vh]
+          w-[92vw] max-w-5xl max-h-[96dvh]
           rounded-2xl shadow-xl border border-(--modal-border)
           flex flex-col overflow-hidden
           bg-(--modal-surface) text-(--modal-text)
+          b-[env(safe-area-inset-bottom)]
+          pt-[env(safe-area-inset-top)]
         `}
       >
         {/* HEADER */}

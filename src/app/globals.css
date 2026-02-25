@@ -13,6 +13,7 @@
   --accent: #ea580c;
   --accent-weak: #fb923c;
   --accent-rgb: 234, 88, 12;
+--accent-light-gray: var(--color-gray-300);
 
   /* === Gradient Background === */
   --grad-from: #f9fafb;
@@ -47,7 +48,7 @@ html.dark {
   --accent: #fb923c;
   --accent-weak: #fdba74;
   --accent-rgb: 251, 146, 60;
-
+  --accent-light-gray: var(--color-gray-300);
   /* === Softer Dark Gradient === */
   --grad-from: #1c1c1c; /* dark gray start */
   --grad-via: #222222;  /* slightly lighter mid */
