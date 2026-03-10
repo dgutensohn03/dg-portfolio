@@ -3,14 +3,17 @@ import { motion } from "framer-motion";
 
 const tech = [
   "React",
+  "Next.js",
   "TypeScript",
   "Node.js",
-  "API & Data Architecture",
+  "PostgreSQL",
   "xAPI / SCORM Integration",
-  "UX Engineering",
+  "Event-Driven Architecture",
+  "Cloud Functions & CI/CD",
   "Performance Optimization",
-  "Full-Stack Delivery",
-  "Data-Driven Interfaces",
+  "Accessibility (WCAG 2.1 AA)",
+  "Design Systems",
+  "Modular Component Architecture",
 ];
 
 export default function About() {
@@ -45,13 +48,23 @@ export default function About() {
           viewport={{ once: true }}
           className="mt-6 text-[var(--muted)] text-lg leading-snug"
         >
-          I build tools and platforms designed to make things clearer, faster, and easier to use. I like software that respects the user's time — clean interfaces, logical flows, and systems that communicate well without getting in the way.
+          I build platforms and systems that turn complex ideas into intuitive, reliable experiences. My work spans frontend and backend development, cloud services, and analytics — always with an eye on performance, accessibility, and scale.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-4 text-[var(--muted)] text-lg leading-snug"
+        >
+          Over the past decade, I’ve led engineering for learning platforms serving hundreds of thousands of users, architecting APIs, databases, and real-time systems, mentoring teammates, and defining standards for scalable, maintainable codebases.
         </motion.p>
 
         <motion.blockquote
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.28, duration: 0.4 }}
+          transition={{ delay: 0.35, duration: 0.4 }}
           viewport={{ once: true }}
           className="mt-6 pl-4 border-l border-[var(--hairline)] text-[var(--accent)]/90 italic text-base"
         >
@@ -61,21 +74,11 @@ export default function About() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35, duration: 0.4 }}
+          transition={{ delay: 0.45, duration: 0.4 }}
           viewport={{ once: true }}
           className="mt-6 text-[var(--muted)] text-lg leading-snug"
         >
-          My background spans across the stack, but I'm most interested in the moment where design meets logic — when code turns into something someone can actually use.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-4 text-[var(--muted)] text-lg leading-snug"
-        >
-          To bring that thinking into real products, these are the capabilities and technologies I work with:
+          I thrive at the intersection of design, logic, and data — building systems that are performant, maintainable, and future-proof. These are the capabilities and technologies I work with regularly:
         </motion.p>
 
         <motion.div

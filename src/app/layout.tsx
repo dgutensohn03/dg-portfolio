@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Sora } from "next/font/google";
+import { Geist, Geist_Mono, Sora, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "800", "900"],
+});
 export const sora = Sora({
   subsets: ["latin"],
   weight: ["600", "700"],
@@ -20,8 +24,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "David Gutensohn - Portfolio",
-  description: "Portfolio of David Gutensohn, showcasing projects in software engineering, data science, and innovation. Explore my work in enterprise solutions, simulations, mobile apps, and more.",
+  title: "Daniel Gutensohn - Portfolio",
+  description: "Portfolio of Daniel Gutensohn, showcasing projects in software engineering, data science, and innovation. Explore my work in enterprise solutions, simulations, mobile apps, and more.",
 };
 
 export default function RootLayout({

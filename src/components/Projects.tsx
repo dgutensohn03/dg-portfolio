@@ -25,18 +25,13 @@ export default function Projects() {
           className="mb-12"
         >
           <h2 className="text-4xl md:text-4xl font-semibold mb-4 text-[var(--fg)]">
-            Featured Learning Systems & Platforms
+            Enterprise Platforms & Solutions
           </h2>
           <p className="text-lg text-[var(--muted)] leading-relaxed">
-            A selection of course portals, interactive learning systems, and
-            custom-built training platforms. Each project was designed to improve
-            clarity, reduce friction in user flow, and make learning feel more
-            guided and intuitive.
+            A selection of platforms, dashboards, and interactive systems I’ve designed and built to support thousands of enterprise users. Each project demonstrates scalable architecture, maintainable code, and intuitive experiences optimized for performance, accessibility, and real-world impact.
           </p>
           <p className="text-sm text-[var(--muted)] mt-2 opacity-80">
-            I focus on building learning experiences that feel seamless on the
-            surface — while the system handles structure, progression, and logic
-            behind the scenes.
+            From analytics dashboards to scenario-driven engines, I focus on simplifying complex workflows, enabling real-time insights, and delivering measurable results at scale.
           </p>
         </motion.div>
 

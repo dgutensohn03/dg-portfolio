@@ -39,8 +39,6 @@ export const projects: Project[] = [
       "Firebase Realtime Database (NoSQL)",
       "OAuth 2.0",
       "Cloud Functions",
-      "SCORM 1.2",
-      "xAPI",
       "Modular UI Architecture",
       "State Management",
       "Gamification Systems",
