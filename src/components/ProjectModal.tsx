@@ -38,7 +38,7 @@ export default function ProjectModal({ project, onClose }: Props) {
   const [titleGap, setTitleGap] = useState(4);
   const [showArrow, setShowArrow] = useState(true);
 
-  // Adjust title-category gap
+  // Adjust title-category gap (unchanged)
   useEffect(() => {
     const el = titleCategoryRef.current;
     if (!el) return;
@@ -64,21 +64,31 @@ export default function ProjectModal({ project, onClose }: Props) {
     };
   }, [project?.title, project?.category]);
 
-  // Show/hide arrow based on scroll position
+  // Throttled scroll handling + GPU acceleration
   useEffect(() => {
     const el = bodyRef.current;
     if (!el) return;
 
+    // Force GPU layer for smoother scroll
+    el.style.transform = "translateZ(0)";
+    el.style.willChange = "scroll-position, transform";
+
+    let ticking = false;
     const handleScroll = () => {
-      const scrollTop = el.scrollTop;
-      const scrollHeight = el.scrollHeight;
-      const clientHeight = el.clientHeight;
-      const atBottom = scrollTop + clientHeight >= scrollHeight - 2;
-      setShowArrow(!atBottom);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = el.scrollTop;
+          const scrollHeight = el.scrollHeight;
+          const clientHeight = el.clientHeight;
+          setShowArrow(scrollTop + clientHeight < scrollHeight - 2);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    el.addEventListener("scroll", handleScroll);
-    handleScroll();
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // initial check
 
     return () => el.removeEventListener("scroll", handleScroll);
   }, [project]);
@@ -176,7 +186,13 @@ export default function ProjectModal({ project, onClose }: Props) {
         <div
           ref={bodyRef}
           className="flex-1 overflow-y-auto relative"
-          style={{ paddingBottom: 60 }} // space for arrow container
+          style={{
+            paddingBottom: 60,
+            WebkitOverflowScrolling: "touch", // momentum scroll on iOS
+            scrollBehavior: "smooth",
+            transform: "translateZ(0)",        // GPU acceleration
+            willChange: "scroll-position, transform",
+          }}
         >
           {/* IMAGE FULL WIDTH */}
           {project.image && (
@@ -206,8 +222,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                     }`}
                 >
                   <div className="absolute top-4 right-4 opacity-20 pointer-events-none">
-                    {sectionIcons[key] &&
-                      cloneElement(sectionIcons[key], { size: 42 })}
+                    {sectionIcons[key] && cloneElement(sectionIcons[key], { size: 42 })}
                   </div>
 
                   <div className="relative z-10">
@@ -249,7 +264,6 @@ export default function ProjectModal({ project, onClose }: Props) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              {/* Arrow motion only */}
               <motion.div
                 animate={{ y: [0, 6, 0] }}
                 transition={{ repeat: Infinity, duration: 1.2 }}

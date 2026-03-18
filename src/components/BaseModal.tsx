@@ -25,30 +25,22 @@ export default function BaseModal({
           animate={{ opacity: 1, transition: { duration: 0.15 } }}
           exit={{ opacity: 0, transition: { duration: 0.15 } }}
         >
-          {/* Overlay */}
+          {/* Overlay (opacity only, no blur) */}
           <motion.div
             onClick={onClose}
-            className={`absolute inset-0 backdrop-blur-md ${overlayClass}`}
+            className={`absolute inset-0 ${overlayClass}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 0.2 } }}
             exit={{ opacity: 0, transition: { duration: 0.15 } }}
           />
 
-          {/* Modal container */}
+          {/* Modal container (opacity only, no scale) */}
           <motion.div
             onClick={(e) => e.stopPropagation()}
             className="relative z-10"
-            initial={{ opacity: 0, scale: 0.90 }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-              transition: { type: "spring", stiffness: 500, damping: 35, mass: 0.75 },
-            }}
-            exit={{
-              opacity: 0,
-              scale: 0.92,
-              transition: { duration: 0.2, ease: "easeInOut" },
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
           >
             {children}
           </motion.div>

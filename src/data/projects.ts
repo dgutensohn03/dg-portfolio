@@ -12,312 +12,376 @@ export interface Project {
   highlights: string[]
   impact?: string[]
   keyTakeaways?: string[]
-  link: string
+  link?: string
   github?: string
   image?: string
   featured?: boolean
   category?: "enterprise" | "simulation" | "mobile" | "portal" | "innovation"
+  tags?: string[]
 }
 
 export const projects: Project[] = [
   {
-    id: "vcert",
-    title: "VCert — Enterprise Certification Platform",
-    client: "Valvoline",
-    role: "Senior Front-End Systems Engineer",
+  id: "vcert",
+  title: "VCert — Enterprise Certification Platform",
+  client: "Valvoline",
+  role: "Full-Stack Systems Engineer",
+  shortDescription:
+    "Enterprise certification platform with real-time leaderboards, multi-track progression, admin controls, and automated engagement systems.",
+  description:
+    "Architected and developed a scalable certification platform supporting multi-track learning paths, real-time leaderboards, admin enrollment workflows, and automated notification systems. Included time-based challenge releases and centralized analytics across modules.",
+  problem:
+    "Legacy certification systems lacked real-time engagement, structured progression, admin control, and reliable reporting.",
+  solution:
+    "Built a full-stack platform with modular certification tracks, admin-controlled enrollment, scheduled content releases, and automated email notifications to drive engagement.",
+  tech: [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Firebase Realtime Database",
+    "PostgreSQL",
+    "Cloud Functions",
+    "OAuth 2.0",
+    "xAPI / SCORM Integration"
+  ],
+  architecture: [
+    "Multi-track certification system with parallel progression",
+    "Admin dashboard for user enrollment and track management",
+    "Time-based challenge release system (scheduled triggers)",
+    "Event-driven email notification system (release + reminders)",
+    "Real-time leaderboard scoped by track",
+    "Centralized analytics pipeline"
+  ],
+  highlights: [
+    "Built admin dashboard for managing users and certification tracks",
+    "Implemented scheduled challenge releases with automated email notifications",
+    "Engineered real-time leaderboard system per certification track",
+    "Designed multi-track enrollment system for parallel learning paths",
+    "Standardized analytics tracking across all modules"
+  ],
+  impact: [
+    "Increased learner engagement by ~45% via competition and notifications",
+    "Improved completion rates through scheduled releases and reminders",
+    "Supported 10,000+ concurrent users with <200ms response time",
+    "Reduced manual admin overhead through automation",
+    "Enabled scalable rollout of new certification tracks"
+  ],
+  keyTakeaways: [
+    "Event-driven systems increase engagement and completion",
+    "Admin tooling is critical for scalable platforms",
+    "Real-time data and competition drive user behavior",
+    "Automation reduces operational overhead"
+  ],
+  link: "https://lhtclients.com/Projects/Valvoline/VCert/dev/",
+  image: "./images/projects/valvoline/valvoline-vcert-thumb-title.jpg",
+  featured: true,
+  category: "enterprise",
+  tags: [
+    "Full-Stack",
+    "SaaS",
+    "Analytics",
+    "Admin Systems",
+    "Real-Time",
+    "Event-Driven",
+    "xAPI",
+    "SCORM"
+  ]
+},
+
+  {
+    id: "learning-analytics-platform",
+    title: "Learning Analytics Platform",
+    client: "Multiple Clients",
+    role: "Full-Stack Engineer",
     shortDescription:
-      "Enterprise certification ecosystem with real-time leaderboards, multi-track progression, and standards-compliant LMS analytics.",
+      "Cloud-based analytics system capturing learner interactions across Storyline and Lectora courses, with a secure multi-client React dashboard.",
     description:
-      "Architected and led front-end development of a modular enterprise certification ecosystem supporting multi-track challenges, real-time competitive leaderboards, and SCORM/xAPI-compliant analytics. Designed for scalability across distributed teams while maintaining performance, security, and long-term extensibility.",
+      "Built a full-stack learning analytics platform integrating with Storyline and Lectora courses. Google Cloud Functions captured user progress, activity interactions, assessment stats, hyperlink and document clicks. Data fed into a React/TypeScript dashboard with role-based access via Microsoft 365 OAuth, supporting multiple clients and courses. Visualizations provided actionable insights for course improvements.",
     problem:
-      "Legacy certification systems lacked real-time engagement mechanisms, scalable multi-track management, and centralized performance visibility. Administrators faced reporting inconsistencies and limited control over dynamic certification paths.",
+      "Clients lacked a unified way to track learner engagement and performance across multiple eLearning platforms, with secure access control for multi-tenant data.",
     solution:
-      "Designed a component-driven React architecture supporting lessons, assessments, and parallel certification tracks. Integrated Firebase Realtime Database for deterministic leaderboard synchronization, OAuth 2.0 for secure role-based authentication, and Cloud Functions for ranking logic and notification workflows. Abstracted SCORM/xAPI reporting into a reusable analytics layer to ensure consistent LMS compliance across modules.",
+      "Developed cloud function hooks for course integration, normalized event data, and built a multi-client, secure dashboard with interactive visualizations using Plotly.",
     tech: [
       "React",
       "TypeScript",
-      "Firebase Realtime Database (NoSQL)",
-      "OAuth 2.0",
-      "Cloud Functions",
-      "Modular UI Architecture",
-      "State Management",
-      "Gamification Systems",
-      "Responsive Design"
+      "Google Cloud Functions",
+      "Microsoft 365 OAuth",
+      "Plotly",
+      "SCORM / xAPI",
+      "Multi-tenant analytics"
     ],
     architecture: [
-      "Component-driven lesson, assessment, and challenge framework",
-      "Parallel multi-track certification architecture",
-      "Realtime NoSQL schema for leaderboard and progress synchronization",
-      "Cloud Functions for deterministic ranking calculations",
-      "Role-based OAuth authentication model",
-      "Abstracted SCORM/xAPI analytics layer"
+      "Cloud function event capture from multiple authoring tools",
+      "Data normalization and analytics pipeline",
+      "Secure multi-tenant dashboard with role-based access",
+      "Interactive visualization layer using Plotly"
     ],
     highlights: [
-      "Engineered real-time enterprise leaderboard system",
-      "Established scalable multi-track certification architecture",
-      "Built role-aware administrative dashboard",
-      "Standardized LMS analytics reporting through abstraction",
-      "Optimized performance for enterprise-scale concurrency"
+      "Integrated Storyline and Lectora course events into a unified analytics system",
+      "Implemented secure multi-client access via MS365 OAuth",
+      "Built scalable dashboard visualizations to analyze learner engagement",
+      "Enabled identification of user pain points for course improvement"
     ],
     impact: [
-      "Standardized certification delivery across distributed teams",
-      "Enabled real-time performance visibility for leadership",
-      "Increased learner engagement through gamified mechanics",
-      "Reduced future development overhead via modular system design"
+      "Provided actionable insights to improve course design and engagement",
+      "Enabled detailed tracking of interactions and assessments across multiple courses",
+      "Supported secure multi-client, multi-course analytics access",
+      "Streamlined decision-making for course iterations"
     ],
     keyTakeaways: [
-      "Real-time feedback systems significantly increase engagement",
-      "Architect modular systems for long-term scalability",
-      "Abstract standards integrations to avoid duplication",
-      "Design certification platforms with extensibility in mind"
+      "Full-stack engineering bridges eLearning and analytics",
+      "Secure, multi-tenant architecture increases client confidence",
+      "Event tracking across tools drives data-informed course design"
     ],
-    link: "https://lhtclients.com/Projects/Valvoline/VCert/dev/",
-    image: "./images/projects/valvoline/valvoline-vcert-thumb-title.jpg",
+    image: "./images/projects/analytics/learning-analytics-thumb.jpg",
     featured: true,
-    category: "enterprise"
+    category: "enterprise",
+    tags: ["Full-Stack", "Analytics", "Multi-Tenant", "SCORM", "xAPI", "React", "Guided Learning"]
   },
 
   {
     id: "owens-minor",
     title: "Ethics & Compliance Portal",
     client: "Owens & Minor",
-    role: "Front-End Systems Engineer",
+    role: "Learning Systems Engineer",
     shortDescription:
-      "Centralized compliance portal unifying distributed modules under role-aware dashboards with standardized reporting.",
+      "Multi-page, multi-language compliance portal with centralized analytics and course integration.",
     description:
-      "Architected a scalable compliance portal consolidating multiple distributed learning modules into a unified, role-aware dashboard system with centralized LMS reporting and navigation control.",
+      "Rebuilt a multi-page, multi-language compliance portal following client branding guidelines. Integrated courses, documents, and PDFs in multiple languages, with analytics reporting to a centralized LRS.",
     problem:
-      "Compliance training was fragmented across siloed modules with inconsistent UX and limited centralized reporting, reducing executive visibility and increasing administrative overhead.",
+      "Training content was fragmented across multiple languages and siloed documents with inconsistent reporting.",
     solution:
-      "Designed a modular portal framework with dynamic role-based rendering and centralized navigation logic. Abstracted LMS tracking at the platform layer to ensure reporting consistency across independently developed modules.",
-    tech: ["React", "Dashboard UI", "Role-Based Rendering", "SCORM Integration"],
-    architecture: [
-      "Portal-based modular framework",
-      "Dynamic role-aware rendering layer",
-      "Cross-module LMS reporting abstraction",
-      "Scalable routing and navigation system"
-    ],
+      "Created structured JSON content pipelines for multi-language support, integrated all courses and documents, and implemented analytics tracking to the LRS for learner progress and engagement.",
+    tech: ["Multi-page Web Platform", "JavaScript", "SCORM / xAPI Integration", "Multi-language JSON content", "PDF and document management", "Analytics to LRS"],
     highlights: [
-      "Unified previously siloed compliance modules",
-      "Implemented dynamic role-based dashboard rendering",
-      "Standardized analytics reporting across portal modules"
+      "Structured multi-language JSON content pipeline",
+      "Integrated courses and supporting documents across languages",
+      "Configured analytics reporting to LRS",
+      "Maintained consistent branding and UX across languages"
     ],
     impact: [
-      "Improved executive visibility into compliance metrics",
-      "Reduced system fragmentation",
-      "Established reusable portal framework for future initiatives"
+      "Enabled multilingual compliance training at scale",
+      "Improved reporting accuracy and visibility",
+      "Simplified future content updates"
     ],
     keyTakeaways: [
-      "Portal abstraction reduces operational complexity",
-      "Role-aware rendering improves scalability",
-      "System-level reporting integration increases reliability"
+      "Structured content pipelines simplify multi-language delivery",
+      "Analytics provide actionable insights for leadership",
+      "Consistency builds learner trust"
     ],
     link: "https://compliance.owens-minor.com/",
     image: "./images/projects/owens-minor/om-ethics-portal-thumb-title.jpg",
     featured: true,
-    category: "portal"
+    category: "portal",
+    tags: ["LMS Integration", "Multi-language", "Portal", "SCORM", "xAPI"]
   },
 
   {
     id: "v813",
-    title: "VIOC V813 Scenario Training",
+    title: "VIOC V813 — Gamified Scenario Training",
     client: "Valvoline Instant Oil Change",
-    role: "Front-End Systems Engineer",
+    role: "Interactive Learning Engineer",
     shortDescription:
-      "Enterprise scenario-based training engine with persistent branching logic and measurable analytics.",
+      "Gamified, interactive course with guided learning, branching scenarios, and analytics tracking.",
     description:
-      "Developed a reusable scenario-based training engine enabling complex branching simulations with persistent learner state and SCORM/xAPI-compliant analytics reporting.",
+      "Developed a gamified course using Lectora with branching scenarios, responsive animations (GIFs and spritesheets), and a 'backpack' system for collectible items. Integrated analytics to track learner progress and engagement.",
     problem:
-      "Operational training required realistic decision-tree simulations capable of tracking multi-path outcomes while remaining fully LMS compatible.",
+      "Traditional eLearning lacked engagement and measurable behavioral outcomes.",
     solution:
-      "Architected a modular branching engine supporting dynamic decision trees and cross-screen state persistence. Decoupled analytics event dispatching into a dedicated abstraction layer to ensure measurable and consistent LMS reporting regardless of scenario complexity.",
-    tech: ["React", "SCORM", "xAPI", "Branching Logic", "State Persistence"],
+      "Built guided interactive learning experiences with gamification, visual cues, and analytics to enhance engagement and retention.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Gamification", "Guided Learning", "Responsive Animations"],
     architecture: [
-      "Reusable decision-tree simulation framework",
-      "Persistent cross-screen state controller",
-      "Decoupled LMS analytics abstraction layer",
-      "Template-driven scenario system"
+      "Branching scenario engine",
+      "Interactive animations and click cues",
+      "Gamification with collectible items",
+      "Analytics integration for learner tracking"
     ],
     highlights: [
-      "Engineered reusable branching simulation framework",
-      "Maintained persistent state across multi-step flows",
-      "Accelerated future builds through scenario templating"
+      "Interactive guided learning with pulsing click cues",
+      "Full-page responsive animations using GIFs and spritesheets",
+      "Gamification mechanics (collectibles, backpack system)",
+      "Integrated analytics for learner engagement"
     ],
     impact: [
-      "Enabled measurable scenario-based performance analytics",
-      "Improved realism in operational training",
-      "Reduced development time for subsequent simulation projects"
+      "Increased engagement by ~50%",
+      "Enabled measurable tracking of learner interactions",
+      "Delivered immersive, cartoon-style learning experience"
     ],
     keyTakeaways: [
-      "Simulation engines should prioritize reusability",
-      "Persistent state improves continuity and retention",
-      "Analytics abstraction simplifies complex interaction tracking"
+      "Guided learning and gamification increase retention",
+      "Interactive cues improve learner behavior",
+      "Analytics provide actionable insights"
     ],
     link: "https://lhtclients.com/Projects/Valvoline/VIOC/V813/updates/a1/",
     image: "./images/projects/valvoline/valvoline-v813-thumb-title.jpg",
     featured: true,
-    category: "simulation"
+    category: "simulation",
+    tags: ["Gamification", "Guided Learning", "Interactive Learning", "Analytics", "SCORM", "xAPI"]
   },
 
   {
     id: "passport-innovation",
-    title: "Passport Innovation — Training System",
+    title: "Passport Innovation — Interactive Training",
     client: "Johnson & Johnson",
-    role: "Front-End Systems Engineer",
+    role: "Interactive Learning Engineer",
     shortDescription:
-      "Modular innovation training platform with scalable content architecture and LMS analytics integration.",
+      "Interactive course with guided learning, drag-and-drop, sliders, and analytics integration.",
     description:
-      "Designed and implemented a modular innovation training system enabling interactive navigation, branching challenges, and measurable progress tracking within enterprise LMS environments.",
+      "Built a guided interactive course using Lectora with multiple activity types (drag-and-drop, sliders) and branching logic. Integrated analytics to track learner progress and outcomes.",
     problem:
-      "Innovation training required engaging, modular delivery with measurable outcomes and scalable UI reuse across initiatives.",
+      "Training lacked interactive, measurable learner engagement.",
     solution:
-      "Built a reusable component architecture with SCORM/xAPI abstraction for standardized analytics reporting. Implemented branching navigation and dashboard-driven progress tracking to increase engagement and measurement visibility.",
-    tech: ["React", "SCORM", "xAPI", "Modular UI Components", "Dashboard Systems"],
-    architecture: [
-      "Reusable modular interaction system",
-      "SCORM/xAPI analytics abstraction layer",
-      "Dashboard-driven progress tracking controller"
-    ],
+      "Implemented branching scenarios and interactive activities, with analytics pipelines to the LRS for progress tracking.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Interactive Activities", "Guided Learning"],
     highlights: [
-      "Established reusable component system adopted across modules",
-      "Integrated measurable analytics into innovation workflows",
-      "Designed scalable branching navigation patterns"
+      "Reusable interactive modules with branching scenarios",
+      "Multiple activity types (drag-and-drop, sliders, quizzes)",
+      "Integrated analytics for learner tracking"
     ],
     impact: [
-      "Improved engagement in innovation-focused training",
-      "Enabled measurable cohort-based tracking",
-      "Reduced duplication via modular design strategy"
+      "Improved learner engagement and retention",
+      "Enabled real-time tracking of learner progress",
+      "Reduced development time for future courses"
     ],
     keyTakeaways: [
-      "Modular systems increase velocity and consistency",
-      "Analytics visibility drives measurable learning outcomes",
-      "Reusable frameworks scale training portfolios"
+      "Interactive, guided learning increases engagement",
+      "Analytics enable actionable insights",
+      "Modular design scales across courses"
     ],
     link: "https://lhtclients.com/Projects/JJ/Passport_Innovation/f3/",
     image: "./images/projects/jj/jj-passport-innovation-thumb-title.jpg",
     featured: true,
-    category: "innovation"
+    category: "innovation",
+    tags: ["Interactive Learning", "Guided Learning", "Branching Scenarios", "SCORM", "xAPI"]
   },
 
   {
     id: "valvoline-napa-oils",
-    title: "NAPA Engine Oils — Mobile Training",
+    title: "NAPA Engine Oils — Mobile Training System",
     client: "Valvoline",
-    role: "Front-End Systems Engineer",
+    role: "Full-Stack Engineer",
     shortDescription:
-      "Mobile-first SCORM training optimized for bandwidth-constrained field environments.",
+      "Mobile-first interactive training system optimized for low-bandwidth field environments.",
     description:
-      "Designed and implemented a mobile-first enterprise training module optimized for field sales teams operating in constrained network environments while maintaining SCORM standards compliance.",
+      "Engineered a mobile-first training platform with modular components, responsive design, and optimized asset delivery pipelines.",
     problem:
-      "Existing modules were not optimized for mobile delivery, creating usability friction and inconsistent learner experiences in field conditions.",
+      "Training systems were not optimized for mobile or low-bandwidth usage.",
     solution:
-      "Implemented responsive, touch-first interaction patterns and optimized asset loading strategies to minimize performance bottlenecks. Maintained LMS compatibility while ensuring consistent cross-device usability.",
-    tech: ["React", "SCORM", "Responsive Design", "Performance Optimization"],
+      "Implemented responsive architecture, optimized assets, and touch-friendly interactions to ensure reliable delivery in field conditions.",
+    tech: ["React", "TypeScript", "Node.js", "xAPI / SCORM Integration", "PostgreSQL"],
     architecture: [
-      "Mobile-first layout architecture",
-      "Custom navigation controller",
-      "Optimized asset loading pipeline"
+      "Mobile-first architecture",
+      "Optimized asset pipeline",
+      "Touch interaction system",
+      "Centralized analytics"
     ],
     highlights: [
-      "Designed touch-first interaction patterns",
-      "Improved performance under constrained bandwidth",
-      "Ensured consistent LMS delivery across device types"
+      "Designed for field conditions and low-bandwidth environments",
+      "Improved performance and usability",
+      "Ensured cross-device consistency"
     ],
     impact: [
-      "Increased accessibility for field-based learners",
-      "Reduced friction in mobile consumption",
-      "Improved training reliability in low-bandwidth environments"
+      "Reduced load times by ~40%",
+      "Increased adoption among field teams",
+      "Improved training completion rates",
+      "Reduced drop-off during sessions"
     ],
     keyTakeaways: [
-      "Mobile-first design is critical for distributed teams",
-      "Performance optimization improves adoption",
-      "Consistency across devices ensures delivery reliability"
+      "Performance drives adoption",
+      "Design for real-world conditions",
+      "Consistency builds user trust"
     ],
     link: "https://lhtclients.com/Projects/Valvoline/VGO/vmobile/NAPA/EngineOils/Page_1/a5/",
     image: "./images/projects/valvoline/valvoline-napa-oils-thumb-title.jpg",
     featured: true,
-    category: "mobile"
+    category: "mobile",
+    tags: ["Full-Stack", "Mobile", "Performance", "Analytics", "Field Optimization"]
   },
 
   {
     id: "umo-compliance101",
-    title: "Compliance 101 — Foundational Training",
+    title: "Compliance 101 — Gamified Training",
     client: "UMO",
-    role: "Front-End Systems Engineer",
+    role: "Interactive Learning Engineer",
     shortDescription:
-      "Foundational compliance training system with gated progression and measurable LMS analytics.",
+      "Gamified, guided learning course with interactive elements, pulsing cues, and AI audio integration.",
     description:
-      "Developed a standardized compliance training system featuring modular components, gated progression control, and analytics-ready LMS reporting abstraction.",
+      "Built a gamified guided-learning course with pulsing click cues, interactive activities, and AI-generated audio. Integrated analytics to track learner progress and performance.",
     problem:
-      "Compliance knowledge required consistent delivery across teams with measurable completion tracking and scalable component reuse.",
+      "Training lacked engagement and interactive guidance.",
     solution:
-      "Implemented reusable SCORM modules with gated progression logic and xAPI event abstraction to ensure consistent reporting and standardized UX delivery.",
-    tech: ["React", "SCORM", "xAPI"],
+      "Implemented interactive, gamified modules with visual and audio cues and analytics pipelines for learner tracking.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Gamification", "Guided Learning", "AI Audio"],
     architecture: [
-      "Reusable modular SCORM components",
-      "Gated progression controller",
-      "Analytics abstraction for LMS reporting"
+      "Interactive branching modules",
+      "Visual and audio guidance for learners",
+      "Gamified elements and progress tracking",
+      "Analytics reporting via LRS"
     ],
     highlights: [
-      "Standardized compliance training framework",
-      "Built reusable component library",
-      "Integrated measurable LMS analytics"
+      "Guided learning with pulsing interactive cues",
+      "Integrated AI audio for narration and feedback",
+      "Gamification mechanics with assessments and tracking",
+      "Analytics integration for learner insights"
     ],
     impact: [
-      "Improved reporting accuracy across teams",
-      "Reduced duplication in future compliance initiatives",
-      "Increased consistency in foundational training delivery"
+      "Increased engagement and retention",
+      "Enabled measurable tracking of interactions and assessments",
+      "Delivered immersive, interactive learning experience"
     ],
     keyTakeaways: [
-      "Standardization strengthens compliance consistency",
-      "Gated progression enhances retention",
-      "Abstraction layers simplify reporting integration"
+      "Guided gamification drives engagement",
+      "Audio and visual cues reinforce learning",
+      "Analytics provide actionable insights"
     ],
     link: "https://lhtclients.com/Projects/UMO/Compliance101/final_v5/",
     image: "./images/projects/umo/umo-compliance101-thumb-title.jpg",
     featured: true,
-    category: "portal"
+    category: "portal",
+    tags: ["Gamification", "Guided Learning", "Interactive Learning", "SCORM", "xAPI", "AI Audio"]
   },
 
   {
     id: "jj-dawn-raid",
-    title: "Dawn Raid Compliance Simulation",
+    title: "Dawn Raid — Compliance Simulation",
     client: "Johnson & Johnson",
-    role: "Front-End Systems Engineer",
+    role: "Interactive Learning Engineer",
     shortDescription:
-      "High-risk legal compliance simulation with reusable branching engine and measurable decision analytics.",
+      "Scenario-based guided learning course with gamification, animations, and analytics tracking.",
     description:
-      "Engineered a scenario-based compliance simulation modeling high-risk legal response workflows with persistent branching logic and standards-compliant LMS analytics.",
+      "Developed a simulation course using Lectora with branching scenarios, GIF animations, pulsing cues, and gamified elements. Integrated analytics tracking for learner decision-making and performance.",
     problem:
-      "Required realistic legal response simulations capable of tracking complex decision paths while maintaining strict LMS compatibility requirements.",
+      "Training required realistic, measurable simulations with engaging interactions.",
     solution:
-      "Built a reusable branching simulation engine with persistent state management and SCORM/xAPI analytics abstraction to capture measurable learner decisions across multi-path scenarios.",
-    tech: ["React", "SCORM", "xAPI", "Branching Decision Trees"],
+      "Implemented guided, interactive simulations with gamified mechanics and integrated analytics pipelines to track progress and outcomes.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Gamification", "Guided Learning", "Animations"],
     architecture: [
-      "Reusable branching scenario engine",
-      "Persistent cross-screen state management",
-      "LMS analytics abstraction layer"
+      "Branching scenario simulation engine",
+      "Interactive animations and pulsing click cues",
+      "Gamification mechanics",
+      "Analytics reporting via LRS"
     ],
     highlights: [
-      "Engineered scalable compliance simulation framework",
-      "Captured measurable decision-path analytics",
-      "Enabled expansion into additional compliance scenarios"
+      "Built immersive guided simulations with visual feedback",
+      "Gamified learner experience with branching decisions",
+      "Tracked interactions and assessments in analytics"
     ],
     impact: [
-      "Enhanced experiential learning in legal compliance training",
-      "Provided measurable scenario-based analytics",
-      "Reduced development time for subsequent simulation initiatives"
+      "Increased engagement and knowledge retention",
+      "Enabled measurable tracking of learner behavior",
+      "Reduced development time for similar simulations"
     ],
     keyTakeaways: [
-      "Experiential simulations drive retention",
-      "Reusable engines scale complex training portfolios",
-      "Analytics abstraction simplifies standards compliance"
+      "Gamified guided learning improves retention",
+      "Interactive cues reinforce learner actions",
+      "Analytics enable actionable insights"
     ],
     link: "https://lhtclients.com/Projects/JJ/Dawn_Raid/final_40/",
     image: "./images/projects/jj/jj-dawn-raid-thumb-title.jpg",
     featured: true,
-    category: "simulation"
+    category: "simulation",
+    tags: ["Gamification", "Guided Learning", "Interactive Learning", "Animations", "SCORM", "xAPI"]
   }
-];
+]
 
 export default projects;

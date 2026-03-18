@@ -1,19 +1,27 @@
+// /types/block.ts
+
+export type BlockSize = "thumbnail" | "half" | "medium" | "full"
+
+export type BlockDisplayMode = "carousel" | "stack"
+
 export type BlockElementType =
   | "text"
+  | "traceText"
   | "image"
   | "button"
   | "container"
 
-export interface AnimationConfig {
-  initial?: any
-  animate?: any
-  whileInView?: any
-  exit?: any
-  transition?: {
-    duration?: number
-    delay?: number
-    ease?: string
-  }
+export interface TraceTextOptions {
+  strokeWidth?: number
+  strokeColor?: string
+  fillColor?: string
+  dropShadow?: string
+  sequential?: boolean
+  duration?: number
+  delayPerLetter?: number
+  outlineBox?: boolean
+  outlineColor?: string
+  outlineWidth?: number
 }
 
 export interface BlockElement {
@@ -26,14 +34,23 @@ export interface BlockElement {
 
   classes?: string
   style?: React.CSSProperties
-
-  animation?: AnimationConfig
+  animation?: any
 
   children?: BlockElement[]
 
-  // Forward-thinking for editor
-  locked?: boolean
-  label?: string
+  // Used by special element types like traceText
+  options?: TraceTextOptions | Record<string, any>
+}
+
+export interface BlockBackground {
+  src: string
+  size?: string
+  position?: string
+}
+
+export interface BlockOverlay {
+  color?: string
+  opacity?: number
 }
 
 export interface BlockConfig {
@@ -41,21 +58,14 @@ export interface BlockConfig {
   name: string
   version: number
 
-  displayMode?: "carousel" | "stack" // optional, defaults to stack
-  size?: "full" | "half" | "medium" | "small" | "thumbnail"
-  height?: string                     // e.g., "min-h-screen"
+  size: BlockSize
+  displayMode?: BlockDisplayMode
+  height?: string
+
+  background: BlockBackground
+  overlay?: BlockOverlay
+
   containerClasses?: string
-
-  background: {
-    src: string
-    size?: string
-    position?: string
-  }
-
-  overlay?: {
-    color?: string
-    opacity?: number
-  }
 
   elements: BlockElement[]
 }

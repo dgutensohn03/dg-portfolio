@@ -24,10 +24,7 @@ export const blocks: BlockConfig[] = [
         classes:
           "pointer-events-none font-black tracking-[0.15em] text-white/20 text-[18vw]",
         style: {},
-        animation: {
-          initial: {},
-          animate: {},
-        },
+        animation: {},
         options: {
           strokeWidth: 1.5,
           strokeColor: "white",
@@ -45,7 +42,8 @@ export const blocks: BlockConfig[] = [
         id: "headline",
         type: "text",
         content: "We Don’t Just Build Products.",
-        classes: "mb-4 text-3xl font-light uppercase tracking-[0.15em] md:text-5xl",
+        classes:
+          "mb-4 text-3xl font-light uppercase tracking-[0.15em] md:text-5xl",
         style: {},
       },
       {
@@ -53,6 +51,7 @@ export const blocks: BlockConfig[] = [
         type: "text",
         content: "We Build Impact.",
         classes: "text-5xl font-extrabold tracking-tight md:text-7xl",
+        style: {},
       },
       {
         id: "description",
@@ -61,9 +60,11 @@ export const blocks: BlockConfig[] = [
           "Thoughtful design. Intentional engineering. Solutions that move businesses forward.",
         classes:
           "mx-auto mt-8 max-w-2xl text-sm font-light tracking-[0.2em] text-white/80 md:text-base",
+        style: {},
       },
     ],
   },
+
   {
     id: "floating-accent",
     name: "Floating Accent",
@@ -82,18 +83,20 @@ export const blocks: BlockConfig[] = [
       {
         id: "accent-circle",
         type: "container",
-        classes:
-          "absolute w-72 h-72 bg-[#fb923c]/20 rounded-full blur-3xl",
+        classes: "absolute w-72 h-72 bg-[#fb923c]/20 rounded-full blur-3xl",
         style: { top: "25%", left: "10%" },
+        children: [],
       },
       {
         id: "floating-title",
         type: "text",
         content: "Precision. Motion. Control.",
         classes: "text-4xl md:text-6xl font-extrabold text-center",
+        style: {},
       },
     ],
   },
+
   {
     id: "split-feature",
     name: "Split Feature",
@@ -108,14 +111,15 @@ export const blocks: BlockConfig[] = [
       {
         id: "left-content",
         type: "container",
-        label: "Left Column",
         classes: "space-y-6",
+        style: {},
         children: [
           {
             id: "title",
             type: "text",
             content: "Design Meets Engineering.",
             classes: "text-4xl md:text-5xl font-bold",
+            style: {},
           },
           {
             id: "desc",
@@ -123,6 +127,7 @@ export const blocks: BlockConfig[] = [
             content:
               "A system-driven approach to building scalable web experiences.",
             classes: "text-white/70",
+            style: {},
           },
           {
             id: "cta",
@@ -131,18 +136,20 @@ export const blocks: BlockConfig[] = [
             href: "#",
             classes:
               "inline-block px-6 py-3 rounded-full bg-[#fb923c] text-black font-semibold",
+            style: {},
           },
         ],
       },
       {
         id: "right-image",
         type: "image",
-        label: "Feature Image",
         src: "/images/assets/Linkedin_Banner.png",
         classes: "rounded-2xl shadow-2xl",
+        style: {},
       },
     ],
   },
+
   {
     id: "minimal-cta",
     name: "Minimal CTA",
@@ -159,6 +166,7 @@ export const blocks: BlockConfig[] = [
         type: "text",
         content: "Let’s Build Something Meaningful.",
         classes: "text-3xl md:text-5xl font-semibold",
+        style: {},
       },
       {
         id: "cta-button",
@@ -167,9 +175,11 @@ export const blocks: BlockConfig[] = [
         href: "#",
         classes:
           "mt-8 px-8 py-3 border border-white rounded-full hover:bg-white hover:text-black transition",
+        style: {},
       },
     ],
   },
+
   {
     id: "grid-thumbnail-1",
     name: "Grid Thumbnail 1",
@@ -190,15 +200,18 @@ export const blocks: BlockConfig[] = [
         type: "text",
         content: "Thumbnail Block",
         classes: "text-lg font-bold text-white",
+        style: {},
       },
       {
         id: "thumbnail-sub",
         type: "text",
         content: "Quick description here.",
         classes: "text-sm text-white/80",
+        style: {},
       },
     ],
   },
+
   {
     id: "trace-word-example",
     name: "Trace Word Example",
@@ -219,6 +232,7 @@ export const blocks: BlockConfig[] = [
         type: "traceText",
         content: "INSPIRE",
         classes: "text-[16vw] font-extrabold text-white/20",
+        style: {},
         options: {
           strokeWidth: 2,
           strokeColor: "#fb923c",
@@ -235,12 +249,14 @@ export const blocks: BlockConfig[] = [
         type: "text",
         content: "Reach New Heights.",
         classes: "mt-8 text-4xl font-bold text-white",
+        style: {},
       },
       {
         id: "subheadline",
         type: "text",
         content: "Where creativity and impact collide.",
         classes: "text-2xl text-white/80 mt-2",
+        style: {},
       },
     ],
   },
