@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import projects from "../data/projects";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import AILifecycleFeature from "./AILifecycleFeature";
 
 export default function Projects() {
   const [modalProject, setModalProject] = useState<string | null>(null);
@@ -34,6 +35,8 @@ export default function Projects() {
             From analytics dashboards to scenario-driven engines, I focus on simplifying complex workflows, enabling real-time insights, and delivering measurable results at scale.
           </p>
         </motion.div>
+
+        <AILifecycleFeature />
 
         {/* Projects Grid */}
         <motion.div
