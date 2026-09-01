@@ -5,7 +5,9 @@ export interface DocLink {
 }
 
 export interface SectionData {
+  id: string;
   title: string;
+  subtitle?: string;
   description?: string;
   examples?: string[];
   snippets?: string[];
@@ -15,6 +17,7 @@ export interface SectionData {
 
 export const sectionsData: SectionData[] = [
   {
+    id: "react-mental-model-foundation",
     title: "React Mental Model (Foundation)",
     description:
       "React separates rendering from side effects. Understanding the render and commit phases is critical for debugging UI updates.",
@@ -33,6 +36,7 @@ setTodos(prev => [...prev, newTodo]);`,
     ],
   },
   {
+    id: "event-handling",
     title: "Event Handling",
     description:
       "Event handlers can fail silently if closures are stale or DOM overlays block clicks.",
@@ -50,6 +54,7 @@ const handleClick = () => setCount(prev => prev + 1);`,
     ],
   },
   {
+    id: "state-management-async-flow",
     title: "State Management & Async Flow",
     description:
       "Async requests can cause race conditions where older responses overwrite newer state. Logging and cancellation is key.",
@@ -69,6 +74,7 @@ controller.abort();`,
     ],
   },
   {
+    id: "rendering-reconciliation",
     title: "Rendering & Reconciliation",
     description: "UI may fail to update if keys are unstable or memoization is overused.",
     bullets: [
@@ -85,6 +91,7 @@ controller.abort();`,
     ],
   },
   {
+    id: "react-strict-mode",
     title: "React Strict Mode",
     description: "Strict Mode intentionally double-invokes render and effects in development.",
     bullets: ["Confirm Strict Mode is enabled.", "Make effects idempotent.", "Add cleanup functions."],
@@ -94,6 +101,7 @@ controller.abort();`,
     ],
   },
   {
+    id: "networking-api-contracts",
     title: "Networking & API Contracts",
     description: "Ensure API requests match backend expectations and handle errors gracefully.",
     bullets: [
@@ -106,6 +114,7 @@ controller.abort();`,
     ],
   },
   {
+    id: "performance-main-thread",
     title: "Performance & Main Thread",
     description: "React performance issues can manifest as janky scrolling or slow renders.",
     bullets: [
@@ -119,6 +128,7 @@ controller.abort();`,
     ],
   },
   {
+    id: "error-handling-resilience",
     title: "Error Handling & Resilience",
     description: "UI should fail gracefully and provide fallback UIs.",
     bullets: [
@@ -134,6 +144,7 @@ controller.abort();`,
     ],
   },
   {
+    id: "testing-as-debugging",
     title: "Testing as Debugging",
     bullets: [
       "Write a failing test to reproduce a bug.",

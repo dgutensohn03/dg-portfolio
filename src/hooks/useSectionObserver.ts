@@ -1,29 +1,33 @@
 // src/hooks/useSectionObserver.ts
+"use client";
+
 import { useEffect, useState } from "react";
 
 export type SectionId = "home" | "about" | "projects" | "contact";
 
-export default function useSectionObserver(sectionIds: SectionId[]) {
-  const [active, setActive] = useState<SectionId>("home");
+export default function useSectionObserver(
+  sectionIds: SectionId[],
+  lock?: boolean // prevents updates while scrolling programmatically
+) {
+  const [active, setActive] = useState<SectionId | null>(null);
 
   useEffect(() => {
+    if (lock) return;
+
+    const container = document.querySelector<HTMLElement>("[data-scroll-container]") || null;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute("id") as SectionId;
-            if (id) {
-              setActive(id);
-              // console.log("✔ Detected section:", id)
-            }
+          const id = entry.target.getAttribute("id") as SectionId;
+          if (!id) return;
+
+          if (entry.intersectionRatio > 0.5) {
+            setActive(id);
           }
         });
       },
-      {
-        // ✅ Detect as soon as section *enters* 10% from top of viewport
-        rootMargin: "-10% 0px -70% 0px",
-        threshold: 0.01,
-      }
+      { root: container, threshold: [0.5] }
     );
 
     sectionIds.forEach((id) => {
@@ -32,7 +36,7 @@ export default function useSectionObserver(sectionIds: SectionId[]) {
     });
 
     return () => observer.disconnect();
-  }, [sectionIds]);
+  }, [sectionIds, lock]);
 
   return active;
 }

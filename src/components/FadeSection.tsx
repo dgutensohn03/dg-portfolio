@@ -1,36 +1,24 @@
-// src/components/FadeSection.tsx
-import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+"use client";
 
-/**
- * Reusable fade/slide reveal that respects the main scroll container.
- * Simplified: no special footer logic here (FooterPortal handles that).
- */
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 export default function FadeSection({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const rootRef = useRef<HTMLElement | null>(null);
-  const [hasRoot, setHasRoot] = useState(false);
-
-  useEffect(() => {
-    const container = document.querySelector<HTMLElement>("[data-scroll-container]");
-    if (container) {
-      rootRef.current = container;
-      setHasRoot(true);
-    }
-  }, []);
-
-  const isInView = useInView(ref, {
-    root: hasRoot ? (rootRef as any) : undefined,
-    margin: "-10% 0% -20% 0%", // earlier trigger so content fades even with snap momentum
-    once: true,
+  const { ref, inView } = useInView({
+    threshold: 0.15,
+    triggerOnce: true,
   });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 22 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      animate={inView ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.45, ease: "easeOut" }}
+      style={{
+        willChange: "transform, opacity",
+        transform: "translateZ(0)", // GPU acceleration
+      }}
     >
       {children}
     </motion.div>

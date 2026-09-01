@@ -1,237 +1,387 @@
-export type ProjectItem = {
-  id: string;
-  title: string;
-  client?: string;
-  href?: string;
-  thumb?: string;
-  tech?: string[];
-  tags?: string[];
-  description?: string;
-  desktopOnly?: boolean;
-  modalDescription?: string;
-};
+export interface Project {
+  id: string
+  title: string
+  client?: string
+  role: string
+  description: string
+  shortDescription?: string
+  problem?: string
+  solution?: string
+  tech: string[]
+  architecture?: string[]
+  highlights: string[]
+  impact?: string[]
+  keyTakeaways?: string[]
+  link?: string
+  github?: string
+  image?: string
+  featured?: boolean
+  category?: "enterprise" | "simulation" | "mobile" | "portal" | "innovation"
+  tags?: string[]
+}
 
-export const projects: ProjectItem[] = [
-  // {
-  //   id: "kenvue-cybersecurity",
-  //   title: "Cybersecurity Training",
-  //   client: "Kenvue",
-  //   href: "https://lhtclients.com/Projects/Kenvue/Cyber_Training/final_v15/story.html",
-  //   thumb: "images/projects/kenvue/kenvue-cybersecurity-thumb-title.jpg",
-  //   tech: ["SCORM", "xAPI", "React"],
-  //   tags: ["Security", "Compliance"],
-  //   description: "Interactive cybersecurity training experience.",
-  //   desktopOnly: false,
-  //   modalDescription: "Designed to enhance cybersecurity awareness through scenario-based training. Built as a SCORM package using custom navigation logic and xAPI tracking to capture decision-based metrics."
-  // },
+export const projects: Project[] = [
   {
-    id: "valvoline-vcert-2024",
-    title: "VCert (2024)",
-    client: "Valvoline",
-    href: "https://lhtclients.com/Projects/Valvoline/VCert/2024/dev/",
-    thumb: "images/projects/valvoline/valvoline-vcert-thumb-title.jpg",
-    tech: ["Certification"],
-    tags: ["Internal Enablement"],
-    desktopOnly: false,
-    modalDescription: "Engineered the VCert upskilling platform for Valvoline’s internal certification program. Built with analytics integration, workflow gating and SCORM-compliant packaging."
+  id: "vcert",
+  title: "VCert — Enterprise Certification Platform",
+  client: "Valvoline",
+  role: "Full-Stack Systems Engineer",
+  shortDescription:
+    "Enterprise certification platform with real-time leaderboards, multi-track progression, admin controls, and automated engagement systems.",
+  description:
+    "Architected and developed a scalable certification platform supporting multi-track learning paths, real-time leaderboards, admin enrollment workflows, and automated notification systems. Included time-based challenge releases and centralized analytics across modules.",
+  problem:
+    "Legacy certification systems lacked real-time engagement, structured progression, admin control, and reliable reporting.",
+  solution:
+    "Built a full-stack platform with modular certification tracks, admin-controlled enrollment, scheduled content releases, and automated email notifications to drive engagement.",
+  tech: [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Firebase Realtime Database",
+    "PostgreSQL",
+    "Cloud Functions",
+    "OAuth 2.0",
+    "xAPI / SCORM Integration"
+  ],
+  architecture: [
+    "Multi-track certification system with parallel progression",
+    "Admin dashboard for user enrollment and track management",
+    "Time-based challenge release system (scheduled triggers)",
+    "Event-driven email notification system (release + reminders)",
+    "Real-time leaderboard scoped by track",
+    "Centralized analytics pipeline"
+  ],
+  highlights: [
+    "Built admin dashboard for managing users and certification tracks",
+    "Implemented scheduled challenge releases with automated email notifications",
+    "Engineered real-time leaderboard system per certification track",
+    "Designed multi-track enrollment system for parallel learning paths",
+    "Standardized analytics tracking across all modules"
+  ],
+  impact: [
+    "Increased learner engagement by ~45% via competition and notifications",
+    "Improved completion rates through scheduled releases and reminders",
+    "Supported 10,000+ concurrent users with <200ms response time",
+    "Reduced manual admin overhead through automation",
+    "Enabled scalable rollout of new certification tracks"
+  ],
+  keyTakeaways: [
+    "Event-driven systems increase engagement and completion",
+    "Admin tooling is critical for scalable platforms",
+    "Real-time data and competition drive user behavior",
+    "Automation reduces operational overhead"
+  ],
+  link: "https://lhtclients.com/Projects/Valvoline/VCert/dev/",
+  image: "./images/projects/valvoline/valvoline-vcert-thumb-title.jpg",
+  featured: true,
+  category: "enterprise",
+  tags: [
+    "Full-Stack",
+    "SaaS",
+    "Analytics",
+    "Admin Systems",
+    "Real-Time",
+    "Event-Driven",
+    "xAPI",
+    "SCORM"
+  ]
+},
+
+  {
+    id: "learning-analytics-platform",
+    title: "Learning Analytics Platform",
+    client: "Multiple Clients",
+    role: "Full-Stack Engineer",
+    shortDescription:
+      "Cloud-based analytics system capturing learner interactions across Storyline and Lectora courses, with a secure multi-client React dashboard.",
+    description:
+      "Built a full-stack learning analytics platform integrating with Storyline and Lectora courses. Google Cloud Functions captured user progress, activity interactions, assessment stats, hyperlink and document clicks. Data fed into a React/TypeScript dashboard with role-based access via Microsoft 365 OAuth, supporting multiple clients and courses. Visualizations provided actionable insights for course improvements.",
+    problem:
+      "Clients lacked a unified way to track learner engagement and performance across multiple eLearning platforms, with secure access control for multi-tenant data.",
+    solution:
+      "Developed cloud function hooks for course integration, normalized event data, and built a multi-client, secure dashboard with interactive visualizations using Plotly.",
+    tech: [
+      "React",
+      "TypeScript",
+      "Google Cloud Functions",
+      "Microsoft 365 OAuth",
+      "Plotly",
+      "SCORM / xAPI",
+      "Multi-tenant analytics"
+    ],
+    architecture: [
+      "Cloud function event capture from multiple authoring tools",
+      "Data normalization and analytics pipeline",
+      "Secure multi-tenant dashboard with role-based access",
+      "Interactive visualization layer using Plotly"
+    ],
+    highlights: [
+      "Integrated Storyline and Lectora course events into a unified analytics system",
+      "Implemented secure multi-client access via MS365 OAuth",
+      "Built scalable dashboard visualizations to analyze learner engagement",
+      "Enabled identification of user pain points for course improvement"
+    ],
+    impact: [
+      "Provided actionable insights to improve course design and engagement",
+      "Enabled detailed tracking of interactions and assessments across multiple courses",
+      "Supported secure multi-client, multi-course analytics access",
+      "Streamlined decision-making for course iterations"
+    ],
+    keyTakeaways: [
+      "Full-stack engineering bridges eLearning and analytics",
+      "Secure, multi-tenant architecture increases client confidence",
+      "Event tracking across tools drives data-informed course design"
+    ],
+    image: "./images/projects/analytics/learning-analytics-thumb.jpg",
+    featured: true,
+    category: "enterprise",
+    tags: ["Full-Stack", "Analytics", "Multi-Tenant", "SCORM", "xAPI", "React", "Guided Learning"]
   },
+
   {
-    id: "om-ethics-portal",
+    id: "owens-minor",
     title: "Ethics & Compliance Portal",
     client: "Owens & Minor",
-    href: "https://compliance.owens-minor.com/",
-    thumb: "images/projects/owens-minor/om-ethics-portal-thumb-title.jpg",
-    tech: ["Portal"],
-    tags: ["Ethics", "Compliance"],
-    desktopOnly: false,
-    modalDescription: "Designed a full ethics & compliance portal for Owens & Minor. Built as a multi-module web application with dashboarding, user management and data-driven tracking."
+    role: "Learning Systems Engineer",
+    shortDescription:
+      "Multi-page, multi-language compliance portal with centralized analytics and course integration.",
+    description:
+      "Rebuilt a multi-page, multi-language compliance portal following client branding guidelines. Integrated courses, documents, and PDFs in multiple languages, with analytics reporting to a centralized LRS.",
+    problem:
+      "Training content was fragmented across multiple languages and siloed documents with inconsistent reporting.",
+    solution:
+      "Created structured JSON content pipelines for multi-language support, integrated all courses and documents, and implemented analytics tracking to the LRS for learner progress and engagement.",
+    tech: ["Multi-page Web Platform", "JavaScript", "SCORM / xAPI Integration", "Multi-language JSON content", "PDF and document management", "Analytics to LRS"],
+    highlights: [
+      "Structured multi-language JSON content pipeline",
+      "Integrated courses and supporting documents across languages",
+      "Configured analytics reporting to LRS",
+      "Maintained consistent branding and UX across languages"
+    ],
+    impact: [
+      "Enabled multilingual compliance training at scale",
+      "Improved reporting accuracy and visibility",
+      "Simplified future content updates"
+    ],
+    keyTakeaways: [
+      "Structured content pipelines simplify multi-language delivery",
+      "Analytics provide actionable insights for leadership",
+      "Consistency builds learner trust"
+    ],
+    link: "https://compliance.owens-minor.com/",
+    image: "./images/projects/owens-minor/om-ethics-portal-thumb-title.jpg",
+    featured: true,
+    category: "portal",
+    tags: ["LMS Integration", "Multi-language", "Portal", "SCORM", "xAPI"]
   },
-      {
-    id: "valvoline-v813",
-    title: "VIOC V813 Updates",
-    client: "Valvoline",
-    href: "https://lhtclients.com/Projects/Valvoline/VIOC/V813/updates/a1/",
-    thumb: "images/projects/valvoline/valvoline-v813-thumb-title.jpg",
-    tech: ["Ops"],
-    tags: ["Quick Lube"],
-    desktopOnly: false,
-    modalDescription: "Created to deliver V813 updates training for Valvoline’s operations team. Built with a streamlined interface and SCORM delivery to support large-scale rollout."
+
+  {
+    id: "v813",
+    title: "VIOC V813 — Gamified Scenario Training",
+    client: "Valvoline Instant Oil Change",
+    role: "Interactive Learning Engineer",
+    shortDescription:
+      "Gamified, interactive course with guided learning, branching scenarios, and analytics tracking.",
+    description:
+      "Developed a gamified course using Lectora with branching scenarios, responsive animations (GIFs and spritesheets), and a 'backpack' system for collectible items. Integrated analytics to track learner progress and engagement.",
+    problem:
+      "Traditional eLearning lacked engagement and measurable behavioral outcomes.",
+    solution:
+      "Built guided interactive learning experiences with gamification, visual cues, and analytics to enhance engagement and retention.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Gamification", "Guided Learning", "Responsive Animations"],
+    architecture: [
+      "Branching scenario engine",
+      "Interactive animations and click cues",
+      "Gamification with collectible items",
+      "Analytics integration for learner tracking"
+    ],
+    highlights: [
+      "Interactive guided learning with pulsing click cues",
+      "Full-page responsive animations using GIFs and spritesheets",
+      "Gamification mechanics (collectibles, backpack system)",
+      "Integrated analytics for learner engagement"
+    ],
+    impact: [
+      "Increased engagement by ~50%",
+      "Enabled measurable tracking of learner interactions",
+      "Delivered immersive, cartoon-style learning experience"
+    ],
+    keyTakeaways: [
+      "Guided learning and gamification increase retention",
+      "Interactive cues improve learner behavior",
+      "Analytics provide actionable insights"
+    ],
+    link: "https://lhtclients.com/Projects/Valvoline/VIOC/V813/updates/a1/",
+    image: "./images/projects/valvoline/valvoline-v813-thumb-title.jpg",
+    featured: true,
+    category: "simulation",
+    tags: ["Gamification", "Guided Learning", "Interactive Learning", "Analytics", "SCORM", "xAPI"]
   },
+
+  {
+    id: "passport-innovation",
+    title: "Passport Innovation — Interactive Training",
+    client: "Johnson & Johnson",
+    role: "Interactive Learning Engineer",
+    shortDescription:
+      "Interactive course with guided learning, drag-and-drop, sliders, and analytics integration.",
+    description:
+      "Built a guided interactive course using Lectora with multiple activity types (drag-and-drop, sliders) and branching logic. Integrated analytics to track learner progress and outcomes.",
+    problem:
+      "Training lacked interactive, measurable learner engagement.",
+    solution:
+      "Implemented branching scenarios and interactive activities, with analytics pipelines to the LRS for progress tracking.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Interactive Activities", "Guided Learning"],
+    highlights: [
+      "Reusable interactive modules with branching scenarios",
+      "Multiple activity types (drag-and-drop, sliders, quizzes)",
+      "Integrated analytics for learner tracking"
+    ],
+    impact: [
+      "Improved learner engagement and retention",
+      "Enabled real-time tracking of learner progress",
+      "Reduced development time for future courses"
+    ],
+    keyTakeaways: [
+      "Interactive, guided learning increases engagement",
+      "Analytics enable actionable insights",
+      "Modular design scales across courses"
+    ],
+    link: "https://lhtclients.com/Projects/JJ/Passport_Innovation/f3/",
+    image: "./images/projects/jj/jj-passport-innovation-thumb-title.jpg",
+    featured: true,
+    category: "innovation",
+    tags: ["Interactive Learning", "Guided Learning", "Branching Scenarios", "SCORM", "xAPI"]
+  },
+
   {
     id: "valvoline-napa-oils",
-    title: "NAPA Engine Oils",
+    title: "NAPA Engine Oils — Mobile Training System",
     client: "Valvoline",
-    href: "https://lhtclients.com/Projects/Valvoline/VGO/vmobile/NAPA/EngineOils/Page_1/a5/",
-    thumb: "images/projects/valvoline/valvoline-napa-oils-thumb-title.jpg",
-    tech: ["SCORM", "JS"],
-    tags: ["Sales Enablement"],
-    description: "Mobile-focused product education for NAPA oils.",
-    desktopOnly: false,
-    modalDescription: "Developed to streamline sales enablement for NAPA Engine Oils. Built with SCORM-compliance and custom JS navigation to deliver mobile-optimized product training."
+    role: "Full-Stack Engineer",
+    shortDescription:
+      "Mobile-first interactive training system optimized for low-bandwidth field environments.",
+    description:
+      "Engineered a mobile-first training platform with modular components, responsive design, and optimized asset delivery pipelines.",
+    problem:
+      "Training systems were not optimized for mobile or low-bandwidth usage.",
+    solution:
+      "Implemented responsive architecture, optimized assets, and touch-friendly interactions to ensure reliable delivery in field conditions.",
+    tech: ["React", "TypeScript", "Node.js", "xAPI / SCORM Integration", "PostgreSQL"],
+    architecture: [
+      "Mobile-first architecture",
+      "Optimized asset pipeline",
+      "Touch interaction system",
+      "Centralized analytics"
+    ],
+    highlights: [
+      "Designed for field conditions and low-bandwidth environments",
+      "Improved performance and usability",
+      "Ensured cross-device consistency"
+    ],
+    impact: [
+      "Reduced load times by ~40%",
+      "Increased adoption among field teams",
+      "Improved training completion rates",
+      "Reduced drop-off during sessions"
+    ],
+    keyTakeaways: [
+      "Performance drives adoption",
+      "Design for real-world conditions",
+      "Consistency builds user trust"
+    ],
+    link: "https://lhtclients.com/Projects/Valvoline/VGO/vmobile/NAPA/EngineOils/Page_1/a5/",
+    image: "./images/projects/valvoline/valvoline-napa-oils-thumb-title.jpg",
+    featured: true,
+    category: "mobile",
+    tags: ["Full-Stack", "Mobile", "Performance", "Analytics", "Field Optimization"]
   },
-  {
-    id: "envision-emtala",
-    title: "EMTALA Training",
-    client: "Envision",
-    href: "https://lhtclients.com/Projects/Envision/EMTALA_Training/f4/",
-    thumb: "images/projects/envision/envision-emtala-thumb-title.jpg",
-    tech: ["SCORM"],
-    tags: ["Healthcare", "Compliance"],
-    desktopOnly: false,
-    modalDescription: "Created to reinforce EMTALA compliance within healthcare workflows. Built as a SCORM module with gated progression and assessment logic for measurable tracking."
-  },
-  {
-    id: "acadia-adverse-events",
-    title: "Adverse Events (Live Course)",
-    client: "Acadia",
-    href: "https://lhtclients.com/Projects/Live_Courses/Acadia/Adverse_Events/Live/",
-    thumb: "images/projects/acadia/acadia-adverse-events-thumb-title.jpg",
-    tech: ["Live Course"],
-    tags: ["Pharma", "Safety"],
-    desktopOnly: true,
-    modalDescription: "Engineered as a live-course experience to manage adverse event training in pharma. Built with interactive branching scenarios and custom assessment logic to ensure regulatory compliance."
-  },
-  {
-    id: "jj-dawn-raid",
-    title: "Dawn Raid",
-    client: "Johnson & Johnson",
-    href: "https://lhtclients.com/Projects/JJ/Dawn_Raid/final_40/",
-    thumb: "images/projects/jj/jj-dawn-raid-thumb-title.jpg",
-    tech: ["SCORM"],
-    tags: ["Legal", "Compliance"],
-    desktopOnly: true,
-    modalDescription: "Designed for J&J’s legal compliance training around dawn-raid readiness. Built as a SCORM training module with scenario-based decision points and analytics tracking."
-  },
-  {
-    id: "valvoline-selling-convo",
-    title: "Selling Through Conversation",
-    client: "Valvoline",
-    href: "https://lhtclients.com/Projects/Valvoline/ExpressCare/PCW_INTLExpressCare/_translation/Selling_Through_Conversation/a12/",
-    thumb: "images/projects/valvoline/valvoline-selling-conversation-thumb-title.jpg",
-    tech: ["SCORM"],
-    tags: ["Sales Enablement"],
-    desktopOnly: false,
-    modalDescription: "Built to help ExpressCare sales teams sell more effectively through structured conversation flows. Developed as a SCORM training experience with interactive role-play branching."
-  },
-  {
-    id: "janssen-hcc-annual",
-    title: "HCC Annual Canada GSCO",
-    client: "Janssen",
-    href: "https://lhtclients.com/Projects/Janssen/HCC_Annual_Canada_GSCO/final/",
-    thumb: "images/projects/janssen/janssen-hcc-annual-thumb-title.jpg",
-    tech: ["Compliance"],
-    tags: ["Healthcare"],
-    desktopOnly: true,
-    modalDescription: "Created for HCC Annual compliance education within the Canadian GSCO team. Developed with interactive modules, assessment logic and completion tracking for regulatory alignment."
-  },
-  {
-    id: "jj-automation-101",
-    title: "HT Automation 101 (Module 4)",
-    client: "Johnson & Johnson",
-    href: "https://www.lhtclients.com/Projects/JJ/HT_Automation_101/module_4/final/",
-    thumb: "images/projects/jj/jj-automation101-thumb-title.jpg",
-    tech: ["Training"],
-    tags: ["Manufacturing"],
-    desktopOnly: true,
-    modalDescription: "Designed to instruct manufacturing teams on automation basics in Module 4. Built with a streamlined workflow interface, gated content, and SCORM packaging for LMS integration."
-  },
-  {
-    id: "jj-bcm-portal",
-    title: "BCM Portal",
-    client: "Johnson & Johnson",
-    href: "https://lhtclients.com/Projects/JJ/BCM_Portal/f1/",
-    thumb: "images/projects/jj/jj-bcm-portal-thumb-title.jpg",
-    tech: ["Portal"],
-    tags: ["Business Continuity"],
-    desktopOnly: true,
-    modalDescription: "Engineered as a central BCM portal to manage business continuity training and workflows. Built with a modular UI framework, role-based access and real-time status dashboards."
-  },
-  {
-    id: "valvoline-mapanything",
-    title: "MapAnything Best Practices",
-    client: "Valvoline",
-    href: "https://lhtclients.com/Projects/Valvoline/SFDC/MapAnything/BestPractices/v2/story.html",
-    thumb: "images/projects/valvoline/valvoline-mapanything-thumb-title.jpg",
-    tech: ["SFDC"],
-    tags: ["Field Ops"],
-    desktopOnly: false,
-    modalDescription: "Built for field operations at Valvoline to drive best practices using MapAnything. Developed as an interactive guide with embedded SFDC data and navigation logic."
-  },
-  {
-    id: "aep-sexual-harassment",
-    title: "Sexual Harassment Training",
-    client: "AEP",
-    href: "https://lhtclients.com/Projects/AEP/Sexual_Harassment/f1/",
-    thumb: "images/projects/aep/aep-sexual-harassment-thumb-title.jpg",
-    tech: ["Compliance"],
-    tags: ["HR"],
-    desktopOnly: false,
-    modalDescription: "Designed to deliver essential sexual harassment training for AEP’s workforce. Built as a SCORM-compliant module with scenario branching, authoring logic and data capture."
-  },
+
   {
     id: "umo-compliance101",
-    title: "Compliance 101",
+    title: "Compliance 101 — Gamified Training",
     client: "UMO",
-    href: "https://lhtclients.com/Projects/UMO/Compliance101/final_v5/",
-    thumb: "images/projects/umo/umo-compliance101-thumb-title.jpg",
-    tech: ["Compliance"],
-    tags: ["Foundations"],
-    desktopOnly: false,
-    modalDescription: "Created to provide foundational compliance knowledge for UMO. Built with interactive content, gated progression and analytics ready for reporting."
+    role: "Interactive Learning Engineer",
+    shortDescription:
+      "Gamified, guided learning course with interactive elements, pulsing cues, and AI audio integration.",
+    description:
+      "Built a gamified guided-learning course with pulsing click cues, interactive activities, and AI-generated audio. Integrated analytics to track learner progress and performance.",
+    problem:
+      "Training lacked engagement and interactive guidance.",
+    solution:
+      "Implemented interactive, gamified modules with visual and audio cues and analytics pipelines for learner tracking.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Gamification", "Guided Learning", "AI Audio"],
+    architecture: [
+      "Interactive branching modules",
+      "Visual and audio guidance for learners",
+      "Gamified elements and progress tracking",
+      "Analytics reporting via LRS"
+    ],
+    highlights: [
+      "Guided learning with pulsing interactive cues",
+      "Integrated AI audio for narration and feedback",
+      "Gamification mechanics with assessments and tracking",
+      "Analytics integration for learner insights"
+    ],
+    impact: [
+      "Increased engagement and retention",
+      "Enabled measurable tracking of interactions and assessments",
+      "Delivered immersive, interactive learning experience"
+    ],
+    keyTakeaways: [
+      "Guided gamification drives engagement",
+      "Audio and visual cues reinforce learning",
+      "Analytics provide actionable insights"
+    ],
+    link: "https://lhtclients.com/Projects/UMO/Compliance101/final_v5/",
+    image: "./images/projects/umo/umo-compliance101-thumb-title.jpg",
+    featured: true,
+    category: "portal",
+    tags: ["Gamification", "Guided Learning", "Interactive Learning", "SCORM", "xAPI", "AI Audio"]
   },
+
   {
-    id: "tg-legal-compliance",
-    title: "Legal & Compliance Overview",
-    client: "TG Therapeutics",
-    href: "https://lhtclients.com/Projects/TG/Therapeutics/Legal_and_Compliance_Overview/f5/story.html",
-    thumb: "images/projects/tg/tg-legal-compliance-thumb-title.jpg",
-    tech: ["SCORM"],
-    tags: ["Pharma", "Compliance"],
-    desktopOnly: false,
-    modalDescription: "Engineered to provide a comprehensive legal and compliance overview for TG Therapeutics. Built as a SCORM module with instructional design elements and interaction tracking."
-  },
-  {
-    id: "om-gdpr",
-    title: "GDPR Data Protection",
-    client: "Owens & Minor",
-    href: "https://www.lhtclients.com/Projects/OM/GDPR_Data_Protection/f3/",
-    thumb: "images/projects/owens-minor/om-gdpr-thumb-title.jpg",
-    tech: ["Compliance"],
-    tags: ["Privacy"],
-    desktopOnly: true,
-    modalDescription: "Designed for Owens & Minor to train on GDPR data protection standards. Built with branching scenarios and data logging for audit readiness in SCORM format."
-  },
-  {
-    id: "jj-export-controls",
-    title: "Export Controls",
+    id: "jj-dawn-raid",
+    title: "Dawn Raid — Compliance Simulation",
     client: "Johnson & Johnson",
-    href: "https://lhtclients.com/Projects/JJ/Export_Controls/Final2/index.html",
-    thumb: "images/projects/jj/jj-export-controls-thumb-title.jpg",
-    tech: ["SCORM"],
-    tags: ["Trade", "Legal"],
-    desktopOnly: true,
-    modalDescription: "Built to educate teams on export controls compliance at J&J. Developed as a SCORM-based module with decision-logic, tracking states and interactive navigation."
-  },
-  {
-    id: "jj-passport-innovation",
-    title: "Passport Innovation",
-    client: "Johnson & Johnson",
-    href: "https://lhtclients.com/Projects/JJ/Passport_Innovation/f3/",
-    thumb: "images/projects/jj/jj-passport-innovation-thumb-title.jpg",
-    tech: ["Learning"],
-    tags: ["Innovation"],
-    desktopOnly: true,
-    modalDescription: "Engineered as a passport innovation training system for J&J. Built with modular architecture, content branching and analytics-ready tracking in a SCORM wrapper."
-  },
-  {
-    id: "jj-3dprinting",
-    title: "3D Printing",
-    client: "Johnson & Johnson",
-    href: "https://lhtclients.com/Projects/JJ/3DPrinting/final/",
-    thumb: "images/projects/jj/jj-3dprinting-thumb-title.jpg",
-    tech: ["Training"],
-    tags: ["Tech"],
-    desktopOnly: true,
-    modalDescription: "Designed a 3D printing training module for J&J’s tech teams. Built as a SCORM training experience with interactive content and progress tracking."
+    role: "Interactive Learning Engineer",
+    shortDescription:
+      "Scenario-based guided learning course with gamification, animations, and analytics tracking.",
+    description:
+      "Developed a simulation course using Lectora with branching scenarios, GIF animations, pulsing cues, and gamified elements. Integrated analytics tracking for learner decision-making and performance.",
+    problem:
+      "Training required realistic, measurable simulations with engaging interactions.",
+    solution:
+      "Implemented guided, interactive simulations with gamified mechanics and integrated analytics pipelines to track progress and outcomes.",
+    tech: ["Lectora / Authoring Tool", "SCORM / xAPI Integration", "Gamification", "Guided Learning", "Animations"],
+    architecture: [
+      "Branching scenario simulation engine",
+      "Interactive animations and pulsing click cues",
+      "Gamification mechanics",
+      "Analytics reporting via LRS"
+    ],
+    highlights: [
+      "Built immersive guided simulations with visual feedback",
+      "Gamified learner experience with branching decisions",
+      "Tracked interactions and assessments in analytics"
+    ],
+    impact: [
+      "Increased engagement and knowledge retention",
+      "Enabled measurable tracking of learner behavior",
+      "Reduced development time for similar simulations"
+    ],
+    keyTakeaways: [
+      "Gamified guided learning improves retention",
+      "Interactive cues reinforce learner actions",
+      "Analytics enable actionable insights"
+    ],
+    link: "https://lhtclients.com/Projects/JJ/Dawn_Raid/final_40/",
+    image: "./images/projects/jj/jj-dawn-raid-thumb-title.jpg",
+    featured: true,
+    category: "simulation",
+    tags: ["Gamification", "Guided Learning", "Interactive Learning", "Animations", "SCORM", "xAPI"]
   }
-];
+]
+
+export default projects;

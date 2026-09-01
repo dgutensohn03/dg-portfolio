@@ -35,7 +35,7 @@ export default function Hero() {
     <section
       id="home"
       data-section="home"
-      className="min-h-[calc(100vh-60px)] flex flex-col justify-center items-center text-left  md:px-8 lg:px-12 pt-16"
+      className="min-h-[calc(100vh-60px)] flex flex-col justify-center items-center text-left md:px-8 lg:px-12 pt-16"
     >
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
 
@@ -48,14 +48,13 @@ export default function Hero() {
         Hello, I'm Daniel.
       </motion.h1>
 
-      {/* ✅ Updated Type Animation Roles */}
       <TypeAnimation
         sequence={[
-          "Full-Stack Engineer",  2000,
-"UX-Obsessed Builder",  2000,
-"Platform & Workflow Architect",  2000,
-"Learning Tools Developer",  2000,
-"Data-Driven Interface Architect", 2000,
+          "Full-Stack Engineer", 2000,
+          "Platform & Workflow Architect", 2000,
+          "UX-Obsessed Builder", 2000,
+          "Learning Systems Developer", 2000,
+          "Data-Driven Interface Architect", 2000,
         ]}
         wrapper="span"
         speed={50}
@@ -63,17 +62,15 @@ export default function Hero() {
         className="mt-4 text-xl md:text-2xl text-[var(--accent)] font-medium"
       />
 
-      {/* ✅ Refined tagline — short, high impact */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="mt-6 max-w-xl text-[var(--muted)] text-lg text-center leading-relaxed px-8 sm:px-12 md:px-20"
+        className="mt-6 max-w-xl text-[var(--muted)] text-md text-center leading-relaxed px-6 sm:px-12 md:px-20"
       >
-        I don’t just build. I turn ideas into systems with intent, insight, and craft.
+        I turn complex ideas into scalable, maintainable platforms and workflows — building systems that are performant, intuitive, and optimized for real-world impact.
       </motion.p>
 
-      {/* ✅ Icon row (unchanged except consistent spacing retention) */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -86,9 +83,15 @@ export default function Hero() {
             onClick={action}
             type="button"
             aria-label={label}
-            className="relative group p-3 rounded-xl transition-colors text-[var(--fg)]/70 
-                       hover:text-[var(--fg)] cursor-pointer focus:outline-none 
-                       focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
+            className="
+              relative group p-3 rounded-xl
+              text-[var(--fg)]/70
+              hover:text-[var(--accent)]
+              cursor-pointer
+              focus:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-[var(--accent)]/50
+            "
           >
             {icon}
             <span
