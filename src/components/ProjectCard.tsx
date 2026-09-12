@@ -30,7 +30,7 @@ export default function ProjectCard({ project, openModal }: Props) {
       onClick={openModal}
       className={`
         cursor-pointer group flex flex-col rounded-xl overflow-hidden border shadow-sm hover:shadow-lg
-        w-80 h-full min-h-[28rem]
+        w-full max-w-80 sm:w-80 h-full min-h-[28rem]
         ${
           isDark
             ? "bg-[#1e1e1e] text-gray-100 border-gray-700"
