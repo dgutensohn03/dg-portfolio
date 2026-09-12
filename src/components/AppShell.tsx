@@ -52,7 +52,7 @@ export default function AppShell() {
           id="home"
           className="h-screen h-dvh flex items-center justify-center md:snap-start"
         >
-          <div className="w-full pl-6 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
+          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
             <FadeSection>
               <Hero />
             </FadeSection>
@@ -63,7 +63,7 @@ export default function AppShell() {
           id="about"
           className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-12 md:pb-0 md:snap-start"
         >
-          <div className="w-full pl-6 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex flex-col md:items-center md:justify-center">
+          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex flex-col md:items-center md:justify-center">
             <FadeSection>
               <About />
             </FadeSection>
@@ -74,7 +74,7 @@ export default function AppShell() {
           id="projects"
           className="relative flex flex-col min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-20 md:pb-36 md:snap-start"
         >
-          <div className="w-full pl-5 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto">
+          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto">
             <FadeSection>
               <Projects />
             </FadeSection>
@@ -89,7 +89,7 @@ export default function AppShell() {
         >
           <div
             ref={contactRef}
-            className="w-full pl-6 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center"
+            className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center"
           >
             <FadeSection>
               <Contact />
