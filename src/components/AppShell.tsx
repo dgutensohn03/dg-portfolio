@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { Navbar } from "@/components/navigation";
 import SectionDots from "@/components/navigation/SectionDots";
@@ -27,7 +26,7 @@ export default function AppShell() {
   });
 
   return (
-    <div className="relative min-h-screen transition-colors duration-500 bg-linear-to-b from-grad-from via-grad-via to-grad-to text-fg">
+    <div className="relative min-h-dvh transition-colors duration-500 bg-linear-to-b from-grad-from via-grad-via to-grad-to text-fg">
       {/* Fixed header/navigation */}
       <Navbar active={active} scrollToId={scrollTo} />
       <SectionDots active={active} scrollToId={scrollTo} />
@@ -41,25 +40,23 @@ export default function AppShell() {
       <main
         data-scroll-container
         className="
-          h-screen
-          overflow-y-auto
+          h-screen h-dvh
+          overflow-y-auto overflow-x-hidden
           pb-[80px]
           md:snap-y md:snap-proximity
           scroll-smooth
         "
         style={{
-          WebkitOverflowScrolling: "touch", // smooth momentum on mobile
-          scrollBehavior: "smooth",          // smooth anchor jumps
-          willChange: "scroll-position",     // hint for browser optimization
-          transform: "translateZ(0)",        // GPU acceleration
+          WebkitOverflowScrolling: "touch",
+          scrollBehavior: "smooth",
         }}
       >
         {/* HERO */}
         <section
           id="home"
-          className="h-screen flex items-center justify-center md:snap-start"
+          className="h-screen h-dvh flex items-center justify-center md:snap-start"
         >
-          <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
+          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
             <FadeSection>
               <Hero />
             </FadeSection>
@@ -69,9 +66,9 @@ export default function AppShell() {
         {/* ABOUT */}
         <section
           id="about"
-          className="relative flex min-h-[calc(100vh-60px)] pt-15 pb-12 md:pb-0 md:snap-start"
+          className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-12 md:pb-0 md:snap-start"
         >
-          <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex flex-col md:items-center md:justify-center">
+          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex flex-col md:items-center md:justify-center">
             <FadeSection>
               <About />
             </FadeSection>
@@ -81,9 +78,9 @@ export default function AppShell() {
         {/* PROJECTS */}
         <section
           id="projects"
-          className="relative flex flex-col min-h-[calc(100vh-60px)] pt-15 pb-20 md:pb-36 md:snap-start"
+          className="relative flex flex-col min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-20 md:pb-36 md:snap-start"
         >
-          <div className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto">
+          <div className="w-full px-5 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto">
             <FadeSection>
               <Projects />
             </FadeSection>
@@ -95,11 +92,11 @@ export default function AppShell() {
         {/* CONTACT */}
         <section
           id="contact"
-          className="relative flex min-h-[calc(100vh-60px)] pt-15 md:snap-end"
+          className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 md:snap-end"
         >
           <div
             ref={contactRef}
-            className="w-full px-12 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center"
+            className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center"
           >
             <FadeSection>
               <Contact />
