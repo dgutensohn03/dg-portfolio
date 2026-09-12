@@ -1,8 +1,20 @@
+<div align="center">
+
 # Daniel Gutensohn — Engineering Portfolio
 
-Senior frontend and full-stack engineering portfolio focused on building clear, scalable, accessible digital products from complex requirements.
+**Senior Frontend · UX Engineering · Full-Stack Systems**
 
-**[View the live portfolio →](https://dgutensohn03.github.io/dg-portfolio/)**
+Building clear, scalable, accessible digital products from complex requirements.
+
+[![Live Portfolio](https://img.shields.io/badge/Live_Portfolio-View_Site-111827?style=for-the-badge)](https://dgutensohn03.github.io/dg-portfolio/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18-20232A?style=flat-square&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+
+</div>
+
+![Daniel Gutensohn — Senior Frontend, UX and Full-Stack Engineering](public/images/assets/Linkedin_Banner.png)
 
 ## What this portfolio demonstrates
 
@@ -10,25 +22,15 @@ This repository is more than a gallery of finished screens. It is a working exam
 
 My background spans frontend architecture, full-stack application development, UX engineering, learning platforms, analytics, and interactive systems. The work represented here includes enterprise applications, multi-tenant analytics, certification platforms, mobile-first experiences, simulations, and AI-assisted engineering workflows.
 
+> **The goal: make the engineering behind the work as visible as the finished interface.**
+
 ## Selected engineering work
 
-### Enterprise certification platform
-
-A full-stack certification experience supporting multiple learning tracks, user enrollment, scheduled content releases, notifications, real-time leaderboards, progression, and centralized analytics.
-
-**Engineering focus:** React, TypeScript, Node.js, Firebase, PostgreSQL, Cloud Functions, OAuth 2.0, xAPI/SCORM, event-driven workflows.
-
-### Learning analytics platform
-
-A secure analytics system that captures learner activity across multiple course technologies, normalizes interaction data, and presents actionable insights through a multi-client dashboard.
-
-**Engineering focus:** React, TypeScript, Google Cloud Functions, Microsoft 365 OAuth, Plotly, xAPI/SCORM, multi-tenant architecture and data visualization.
-
-### AI-assisted engineering lifecycle
-
-A portfolio case study documenting how AI can be incorporated throughout a modern engineering workflow without replacing engineering judgment — from investigation and planning through implementation, testing, review, and iteration.
-
-**Engineering focus:** structured problem solving, agentic development workflows, architecture decisions, validation, testing and human review.
+| System | Problem / Outcome | Engineering focus |
+| --- | --- | --- |
+| **Enterprise Certification Platform** | Multi-track certification, enrollment, scheduled releases, notifications, real-time leaderboards, progression and centralized analytics. | React, TypeScript, Node.js, Firebase, PostgreSQL, Cloud Functions, OAuth 2.0, xAPI / SCORM |
+| **Learning Analytics Platform** | Captures and normalizes learner activity across course technologies and turns it into actionable, securely segmented client insights. | React, TypeScript, Google Cloud Functions, Microsoft 365 OAuth, Plotly, multi-tenant architecture |
+| **AI-Assisted Engineering Lifecycle** | Demonstrates an AI-supported workflow from investigation and planning through implementation, testing, review and iteration without outsourcing engineering judgment. | Agentic workflows, architecture, validation, testing, human review |
 
 ## Engineering principles
 
@@ -40,7 +42,7 @@ A portfolio case study documenting how AI can be incorporated throughout a moder
 
 ## Portfolio architecture
 
-The portfolio is built as a component-driven Next.js application with project data separated from presentation logic. It uses static export for GitHub Pages while preserving reusable React components, responsive layouts, animated interactions, and dedicated case-study routes.
+The portfolio is a component-driven Next.js application with structured project data separated from presentation logic. It uses static export for GitHub Pages while preserving reusable React components, responsive layouts, animated interactions, and dedicated case-study routes.
 
 ```text
 src/
@@ -53,16 +55,18 @@ public/
 └── images/              # Portfolio and project assets
 ```
 
-The production build accounts for the GitHub Pages base path, responsive mobile viewport behavior, route-safe assets, and touch-friendly navigation.
+The production implementation accounts for the GitHub Pages base path, route-safe assets, dynamic mobile viewport behavior, touch-friendly navigation, and responsive content alignment.
 
 ## Technology
 
-**Frontend:** Next.js, React, TypeScript, JavaScript, Tailwind CSS, Framer Motion  
-**UI / UX:** responsive design, component architecture, accessibility, interaction design, mobile-first behavior  
-**Application experience:** Node.js, REST APIs, PostgreSQL, Firebase, OAuth 2.0, Google Cloud Functions  
-**Learning systems:** xAPI, SCORM, LRS integrations, learning analytics  
-**Visualization:** Plotly and data-rich interfaces  
-**Delivery:** Git, GitHub, GitHub Pages, static export and iterative browser/device validation
+| Area | Technologies / Practices |
+| --- | --- |
+| **Frontend** | Next.js, React, TypeScript, JavaScript, Tailwind CSS, Framer Motion |
+| **UX Engineering** | Responsive design, component architecture, accessibility, interaction design, mobile-first behavior |
+| **Application Systems** | Node.js, REST APIs, PostgreSQL, Firebase, OAuth 2.0, Google Cloud Functions |
+| **Learning Systems** | xAPI, SCORM, LRS integrations, learning analytics |
+| **Data Visualization** | Plotly, analytics dashboards, data-rich interfaces |
+| **Delivery** | Git, GitHub, GitHub Pages, static export, browser and device validation |
 
 ## Running locally
 
@@ -71,26 +75,26 @@ npm install
 npm run dev
 ```
 
-Then open `http://localhost:3000`.
+Open `http://localhost:3000`.
 
-Create a production build with:
+For a production build:
 
 ```bash
 npm run build
 ```
 
-## Why this repository exists
+## What I want reviewers to see
 
-The goal of this portfolio is to make the engineering behind the work visible — not just the final UI. I want a reviewer to be able to see how I think about architecture, product constraints, usability, maintainability, data, and delivery.
+The interesting part of this repository is not the framework choice. It is the decision-making behind the implementation: how components are structured, how project data is modeled, how route and deployment constraints are handled, how mobile/browser issues are resolved, and how UX details are treated as engineering requirements rather than final-pass decoration.
 
 I am particularly interested in senior frontend, UX engineering, and full-stack opportunities where engineering quality and user experience are treated as parts of the same problem.
 
 ## Connect
 
-**Portfolio:** [dgutensohn03.github.io/dg-portfolio](https://dgutensohn03.github.io/dg-portfolio/)  
-**GitHub:** [github.com/dgutensohn03](https://github.com/dgutensohn03)  
-**LinkedIn:** [linkedin.com/in/daniel-gutensohn-a2860a71](https://www.linkedin.com/in/daniel-gutensohn-a2860a71)
+**[Portfolio](https://dgutensohn03.github.io/dg-portfolio/)** · **[GitHub](https://github.com/dgutensohn03)** · **[LinkedIn](https://www.linkedin.com/in/daniel-gutensohn-a2860a71)**
 
 ---
 
-Built and maintained by **Daniel Gutensohn**.
+<div align="center">
+  <sub>Designed, engineered, and maintained by <strong>Daniel Gutensohn</strong>.</sub>
+</div>
