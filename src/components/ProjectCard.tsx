@@ -8,6 +8,14 @@ type Props = {
   openModal: () => void;
 };
 
+const withBasePath = (src: string) => {
+  if (/^(https?:)?\/\//.test(src) || src.startsWith("data:")) return src;
+
+  const cleanSrc = src.replace(/^\.\//, "").replace(/^\//, "");
+  const basePath = process.env.NODE_ENV === "production" ? "/dg-portfolio" : "";
+  return `${basePath}/${cleanSrc}`;
+};
+
 export default function ProjectCard({ project, openModal }: Props) {
   const [isDark, setIsDark] = useState(false);
 
@@ -42,7 +50,7 @@ export default function ProjectCard({ project, openModal }: Props) {
       {project.image && (
         <div className="relative w-full h-52 overflow-hidden">
           <img
-            src={project.image}
+            src={withBasePath(project.image)}
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
