@@ -14,7 +14,6 @@ import useActiveSection, { SectionId } from "../hooks/useActiveSection";
 export default function AppShell() {
   const sectionIds: SectionId[] = ["home", "about", "projects", "contact"];
 
-  // Debounce updates to reduce scroll jank
   const { active, scrollTo } = useActiveSection(
     sectionIds,
     80,
@@ -27,7 +26,6 @@ export default function AppShell() {
 
   return (
     <div className="relative min-h-dvh transition-colors duration-500 bg-linear-to-b from-grad-from via-grad-via to-grad-to text-fg">
-      {/* Fixed header/navigation */}
       <Navbar active={active} scrollToId={scrollTo} />
       <SectionDots active={active} scrollToId={scrollTo} />
 
@@ -36,7 +34,6 @@ export default function AppShell() {
         forceHide={!isContactMostlyVisible}
       />
 
-      {/* Scroll Container */}
       <main
         data-scroll-container
         className="
@@ -51,36 +48,33 @@ export default function AppShell() {
           scrollBehavior: "smooth",
         }}
       >
-        {/* HERO */}
         <section
           id="home"
           className="h-screen h-dvh flex items-center justify-center md:snap-start"
         >
-          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
+          <div className="w-full pl-6 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
             <FadeSection>
               <Hero />
             </FadeSection>
           </div>
         </section>
 
-        {/* ABOUT */}
         <section
           id="about"
           className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-12 md:pb-0 md:snap-start"
         >
-          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex flex-col md:items-center md:justify-center">
+          <div className="w-full pl-6 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex flex-col md:items-center md:justify-center">
             <FadeSection>
               <About />
             </FadeSection>
           </div>
         </section>
 
-        {/* PROJECTS */}
         <section
           id="projects"
           className="relative flex flex-col min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-20 md:pb-36 md:snap-start"
         >
-          <div className="w-full px-5 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto">
+          <div className="w-full pl-5 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto">
             <FadeSection>
               <Projects />
             </FadeSection>
@@ -89,14 +83,13 @@ export default function AppShell() {
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-bg to-transparent opacity-3" />
         </section>
 
-        {/* CONTACT */}
         <section
           id="contact"
           className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 md:snap-end"
         >
           <div
             ref={contactRef}
-            className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center"
+            className="w-full pl-6 pr-14 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center"
           >
             <FadeSection>
               <Contact />
