@@ -1,31 +1,267 @@
 "use client";
+
 import Link from "next/link";
-import {ArrowLeft,ArrowRight,Code2,Database,ExternalLink,Github,Layers3,Network,Server,Smartphone,TestTube2,Workflow} from "lucide-react";
-import {useMemo,useState} from "react";
-const claim={id:"CLM-10482",customer:"Jennifer Hart",policy:"POL-48392",amount:42850,status:"Investigating"};
-const claims=[claim,{id:"CLM-10321",customer:"Michael Torres",policy:"POL-77102",amount:12300,status:"Open"},{id:"CLM-10294",customer:"Sarah Kim",policy:"POL-55192",amount:8450,status:"Pending"},{id:"CLM-10172",customer:"Robert Fields",policy:"POL-77102",amount:28900,status:"Investigating"},{id:"CLM-09943",customer:"Maria Lopez",policy:"POL-55218",amount:26750,status:"Pending"}];
-const chapters=["Start","System","C# + .NET","Blazor","One claim","API","DI","Data","Security","Reliability","Delivery","Beyond web","Tradeoffs","Interview"];
-function Label({n,children}:{n:string;children:React.ReactNode}){return <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[.2em] text-[var(--accent)]"><span className="font-mono text-base">{n}</span><span className="h-px w-8 bg-[var(--accent)]"/>{children}</p>}
-function Code({title,children}:{title:string;children:React.ReactNode}){return <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#09111f] shadow-xl"><div className="flex items-center justify-between border-b border-white/10 px-4 py-3"><div className="flex gap-1.5"><i className="h-2.5 w-2.5 rounded-full bg-white/20"/><i className="h-2.5 w-2.5 rounded-full bg-white/20"/><i className="h-2.5 w-2.5 rounded-full bg-white/20"/></div><span className="font-mono text-[10px] text-slate-500">{title}</span></div><pre className="overflow-x-auto p-5 text-[12px] leading-7 text-slate-300"><code>{children}</code></pre></div>}
-function Explain({title="Why it matters",children}:{title?:string;children:React.ReactNode}){return <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5 sm:p-6"><p className="text-[10px] font-bold uppercase tracking-[.18em] text-[var(--accent)]">{title}</p><div className="mt-3 text-sm leading-7 text-[var(--muted)]">{children}</div></div>}
-function Talk({children}:{children:React.ReactNode}){return <div className="mt-7 rounded-2xl border border-[var(--accent)]/30 bg-[var(--accent)]/[.065] p-5 sm:p-6"><p className="text-[10px] font-bold uppercase tracking-[.18em] text-[var(--accent)]">How I’d explain it</p><p className="mt-3 text-sm leading-7 text-[var(--muted)]">{children}</p></div>}
-function Term({term,children}:{term:string;children:React.ReactNode}){return <div className="border-l-2 border-[var(--accent)]/50 pl-4"><p className="font-mono text-xs font-semibold text-[var(--fg)]">{term}</p><p className="mt-1 text-xs leading-5 text-[var(--muted)]">{children}</p></div>}
-function Section({id,n,title,children,tint=false}:{id:string;n:string;title:string;children:React.ReactNode;tint?:boolean}){return <section id={id} className={`${tint?"case-band border-y border-[var(--hairline)]":"case-base"} scroll-mt-32 px-5 py-20 sm:px-6 sm:py-24 lg:py-28`}><div className="mx-auto max-w-7xl"><Label n={n}>{title}</Label>{children}</div></section>}
-export default function Page(){const[minimum,setMinimum]=useState(25000);const results=useMemo(()=>claims.filter(c=>c.status!=="Closed"&&c.amount>=minimum).sort((a,b)=>b.amount-a.amount).slice(0,5),[minimum]);return <div className="case-study min-h-screen text-[var(--fg)]"><header className="sticky top-0 z-50 px-3 py-3 sm:px-6"><nav className="glass mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-4 py-3"><Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--accent)]"><ArrowLeft size={16}/>Portfolio</Link><span className="text-[10px] font-bold tracking-[.22em] text-[var(--muted)]">DG · DO GOOD</span><a href="https://github.com/dgutensohn03/dotnet-insurance-dashboard" target="_blank" rel="noreferrer" aria-label="View source" className="text-[var(--muted)] hover:text-[var(--accent)]"><Github size={18}/></a></nav></header><main>
-<section className="case-base px-5 pb-20 pt-14 sm:px-6 sm:pb-24 sm:pt-24"><div className="mx-auto max-w-7xl"><Label n="00">Engineering case study · guided walkthrough</Label><h1 className="mt-7 max-w-6xl text-5xl font-semibold leading-[.94] tracking-[-.055em] sm:text-7xl lg:text-[92px]">One dashboard.<span className="block text-[var(--accent)]">The whole engineering story.</span></h1><p className="mt-7 max-w-3xl text-lg leading-8 text-[var(--muted)] sm:text-xl">A progressive walkthrough of a full-stack insurance operations application. Start with what the system does, then follow one claim through C#, Blazor, HTTP, ASP.NET Core, dependency injection, and the data boundary—before examining security, reliability, delivery, and production tradeoffs.</p><div className="mt-9 flex flex-wrap gap-3"><a className="btn-solid" href="https://dgutensohn03.github.io/dotnet-insurance-dashboard/" target="_blank" rel="noreferrer">Open live dashboard<ExternalLink size={15}/></a><a className="btn" href="#s1">Begin the walkthrough<ArrowRight size={16}/></a></div><div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--hairline)] sm:grid-cols-3">{[["FOR ANY READER","Every chapter explains what a concept is before showing implementation."],["FOR ENGINEERS","Boundaries, failure modes, testability, lifetimes, security, and tradeoffs are explicit."],["FOR THE INTERVIEW","The same page doubles as a screen-sharing narrative and concept map."]].map(([h,t])=><div key={h} className="bg-[var(--case-card)] p-5 sm:p-6"><p className="text-xs text-[var(--accent)]">{h}</p><p className="mt-2 text-sm leading-6 text-[var(--muted)]">{t}</p></div>)}</div></div></section>
-<div className="sticky top-[76px] z-40 hidden border-y border-[var(--hairline)] bg-[var(--case-base)]/95 backdrop-blur-xl lg:block"><nav className="mx-auto flex max-w-7xl gap-6 overflow-x-auto px-6 py-3">{chapters.map((x,i)=><a key={x} href={`#s${i+1}`} className="whitespace-nowrap text-[10px] font-semibold text-[var(--muted)] hover:text-[var(--accent)]">{String(i+1).padStart(2,"0")} {x}</a>)}</nav></div>
-<Section id="s1" n="01" title="Start here" tint><div className="mt-8 grid gap-10 lg:grid-cols-[.75fr_1.25fr]"><div><h2 className="text-3xl font-semibold sm:text-5xl">Start with the problem, not the framework.</h2><p className="mt-5 leading-7 text-[var(--muted)]">The application is a fictional internal insurance operations dashboard. Its job is to turn policy, customer, and claims data into an interface where an operator can understand portfolio health and act on claims that need attention.</p><Talk>I’d frame the project as a production-inspired system rather than a tutorial. The dashboard is the product. This case study explains the engineering underneath it.</Talk></div><div className="grid gap-px overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--hairline)] md:grid-cols-3">{[["Problem","Operational data loses value when users must hunt across disconnected screens."],["Solution","A responsive dashboard with clear domain models, reusable UI, an HTTP API, and explicit data boundaries."],["Goal","Demonstrate not just syntax, but how decisions connect from user interaction through deployment."]].map(([h,t])=><article key={h} className="bg-[var(--case-card)] p-6"><p className="text-xs font-semibold text-[var(--accent)]">{h}</p><p className="mt-4 text-sm leading-7 text-[var(--muted)]">{t}</p></article>)}</div></div></Section>
-<Section id="s2" n="02" title="Understand the system"><div className="mt-8"><h2 className="max-w-3xl text-3xl font-semibold sm:text-5xl">The simplest useful mental model.</h2><p className="mt-5 max-w-3xl leading-7 text-[var(--muted)]">Before naming frameworks, the system is just a person using a browser, an application asking a server for information, and a server reading data. Everything else exists to make those responsibilities maintainable.</p><div className="mt-10 grid gap-3 sm:grid-cols-4">{[["01","Person","Chooses an action"],["02","Browser","Renders the interface"],["03","Server","Processes the request"],["04","Data","Stores domain state"]].map(([n,h,t])=><div key={h} className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><span className="font-mono text-xs text-[var(--accent)]">{n}</span><h3 className="mt-5 font-semibold">{h}</h3><p className="mt-2 text-xs text-[var(--muted)]">{t}</p></div>)}</div><div className="my-10 flex justify-center text-[var(--accent)]"><ArrowRight/></div><div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">{[[Layers3,"Blazor WebAssembly","Presentation: pages, components, state"],[Workflow,"Service abstraction","Client data boundary"],[Server,"ASP.NET Core API","HTTP routes and server behavior"],[Database,"Repository","Persistence boundary"]].map(([I,h,t])=>{const Icon=I as typeof Layers3;return <div key={String(h)} className="rounded-2xl border border-[var(--accent)]/25 bg-[var(--accent)]/[.04] p-5"><Icon size={22} className="text-[var(--accent)]"/><h3 className="mt-5 font-semibold">{String(h)}</h3><p className="mt-2 text-xs leading-5 text-[var(--muted)]">{String(t)}</p></div>})}</div><div className="mt-8 grid gap-3 lg:grid-cols-2"><Explain title="Why boundaries exist">A boundary gives one part of the system a clear responsibility and prevents implementation details from leaking everywhere. The UI should not need to know how a database works; an API route should not need to know how a component renders.</Explain><Explain title="Senior-level nuance">More layers are not automatically better. Each abstraction has a maintenance cost. I keep a boundary when it isolates a meaningful responsibility, supports testing or replacement, or prevents coupling that would otherwise spread.</Explain></div></div></Section>
-<Section id="s3" n="03" title="C# + .NET foundation" tint><div className="mt-8 grid gap-10 lg:grid-cols-[.75fr_1.25fr]"><div><h2 className="text-3xl font-semibold sm:text-5xl">Language, platform, frameworks.</h2><p className="mt-5 leading-7 text-[var(--muted)]">C# is the programming language. .NET is the runtime and platform. Blazor and ASP.NET Core are frameworks built on .NET for UI and web/server development.</p><div className="mt-8 space-y-5"><Term term="C#">Strongly typed language used throughout this project.</Term><Term term=".NET 8">Runtime, base class libraries, tooling, dependency injection infrastructure, serialization, and more.</Term><Term term="Blazor">Component framework used for the browser UI.</Term><Term term="ASP.NET Core">Framework used for HTTP APIs and server-side behavior.</Term></div></div><div><Code title="Claim.cs"><>{`public record Claim(\n    string Id,\n    string Customer,\n    string Policy,\n    decimal Amount,\n    string Status);`}</></Code><div className="mt-5 grid gap-3 sm:grid-cols-2"><Explain title="Why strong typing?">A <code>Claim</code> has a known shape. The compiler can catch incompatible values before runtime, tooling can autocomplete members, and contracts remain explicit across the codebase.</Explain><Explain title="Why decimal for money?">Binary floating-point types can represent many decimal fractions approximately. <code>decimal</code> is designed for base-10 precision and is the conventional choice for financial amounts.</Explain></div><div className="mt-3"><Explain title="Nullability + collections">Nullable reference types make the possibility of missing values visible in the type system. Generic collections such as <code>List&lt;Claim&gt;</code> preserve the type of every item instead of passing loosely structured data around.</Explain></div></div></div></Section>
-<Section id="s4" n="04" title="Blazor UI"><div className="mt-8 grid gap-10 lg:grid-cols-2"><div><h2 className="text-3xl font-semibold sm:text-5xl">The browser UI is a tree of components.</h2><p className="mt-5 leading-7 text-[var(--muted)]">A page composes smaller Razor components. Data flows down through parameters. User intent flows back through typed callbacks. Component state determines what is rendered.</p><div className="mt-8 grid gap-5 sm:grid-cols-2"><Term term="@page">Associates a Razor component with a URL route.</Term><Term term="@code">Contains C# fields, state, lifecycle methods, and handlers.</Term><Term term="[Parameter]">Declares input owned by a parent and consumed by a child.</Term><Term term="EventCallback<T>">Sends a typed event from child to parent.</Term><Term term="@bind / @onclick">Connect browser interaction to component state and C# handlers.</Term><Term term="OnInitializedAsync">Lifecycle hook commonly used for initial async loading.</Term></div></div><div><Code title="Claims.razor"><>{`@foreach (var claim in claims)\n{\n  <ClaimCard Claim="claim"\n    Selected="selectedClaim?.Id == claim.Id"\n    OnSelected="SelectClaim" />\n}\n\n@code {\n  private Claim? selectedClaim;\n  private void SelectClaim(Claim claim)\n    => selectedClaim = claim;\n}`}</></Code><Talk>The parent owns selection state. It passes the current state into each child. A child reports a click through EventCallback instead of reaching into its parent. That one-way relationship keeps ownership explicit and components easier to reuse.</Talk><div className="mt-5"><Explain title="Accessibility is part of the component contract">Reusable UI should preserve semantic elements, keyboard behavior, visible focus, meaningful labels, error announcements, responsive reflow, contrast, and appropriate loading/empty states—not treat accessibility as a final audit.</Explain></div></div></div></Section>
-<Section id="s5" n="05" title="Follow one claim" tint><div className="mt-8"><div className="max-w-3xl"><h2 className="text-3xl font-semibold sm:text-5xl">Follow CLM-10482 through every layer.</h2><p className="mt-5 leading-7 text-[var(--muted)]">Using one record removes abstraction from the explanation. Jennifer Hart’s $42,850 claim is the same domain object as it moves from storage to the screen.</p></div><div className="mt-10 grid gap-2 sm:grid-cols-2 lg:grid-cols-7">{[["01","DATA","Claim record"],["02","REPOSITORY","GetAllAsync"],["03","API","GET /api/claims"],["04","JSON","serialized"],["05","CLIENT","List<Claim>"],["06","LINQ","filter + sort"],["07","UI","ClaimCard"]].map(([n,h,t])=><div key={n} className="rounded-xl border border-[var(--hairline)] bg-[var(--case-card)] p-4"><span className="font-mono text-xs text-[var(--accent)]">{n}</span><p className="mt-4 text-[10px] font-bold text-[var(--fg)]">{h}</p><p className="mt-1 text-xs text-[var(--muted)]">{t}</p></div>)}</div><div className="mt-8 grid gap-5 lg:grid-cols-2"><Code title="wire-format.json"><>{`{\n  "id": "CLM-10482",\n  "customer": "Jennifer Hart",\n  "policy": "POL-48392",\n  "amount": 42850,\n  "status": "Investigating"\n}`}</></Code><div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><p className="text-xs text-[var(--accent)]">WHAT THE OPERATOR SEES</p><div className="mt-5 flex items-start justify-between gap-4"><div><p className="font-mono text-sm">CLM-10482</p><p className="mt-2 text-sm text-[var(--muted)]">Jennifer Hart · POL-48392</p></div><p className="text-2xl font-semibold">$42,850</p></div><span className="mt-5 inline-flex rounded-full bg-[var(--accent)]/10 px-3 py-1 text-xs text-[var(--accent)]">Investigating</span></div></div><Talk>The shape changes from a C# object to JSON on the wire and back to a C# object in the browser, but conceptually it remains one claim. That makes serialization and system boundaries easier to reason about.</Talk></div></Section>
-<Section id="s6" n="06" title="ASP.NET Core API"><div className="mt-8 grid gap-10 lg:grid-cols-2"><div><h2 className="text-3xl font-semibold sm:text-5xl">HTTP is the contract between client and server.</h2><p className="mt-5 leading-7 text-[var(--muted)]">The client does not call repository methods directly. It sends an HTTP request to a resource. ASP.NET Core routes the request, binds inputs, invokes application dependencies, and serializes a response.</p><div className="mt-8 space-y-5"><Term term="GET">Read a resource without changing server state.</Term><Term term="POST">Create or submit a new resource.</Term><Term term="JSON">Portable text representation used across the HTTP boundary.</Term><Term term="DTO">A purpose-built data contract when the API should not expose domain/storage models directly.</Term></div></div><div><Code title="Program.cs"><>{`app.MapGet("/api/claims", async (\n    IClaimsRepository repository) =>\n{\n    var claims = await repository.GetAllAsync();\n    return Results.Ok(claims);\n});`}</></Code><div className="mt-5"><Explain title="What happens when it runs?">Routing matches <code>GET /api/claims</code>. DI resolves <code>IClaimsRepository</code>. The repository performs asynchronous work. The endpoint returns a 200 result, and ASP.NET Core serializes the typed objects to JSON.</Explain></div><div className="mt-3"><Explain title="Why async?">Network and database calls spend time waiting on I/O. <code>await</code> lets execution yield while waiting instead of tying up a thread. Async does not make the external system itself faster; it improves resource utilization and scalability.</Explain></div></div></div></Section>
-<Section id="s7" n="07" title="Dependency injection" tint><div className="mt-8 grid gap-10 lg:grid-cols-2"><div><Code title="Program.cs · registrations"><>{`builder.Services.AddScoped<\n  IClaimsRepository, ClaimsRepository>();\n\nbuilder.Services.AddScoped<\n  IPolicyRepository, PolicyRepository>();`}</></Code><div className="mt-5 grid gap-3 sm:grid-cols-3">{[["Transient","New instance each resolution"],["Scoped","One instance per scope/request"],["Singleton","One instance for app lifetime"]].map(([h,t])=><div key={h} className="rounded-xl border border-[var(--hairline)] bg-[var(--case-card)] p-4"><p className="font-mono text-xs text-[var(--accent)]">{h}</p><p className="mt-2 text-xs leading-5 text-[var(--muted)]">{t}</p></div>)}</div></div><div><h2 className="text-3xl font-semibold sm:text-5xl">Ask for a capability, not a concrete object.</h2><p className="mt-5 leading-7 text-[var(--muted)]">The endpoint asks for <code>IClaimsRepository</code>. The container knows which implementation satisfies that contract and manages its lifetime.</p><div className="mt-8 space-y-5"><Term term="IClaimsRepository">Contract: what operations are available.</Term><Term term="ClaimsRepository">Implementation: how those operations currently work.</Term><Term term="AddScoped">Registration: which implementation fulfills the contract and for how long.</Term></div><Talk>DI reduces direct construction and makes dependencies visible. But I would not create an interface for every class by habit. The abstraction should represent a useful boundary, substitution point, or test seam.</Talk></div></div></Section>
-<Section id="s8" n="08" title="Data architecture"><div className="mt-8 grid gap-10 lg:grid-cols-[.75fr_1.25fr]"><div><h2 className="text-3xl font-semibold sm:text-5xl">The demo boundary is intentionally replaceable.</h2><p className="mt-5 leading-7 text-[var(--muted)]">The hosted portfolio needs to run on GitHub Pages, which cannot host the ASP.NET Core server. The UI therefore depends on <code>IInsuranceDataService</code> and can swap between API-backed and deterministic demo implementations.</p><Talk>That is a deployment constraint, not an attempt to pretend static data is production persistence. The interface keeps the presentation layer stable while the implementation changes.</Talk></div><div className="grid gap-5 sm:grid-cols-2"><Explain title="Portfolio deployment"><p className="font-mono text-xs">Blazor → IInsuranceDataService → DemoInsuranceDataService</p><p className="mt-3">Everything required by the public demo can execute in the browser.</p></Explain><Explain title="Production direction"><p className="font-mono text-xs">Blazor → HTTP → ASP.NET Core → EF Core → SQL</p><p className="mt-3">EF Core would provide change tracking and query translation while the database owns durable persistence.</p></Explain><Explain title="Repository tradeoff">A repository can isolate persistence and improve test seams, but EF Core’s <code>DbContext</code> already implements unit-of-work/repository-like behavior. A thin wrapper that adds no domain value can become ceremony.</Explain><Explain title="LINQ nuance">LINQ over in-memory collections executes C# delegates. LINQ over an EF Core <code>IQueryable</code> builds an expression tree that the provider attempts to translate to SQL. Knowing which one you are using matters for performance.</Explain></div></div></Section>
-<Section id="s9" n="09" title="Security" tint><div className="mt-8 grid gap-10 lg:grid-cols-2"><div><h2 className="text-3xl font-semibold sm:text-5xl">Identity and permission are different questions.</h2><div className="mt-8 grid gap-5 sm:grid-cols-2"><Explain title="Authentication">Who are you? A production application could use an OpenID Connect/OAuth identity provider and receive tokens representing an authenticated user.</Explain><Explain title="Authorization">What are you allowed to do? Policies or roles could restrict claim updates, customer information, administration, or financial actions.</Explain></div></div><div><Code title="authorization-concept.cs"><>{`[Authorize(Policy = "ClaimsAdjuster")]\npublic async Task<IResult> UpdateClaim(...)\n{\n    // validate input\n    // verify resource access\n    // update through service/repository\n}`}</></Code><div className="mt-5"><Explain title="The API is the security boundary">Hiding a button is UX, not authorization. Server endpoints must independently enforce access because clients can be modified and HTTP requests can be sent without the UI.</Explain></div></div></div></Section>
-<Section id="s10" n="10" title="Reliability + testing"><div className="mt-8"><h2 className="max-w-4xl text-3xl font-semibold sm:text-5xl">Design the unhappy paths before they happen.</h2><p className="mt-5 max-w-3xl leading-7 text-[var(--muted)]">A production UI needs explicit loading, empty, error, unauthorized, forbidden, validation, and retry behavior. The API needs consistent responses and enough observability to diagnose failures.</p><div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{[["400","Invalid input"],["401","Not authenticated"],["403","Not permitted"],["404","Not found"],["500","Unexpected failure"]].map(([n,t])=><div key={n} className="rounded-xl border border-[var(--hairline)] bg-[var(--case-card)] p-4"><p className="font-mono text-lg text-[var(--accent)]">{n}</p><p className="mt-2 text-xs text-[var(--muted)]">{t}</p></div>)}</div><div className="mt-8 grid gap-5 lg:grid-cols-3">{[[TestTube2,"Unit","LINQ/business rules and isolated component/service behavior"],[Server,"Integration","API routing, serialization, validation, data boundaries"],[ArrowRight,"End-to-end","Critical user flows through the rendered application"]].map(([I,h,t])=>{const Icon=I as typeof TestTube2;return <Explain key={String(h)} title={`${String(h)} tests`}><Icon size={18} className="mb-3 text-[var(--accent)]"/>{String(t)}</Explain>})}</div><div className="mt-5 grid gap-5 lg:grid-cols-2"><Explain title="Observability">Structured logs, correlation IDs, metrics, traces, health checks, and actionable alerts answer not only “did it fail?” but “where, for whom, how often, and why?”</Explain><Explain title="Resilience">Timeouts, cancellation tokens, bounded retries with backoff, idempotency where appropriate, and circuit-breaking can protect dependencies. Retries should never be added blindly to non-idempotent operations.</Explain></div></div></Section>
-<Section id="s11" n="11" title="Delivery" tint><div className="mt-8 grid gap-10 lg:grid-cols-[.7fr_1.3fr]"><div><h2 className="text-3xl font-semibold sm:text-5xl">Code is not shipped until it is verified.</h2><p className="mt-5 leading-7 text-[var(--muted)]">The repository uses GitHub Actions to build and publish the Blazor WebAssembly client to GitHub Pages. A production pipeline would add broader quality gates and deploy the API separately.</p></div><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[["01","Commit","Versioned change"],["02","Build","Restore + compile"],["03","Verify","Tests + static checks"],["04","Deploy","Environment artifact"]].map(([n,h,t])=><div key={n} className="rounded-xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><span className="font-mono text-xs text-[var(--accent)]">{n}</span><p className="mt-5 font-semibold">{h}</p><p className="mt-2 text-xs text-[var(--muted)]">{t}</p></div>)}</div></div></Section>
-<Section id="s12" n="12" title="Beyond the web app"><div className="mt-8"><h2 className="max-w-4xl text-3xl font-semibold sm:text-5xl">How the architecture can grow without rewriting the domain.</h2><p className="mt-5 max-w-3xl leading-7 text-[var(--muted)]">These are architectural directions, not features I am claiming are implemented in the current demo.</p><div className="mt-10 grid gap-5 md:grid-cols-3"><Explain title="API gateway"><Network size={21} className="mb-4 text-[var(--accent)]"/>A gateway can centralize routing, authentication concerns, rate limits, aggregation, and cross-cutting policy when multiple backend services justify that complexity.</Explain><Explain title="Web Components"><Code2 size={21} className="mb-4 text-[var(--accent)]"/>Standards-based custom elements can expose framework-neutral UI boundaries when a component must be consumed outside the Blazor application.</Explain><Explain title=".NET MAUI"><Smartphone size={21} className="mb-4 text-[var(--accent)]"/>A native client could reuse API contracts and domain/application logic where appropriate while providing device-specific mobile workflows.</Explain></div></div></Section>
-<Section id="s13" n="13" title="Engineering decisions + tradeoffs" tint><div className="mt-8 grid gap-10 lg:grid-cols-[.7fr_1.3fr]"><div><h2 className="text-3xl font-semibold sm:text-5xl">Architecture is a set of choices under constraints.</h2><p className="mt-5 leading-7 text-[var(--muted)]">The useful question is rarely “is this pattern good?” It is “what problem does it solve here, what does it cost, and when would I change it?”</p></div><div className="space-y-3">{[["Blazor WASM","C# component model in the browser; good fit for the .NET learning/product goal.","Initial download/runtime characteristics and ecosystem differ from React; SSR/server modes may fit other products better."],["Service abstraction","Keeps pages independent of whether data comes from HTTP or the static portfolio demo.","An abstraction with only one permanent implementation may add indirection."],["Repository boundary","Makes persistence explicit and replaceable.","Can duplicate EF Core abstractions if it contains no domain-specific behavior."],["Static demo data","Makes the portfolio reliable on GitHub Pages.","Cannot demonstrate real persistence, concurrency, server authorization, or database performance."],["Shared models","Reduces duplicated contracts across .NET projects.","At scale I may separate API DTOs from domain/persistence models to avoid coupling releases."]].map(([h,a,b])=><div key={h} className="grid gap-4 rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5 sm:grid-cols-[.55fr_1fr_1fr] sm:p-6"><b className="text-sm">{h}</b><p className="text-xs leading-6 text-[var(--muted)]"><span className="text-[var(--accent)]">WHY</span><br/>{a}</p><p className="text-xs leading-6 text-[var(--muted)]"><span className="text-[var(--accent)]">TRADEOFF</span><br/>{b}</p></div>)}</div></div></Section>
-<Section id="s14" n="14" title="Interview concept map"><div className="mt-8"><div className="max-w-4xl"><h2 className="text-3xl font-semibold sm:text-5xl">If I can explain these connections, I understand the system.</h2><p className="mt-5 leading-7 text-[var(--muted)]">This final map is deliberately compact. It is the review layer after the detailed walkthrough—not a substitute for it.</p></div><div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{[["C#","typing · records/classes · decimal · nullability · generics"],["LINQ","Where · Select · OrderBy · Any/All · aggregation · deferred execution"],["Async","Task<T> · await · I/O · cancellation · scalability"],["Blazor","routing · components · parameters · callbacks · state · lifecycle"],["HTTP","verbs · resources · JSON · status codes · idempotency"],["ASP.NET Core","routing · binding · middleware · serialization · CORS"],["DI","contracts · implementations · scoped/transient/singleton · test seams"],["Data","repositories · EF Core · SQL · IQueryable · transactions"],["Security","authentication · authorization · tokens · RBAC/policies"],["Quality","unit · integration · E2E · accessibility · validation"],["Operations","CI/CD · logs · metrics · traces · health · resilience"],["Extensions","API gateway · Web Components · MAUI"]].map(([h,t])=><div key={h} className="rounded-xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><p className="font-semibold">{h}</p><p className="mt-2 text-xs leading-5 text-[var(--muted)]">{t}</p></div>)}</div><div className="mt-10 grid gap-5 lg:grid-cols-2"><Talk>I’d start an interview walkthrough with the user problem, show the four architecture boundaries, follow CLM-10482 end-to-end, and then let the interviewer choose where to go deeper. That keeps the conversation grounded in a working system instead of reciting framework definitions.</Talk><Explain title="Questions I expect">Why Blazor? Why an interface here? Scoped vs singleton? What does await actually do? Where is authorization enforced? How would this persist data? What fails if the API is unavailable? What would you test? What would you change at scale?</Explain></div><div className="mt-12 flex flex-wrap gap-3"><a className="btn-solid" href="https://dgutensohn03.github.io/dotnet-insurance-dashboard/" target="_blank" rel="noreferrer">Open the product<ExternalLink size={15}/></a><a className="btn" href="https://github.com/dgutensohn03/dotnet-insurance-dashboard" target="_blank" rel="noreferrer"><Github size={17}/>Inspect the source</a><Link href="/" className="btn"><ArrowLeft size={16}/>Portfolio</Link></div></div></Section>
-</main></div>}
+import {
+  ArrowLeft,
+  ArrowRight,
+  Database,
+  ExternalLink,
+  Github,
+  Layers3,
+  RefreshCw,
+  ShieldCheck,
+  TestTube2,
+  Workflow,
+} from "lucide-react";
+
+const live = "https://dgutensohn03.github.io/dotnet-insurance-dashboard";
+const chapters = ["Product", "Architecture", "One claim", "Lifecycle", "UI", "Testing", "Delivery", "Tradeoffs", "Interview"];
+
+function Label({ n, children }: { n: string; children: React.ReactNode }) {
+  return (
+    <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[.2em] text-[var(--accent)]">
+      <span className="font-mono text-base">{n}</span>
+      <span className="h-px w-8 bg-[var(--accent)]" />
+      {children}
+    </p>
+  );
+}
+
+function Section({ id, n, title, children, tint = false }: { id: string; n: string; title: string; children: React.ReactNode; tint?: boolean }) {
+  return (
+    <section id={id} className={`${tint ? "case-band border-y border-[var(--hairline)]" : "case-base"} scroll-mt-32 px-5 py-20 sm:px-6 sm:py-24 lg:py-28`}>
+      <div className="mx-auto max-w-7xl">
+        <Label n={n}>{title}</Label>
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function Card({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5 sm:p-6">
+      <p className="text-[10px] font-bold uppercase tracking-[.18em] text-[var(--accent)]">{title}</p>
+      <div className="mt-3 text-sm leading-7 text-[var(--muted)]">{children}</div>
+    </div>
+  );
+}
+
+function Code({ title, children }: { title: string; children: string }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#09111f] shadow-xl">
+      <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+        <div className="flex gap-1.5"><i className="h-2.5 w-2.5 rounded-full bg-white/20" /><i className="h-2.5 w-2.5 rounded-full bg-white/20" /><i className="h-2.5 w-2.5 rounded-full bg-white/20" /></div>
+        <span className="font-mono text-[10px] text-slate-500">{title}</span>
+      </div>
+      <pre className="overflow-x-auto p-5 text-[12px] leading-7 text-slate-300"><code>{children}</code></pre>
+    </div>
+  );
+}
+
+function Preview({ title, path = "" }: { title: string; path?: string }) {
+  return (
+    <figure>
+      <div className="overflow-hidden rounded-[22px] border border-[var(--hairline)] bg-[var(--case-card)] shadow-2xl shadow-black/10">
+        <div className="flex items-center gap-2 border-b border-[var(--hairline)] px-4 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--hairline)]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--hairline)]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[var(--hairline)]" />
+          <span className="ml-2 text-[10px] font-semibold uppercase tracking-[.14em] text-[var(--muted)]">InsureOps · {title}</span>
+        </div>
+        <div className="relative h-[430px] bg-white sm:h-[560px]">
+          <iframe title={`InsureOps ${title} live preview`} src={`${live}${path}`} loading="lazy" className="h-full w-full border-0" />
+        </div>
+      </div>
+      <figcaption className="mt-3 flex items-center justify-between gap-4 text-xs text-[var(--muted)]">
+        <span>Live product preview — fictional demo data.</span>
+        <a href={`${live}${path}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-semibold text-[var(--accent)]">Open full screen <ExternalLink size={12} /></a>
+      </figcaption>
+    </figure>
+  );
+}
+
+export default function InsuranceOperationsCaseStudy() {
+  return (
+    <div className="case-study min-h-screen text-[var(--fg)]">
+      <header className="sticky top-0 z-50 px-3 py-3 sm:px-6">
+        <nav className="glass mx-auto flex max-w-7xl items-center justify-between rounded-2xl px-4 py-3">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--accent)]"><ArrowLeft size={16} />Portfolio</Link>
+          <span className="text-[10px] font-bold tracking-[.22em] text-[var(--muted)]">DG · DO GOOD</span>
+          <a href="https://github.com/dgutensohn03/dotnet-insurance-dashboard" target="_blank" rel="noreferrer" aria-label="View source on GitHub" className="text-[var(--muted)] hover:text-[var(--accent)]"><Github size={18} /></a>
+        </nav>
+      </header>
+
+      <main>
+        <section className="case-base px-5 pb-20 pt-14 sm:px-6 sm:pb-24 sm:pt-24">
+          <div className="mx-auto max-w-7xl">
+            <Label n="00">Full-stack engineering case study</Label>
+            <h1 className="mt-7 max-w-6xl text-5xl font-semibold leading-[.94] tracking-[-.055em] sm:text-7xl lg:text-[92px]">
+              Insurance operations,<span className="block text-[var(--accent)]">designed like a real product.</span>
+            </h1>
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
+              InsureOps is a fictional operations platform built with C#/.NET 8, Blazor WebAssembly, and ASP.NET Core. The interesting part is not the dashboard itself; it is how product decisions, domain rules, component architecture, API boundaries, testing, and deployment fit together.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a className="btn-solid" href={live} target="_blank" rel="noreferrer">Open live dashboard <ExternalLink size={15} /></a>
+              <a className="btn" href="#s1">Read the case study <ArrowRight size={16} /></a>
+            </div>
+            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--hairline)] sm:grid-cols-4">
+              {[["STACK", "C# · .NET 8 · Blazor · ASP.NET Core"], ["SCOPE", "Policies · claims · customers · analytics"], ["QUALITY", "xUnit · CI gate · responsive UX"], ["DOMAIN", "Recoverable archive / restore lifecycle"]].map(([h, t]) => (
+                <div key={h} className="bg-[var(--case-card)] p-5 sm:p-6"><p className="text-xs font-bold text-[var(--accent)]">{h}</p><p className="mt-2 text-sm leading-6 text-[var(--muted)]">{t}</p></div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <div className="sticky top-[76px] z-40 hidden border-y border-[var(--hairline)] bg-[var(--case-base)]/95 backdrop-blur-xl lg:block">
+          <nav className="mx-auto flex max-w-7xl gap-6 overflow-x-auto px-6 py-3">
+            {chapters.map((chapter, i) => <a key={chapter} href={`#s${i + 1}`} className="whitespace-nowrap text-[10px] font-semibold text-[var(--muted)] hover:text-[var(--accent)]">{String(i + 1).padStart(2, "0")} {chapter}</a>)}
+          </nav>
+        </div>
+
+        <Section id="s1" n="01" title="The product" tint>
+          <div className="mt-8 grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:items-start">
+            <div>
+              <h2 className="text-3xl font-semibold sm:text-5xl">Start with the operator, not the framework.</h2>
+              <p className="mt-5 leading-7 text-[var(--muted)]">An operations user needs to answer a few questions quickly: What is the state of the portfolio? Which claims need attention? Which customer or policy am I looking at? What changed, and what can I safely do next?</p>
+              <div className="mt-7 grid gap-3">
+                <Card title="Product goal">Reduce the distance between operational data and an informed action. Tables stay dense enough for work, while drawers and modals preserve context instead of constantly navigating away.</Card>
+                <Card title="Portfolio constraint">All data is fictional. The live GitHub Pages build uses deterministic in-browser demo data because static hosting cannot run the ASP.NET Core process.</Card>
+              </div>
+            </div>
+            <Preview title="Operations overview" />
+          </div>
+        </Section>
+
+        <Section id="s2" n="02" title="Architecture">
+          <div className="mt-8">
+            <h2 className="max-w-4xl text-3xl font-semibold sm:text-5xl">The UI does not know where its data comes from.</h2>
+            <p className="mt-5 max-w-3xl leading-7 text-[var(--muted)]">The central client boundary is <code>IInsuranceDataService</code>. The same Blazor pages can run against a browser-only demo implementation or an HTTP implementation that talks to ASP.NET Core.</p>
+            <div className="mt-10 grid gap-3 md:grid-cols-4">
+              {[[Layers3, "Blazor UI", "Pages, state, forms, drawers, modals"], [Workflow, "Service boundary", "One contract for data operations"], [RefreshCw, "ASP.NET Core", "HTTP routes and lifecycle commands"], [Database, "Repository", "Persistence boundary"]].map(([Icon, h, t]) => {
+                const I = Icon as typeof Layers3;
+                return <div key={String(h)} className="rounded-2xl border border-[var(--accent)]/25 bg-[var(--accent)]/[.045] p-5"><I className="text-[var(--accent)]" size={22} /><h3 className="mt-5 font-semibold">{String(h)}</h3><p className="mt-2 text-xs leading-5 text-[var(--muted)]">{String(t)}</p></div>;
+              })}
+            </div>
+            <div className="mt-8 grid gap-4 lg:grid-cols-2">
+              <Code title="IInsuranceDataService.cs">{`Task<IReadOnlyList<Claim>> GetClaimsAsync();\nTask<Claim> AddClaimAsync(Claim claim);\nTask<Claim> ArchiveClaimAsync(int id);\nTask<Claim> RestoreClaimAsync(int id);\n\nTask<Customer> UpdateCustomerAsync(Customer customer);\nTask<Customer> ArchiveCustomerAsync(int id);\nTask<Customer> RestoreCustomerAsync(int id);`}</Code>
+              <Card title="Why this boundary earns its keep">It isolates transport and hosting decisions from presentation code. GitHub Pages uses <code>DemoInsuranceDataService</code>; full-stack development uses <code>ApiInsuranceDataService</code>. I would remove an abstraction like this if it merely renamed calls without protecting a real boundary.</Card>
+            </div>
+          </div>
+        </Section>
+
+        <Section id="s3" n="03" title="Follow one claim" tint>
+          <div className="mt-8 grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+            <div>
+              <h2 className="text-3xl font-semibold sm:text-5xl">CLM-10482 makes the architecture concrete.</h2>
+              <p className="mt-5 leading-7 text-[var(--muted)]">The demo intentionally keeps one stable record: policy <strong>POL-48392</strong>, claim <strong>CLM-10482</strong>, status <strong>Investigating</strong>, exposure <strong>$42,850</strong>. That gives the case study and live product one shared example.</p>
+              <div className="mt-8 space-y-4">
+                {[["01", "Repository", "Returns the typed Claim model"], ["02", "API", "Serializes it over HTTP in full-stack mode"], ["03", "Client service", "Returns Task<Claim> / collections to the page"], ["04", "LINQ", "Filters and prioritizes active exposure"], ["05", "Blazor", "Renders the table and selected detail drawer"]].map(([n, h, t]) => <div key={n} className="flex gap-4 border-b border-[var(--hairline)] pb-4"><span className="font-mono text-xs text-[var(--accent)]">{n}</span><div><strong className="text-sm">{h}</strong><p className="mt-1 text-sm text-[var(--muted)]">{t}</p></div></div>)}
+              </div>
+            </div>
+            <Preview title="Claims operations" path="/claims" />
+          </div>
+        </Section>
+
+        <Section id="s4" n="04" title="Domain lifecycle">
+          <div className="mt-8 grid gap-10 lg:grid-cols-2">
+            <div>
+              <h2 className="text-3xl font-semibold sm:text-5xl">CRUD verbs are not a domain model.</h2>
+              <p className="mt-5 leading-7 text-[var(--muted)]">A first implementation exposed customer deletion. That was technically easy and domain-poor. Claims and customer relationships are records with history, so the design moved to recoverable lifecycle state.</p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {[['ACTIVE', 'Normal operational workflows'], ['ARCHIVED', 'Retained but removed from active work'], ['RESTORED', 'Returned to active workflows']].map(([h, t]) => <div key={h} className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><p className="text-xs font-bold text-[var(--accent)]">{h}</p><p className="mt-3 text-xs leading-5 text-[var(--muted)]">{t}</p></div>)}
+              </div>
+              <div className="mt-5"><Card title="Operational consequence">Archived claims are excluded from active claim workload, exposure, and analytics while remaining discoverable through Active / Archived / All filters. Restore reverses the lifecycle state rather than recreating data.</Card></div>
+            </div>
+            <div>
+              <Code title="Claim.cs">{`public bool IsArchived { get; set; }\npublic DateTimeOffset? ArchivedAt { get; set; }\npublic DateTimeOffset LastUpdatedAt { get; set; }\n    = DateTimeOffset.UtcNow;`}</Code>
+              <div className="mt-4"><Code title="DemoInsuranceDataService.cs">{`public Task<Claim> ArchiveClaimAsync(int id)\n{\n    var claim = _claims.First(c => c.Id == id);\n    claim.IsArchived = true;\n    claim.ArchivedAt = DateTimeOffset.UtcNow;\n    claim.LastUpdatedAt = DateTimeOffset.UtcNow;\n    return Task.FromResult(claim);\n}`}</Code></div>
+              <div className="mt-4"><Card title="Production hardening">A real regulated system would persist immutable audit events, actor identity, reason codes, authorization decisions, retention policy, and concurrency rules. This portfolio implementation demonstrates the lifecycle boundary without pretending those controls already exist.</Card></div>
+            </div>
+          </div>
+        </Section>
+
+        <Section id="s5" n="05" title="Interaction design" tint>
+          <div className="mt-8">
+            <h2 className="max-w-4xl text-3xl font-semibold sm:text-5xl">Different tasks deserve different surfaces.</h2>
+            <div className="mt-8 grid gap-3 md:grid-cols-3">
+              <Card title="Modal · create / edit">A focused form is temporary work with a clear commit or cancel decision. Validation, saving state, and destructive follow-up actions stay contained.</Card>
+              <Card title="Drawer · inspect">Claim and customer details open beside the data table so operators keep list context and can move between records without navigating away.</Card>
+              <Card title="Confirmation · archive">Archive is explicit and reversible. The copy explains the operational consequence instead of presenting a generic “Are you sure?” dialog.</Card>
+            </div>
+            <div className="mt-10 grid gap-8 lg:grid-cols-2">
+              <Preview title="Customers" path="/customers" />
+              <div className="space-y-4">
+                <Card title="Responsive behavior">Desktop dialogs are centered, detail drawers sit at the right edge, and smaller screens shift both patterns toward bottom-sheet behavior so the interaction remains usable without squeezing the form.</Card>
+                <Card title="Accessibility contract">The implemented dialogs expose dialog semantics and accessible labels. The next hardening layer is full focus trapping/restoration plus automated keyboard and screen-reader regression coverage.</Card>
+                <Card title="What I would not do">I would not turn every action into a popup. Filters, search, navigation, and persistent operational context remain inline. Modals are reserved for bounded tasks.</Card>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        <Section id="s6" n="06" title="Testing and reliability">
+          <div className="mt-8 grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
+            <div>
+              <TestTube2 size={30} className="text-[var(--accent)]" />
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">Tests protect behavior, not screenshots.</h2>
+              <p className="mt-5 leading-7 text-[var(--muted)]">The first quality gate is xUnit coverage around deterministic portfolio behavior and lifecycle rules. GitHub Actions runs those tests before publishing the Blazor client.</p>
+              <div className="mt-7"><Card title="Why not bolt on A/B testing?">This is an internal operations product. Unit, component, API integration, E2E, accessibility, and visual-regression testing provide a much stronger quality story. Experimentation belongs only where there is a real workflow hypothesis to measure.</Card></div>
+            </div>
+            <div>
+              <Code title="DemoInsuranceDataServiceTests.cs">{`[Fact]\npublic async Task Claim_archive_is_recoverable()\n{\n    var service = new DemoInsuranceDataService();\n    var claim = (await service.GetClaimsAsync())\n        .Single(c => c.ClaimNumber == "CLM-10482");\n\n    await service.ArchiveClaimAsync(claim.Id);\n    Assert.True(claim.IsArchived);\n\n    await service.RestoreClaimAsync(claim.Id);\n    Assert.False(claim.IsArchived);\n}`}</Code>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2"><Card title="Implemented">xUnit lifecycle tests, stable demo record checks, summary calculation checks, CI test gate.</Card><Card title="Next production layer">bUnit component tests, WebApplicationFactory API integration tests, Playwright critical-path E2E, automated accessibility checks.</Card></div>
+            </div>
+          </div>
+        </Section>
+
+        <Section id="s7" n="07" title="Delivery" tint>
+          <div className="mt-8 grid gap-10 lg:grid-cols-2">
+            <div>
+              <ShieldCheck size={30} className="text-[var(--accent)]" />
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">A red build does not become a public build.</h2>
+              <p className="mt-5 leading-7 text-[var(--muted)]">A workflow compile failure once blocked deployment when the test project was missing an xUnit namespace import. That was the quality gate doing its job: the public site stayed on the last known-good build until the test compile passed.</p>
+              <div className="mt-7"><Card title="Static hosting tradeoff">GitHub Pages only serves the WebAssembly client. The deployment selects the demo service while local full-stack development exercises the actual ASP.NET Core path. CRUD/lifecycle changes in the public demo are intentionally session-only and reset on reload.</Card></div>
+            </div>
+            <Code title="deploy-pages.yml">{`- name: Run unit tests\n  run: dotnet test InsuranceDashboard.Tests/InsuranceDashboard.Tests.csproj -c Release\n\n- name: Publish Blazor client\n  run: dotnet publish InsuranceDashboard.Client/InsuranceDashboard.Client.csproj -c Release -o release\n\n# deploy only after the build job succeeds`}</Code>
+          </div>
+        </Section>
+
+        <Section id="s8" n="08" title="Engineering tradeoffs">
+          <div className="mt-8">
+            <h2 className="max-w-4xl text-3xl font-semibold sm:text-5xl">The case study should say what is implemented — and what is not.</h2>
+            <div className="mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              <Card title="In-memory persistence">Excellent for a portable portfolio demo; not durable. Production would use transactional persistence and migrations.</Card>
+              <Card title="Repository boundary">Useful here to show a replaceable persistence boundary. With EF Core, an extra repository layer can become redundant if it only mirrors DbSet.</Card>
+              <Card title="Loss ratio">The UI uses a simplified demo signal. Production insurance reporting would align incurred loss and earned premium over the same period.</Card>
+              <Card title="Relationships">The demo still stores customer display names on policies. A production schema should use stable customer IDs and enforce relationship integrity.</Card>
+              <Card title="Security">Authentication, authorization, audit actor identity, and policy-based access are production requirements, not claims about this public demo.</Card>
+              <Card title="Blazor WASM">Strong .NET component reuse and typed client code; tradeoffs include initial runtime payload and the requirement that privileged operations remain server-side.</Card>
+            </div>
+          </div>
+        </Section>
+
+        <Section id="s9" n="09" title="Interview map" tint>
+          <div className="mt-8 grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+            <div>
+              <h2 className="text-3xl font-semibold sm:text-5xl">A project I can explain from pixels to persistence.</h2>
+              <p className="mt-5 leading-7 text-[var(--muted)]">The goal is not to memorize .NET vocabulary. It is to be able to start from an operator action, trace the code path, explain why each boundary exists, identify the tradeoff, and say what would change in production.</p>
+              <div className="mt-8 flex flex-wrap gap-3"><a className="btn-solid" href={live} target="_blank" rel="noreferrer">Explore InsureOps <ExternalLink size={15} /></a><a className="btn" href="https://github.com/dgutensohn03/dotnet-insurance-dashboard" target="_blank" rel="noreferrer">Read the source <Github size={15} /></a></div>
+            </div>
+            <div className="grid gap-px overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--hairline)] sm:grid-cols-2">
+              {[["BLazor", "State ownership, forms, binding, lifecycle, component boundaries, responsive interaction patterns."], ["C# / .NET", "Strong typing, decimal, nullability, LINQ, async/await, shared models."], ["ASP.NET Core", "Minimal API routes, serialization, DI, HTTP semantics, CORS boundary."], ["Architecture", "Client service abstraction, repository tradeoffs, static demo vs full-stack mode."], ["Quality", "xUnit behavior tests, failure gating, next-level component/API/E2E strategy."], ["Product judgment", "Why archive/restore replaced destructive deletion and why claims are treated as retained records."]].map(([h, t]) => <div key={h} className="bg-[var(--case-card)] p-6"><p className="text-xs font-bold uppercase tracking-[.14em] text-[var(--accent)]">{h}</p><p className="mt-3 text-sm leading-7 text-[var(--muted)]">{t}</p></div>)}
+            </div>
+          </div>
+        </Section>
+
+        <section className="case-base px-5 py-20 sm:px-6">
+          <div className="mx-auto flex max-w-7xl flex-col gap-5 border-t border-[var(--hairline)] pt-10 sm:flex-row sm:items-center sm:justify-between">
+            <div><p className="text-sm font-semibold">InsureOps · fictional engineering case study</p><p className="mt-1 text-xs text-[var(--muted)]">No real customer data. Not affiliated with any insurer.</p></div>
+            <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]">Back to portfolio <ArrowRight size={15} /></Link>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
