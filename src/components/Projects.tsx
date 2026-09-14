@@ -47,6 +47,7 @@ const insuranceOperations: Project = {
   ],
   link: "/dg-portfolio/insurance-operations/",
   github: "https://github.com/dgutensohn03/dotnet-insurance-dashboard",
+  image: "./images/projects/insurance/insureops-dashboard-card.svg",
   featured: true,
   category: "enterprise",
   tags: [".NET", "C#", "Blazor", "ASP.NET Core", "Full-Stack", "Insurance", "Playwright"]
