@@ -1,13 +1,9 @@
 // src/components/Hero.tsx
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
-import { useState } from "react";
-import ResumeModal from "./ResumeModal";
+import { Github, Linkedin, Mail, BriefcaseBusiness } from "lucide-react";
 
 export default function Hero() {
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
-
   const actions = [
     {
       icon: <Github size={22} strokeWidth={1.6} />,
@@ -25,9 +21,12 @@ export default function Hero() {
       action: () => (window.location.href = "mailto:dgutensohn@icloud.com"),
     },
     {
-      icon: <FileText size={22} strokeWidth={1.6} />,
-      label: "View Resume",
-      action: () => setIsResumeOpen(true),
+      icon: <BriefcaseBusiness size={22} strokeWidth={1.6} />,
+      label: "Experience",
+      action: () => {
+        const basePath = window.location.pathname.startsWith("/dg-portfolio") ? "/dg-portfolio" : "";
+        window.location.href = `${basePath}/experience/`;
+      },
     },
   ];
 
@@ -37,8 +36,6 @@ export default function Hero() {
       data-section="home"
       className="min-h-[calc(100vh-60px)] flex flex-col justify-center items-center text-left md:px-8 lg:px-12 pt-16"
     >
-      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
-
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
