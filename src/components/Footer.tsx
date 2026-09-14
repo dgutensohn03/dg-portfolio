@@ -1,12 +1,8 @@
 "use client";
 
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
-import { useState } from "react";
-import ResumeModal from "./ResumeModal";
+import { Github, Linkedin, Mail, BriefcaseBusiness } from "lucide-react";
 
 export default function Footer() {
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
-
   const actions = [
     {
       icon: <Github size={20} strokeWidth={1.6} />,
@@ -25,17 +21,17 @@ export default function Footer() {
       action: () => (window.location.href = "mailto:dgutensohn@icloud.com"),
     },
     {
-      icon: <FileText size={20} strokeWidth={1.6} />,
-      label: "Resume",
-      action: () => setIsResumeOpen(true),
+      icon: <BriefcaseBusiness size={20} strokeWidth={1.6} />,
+      label: "Experience",
+      action: () => {
+        const basePath = window.location.pathname.startsWith("/dg-portfolio") ? "/dg-portfolio" : "";
+        window.location.href = `${basePath}/experience/`;
+      },
     },
   ];
 
   return (
-    <>
-      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
-
-      <footer className="w-full px-4 pt-3 pb-3 sm:pt-4 sm:pb-4 flex flex-col items-center justify-center text-center">
+    <footer className="w-full px-4 pt-3 pb-3 sm:pt-4 sm:pb-4 flex flex-col items-center justify-center text-center">
         <div className="flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-5 sm:gap-6 mb-2">
             {actions.map(({ icon, label, action }, i) => (
@@ -58,7 +54,6 @@ export default function Footer() {
             *Demo links open in a secure external window and are provided strictly for demonstration purposes. All content remains the property of the respective clients.
           </p>
         </div>
-      </footer>
-    </>
+    </footer>
   );
 }
