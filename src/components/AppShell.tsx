@@ -6,13 +6,14 @@ import SectionDots from "@/components/navigation/SectionDots";
 import Hero from "./Hero";
 import About from "./About";
 import Projects from "./Projects";
+import LearnFeature from "./LearnFeature";
 import Contact from "./Contact";
 import FadeSection from "./FadeSection";
 import FooterPortal from "./FooterPortal";
 import useActiveSection, { SectionId } from "../hooks/useActiveSection";
 
 export default function AppShell() {
-  const sectionIds: SectionId[] = ["home", "about", "projects", "contact"];
+  const sectionIds: SectionId[] = ["home", "about", "projects", "learn", "contact"];
 
   const { active, scrollTo } = useActiveSection(
     sectionIds,
@@ -55,6 +56,17 @@ export default function AppShell() {
           <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto max-w-6xl">
             <FadeSection>
               <Hero />
+            </FadeSection>
+          </div>
+        </section>
+
+        <section
+          id="learn"
+          className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-20 md:pb-28 md:snap-start"
+        >
+          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center">
+            <FadeSection>
+              <LearnFeature />
             </FadeSection>
           </div>
         </section>

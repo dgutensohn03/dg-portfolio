@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Home, User, Folder, Mail } from "lucide-react";
+import { Home, User, Folder, Mail, BookOpen } from "lucide-react";
 import { SectionId } from "../../hooks/useActiveSection";
 
 interface SectionDotsProps {
@@ -13,6 +13,7 @@ const sections: { id: SectionId; icon: React.ElementType; label: string }[] = [
   { id: "home", icon: Home, label: "Home" },
   { id: "about", icon: User, label: "About" },
   { id: "projects", icon: Folder, label: "Projects" },
+  { id: "learn", icon: BookOpen, label: "Learn" },
   { id: "contact", icon: Mail, label: "Contact" },
 ];
 
