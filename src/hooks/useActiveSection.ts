@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 
-export type SectionId = "home" | "about" | "projects" | "contact";
+export type SectionId = "home" | "about" | "projects" | "learn" | "contact";
 
 export default function useActiveSection(
   sectionIds: SectionId[],

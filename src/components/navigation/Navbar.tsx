@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { Home, User, Folder, Mail, Settings } from "lucide-react";
+import { Home, User, Folder, Mail, Settings, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import Monogram from "../Monogram";
 import SettingsMenu from "./SettingsMenu";
@@ -18,6 +18,7 @@ const sections: { id: SectionId; icon: any; label: string }[] = [
   { id: "home", icon: Home, label: "Home" },
   { id: "about", icon: User, label: "About" },
   { id: "projects", icon: Folder, label: "Projects" },
+  { id: "learn", icon: BookOpen, label: "Learn" },
   { id: "contact", icon: Mail, label: "Contact" },
 ];
 
@@ -31,7 +32,7 @@ export default function ({ active, scrollToId, variant = "default" }: NavbarProp
     <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl">
       <div
         className={`
-          flex items-center justify-between rounded-3xl px-6 py-3
+          flex items-center justify-between rounded-3xl px-3 py-3 sm:px-6
           border ${theme === "light" ? "border-white/20 bg-white/30" : "border-neutral-700/40 bg-neutral-800/80"}
           backdrop-blur-2xl
           shadow-[0_20px_60px_rgba(0,0,0,0.2)]
@@ -39,7 +40,7 @@ export default function ({ active, scrollToId, variant = "default" }: NavbarProp
       >
         <Monogram />
 
-        <div className="flex gap-3 items-center">
+        <div className="flex gap-1 items-center sm:gap-3">
           {sections.map(({ id, icon: Icon, label }) => {
             const isActive = active === id;
             return (
@@ -48,7 +49,7 @@ export default function ({ active, scrollToId, variant = "default" }: NavbarProp
                 onClick={() => scrollToId(id)}
                 whileHover={{ scale: 1.15 }}
                 className={`
-                  cursor-pointer flex flex-col items-center justify-center w-12 h-12 rounded-xl
+                  cursor-pointer flex flex-col items-center justify-center w-10 h-10 rounded-xl sm:w-12 sm:h-12
                   ${theme === "light" ? "bg-white/90" : "bg-neutral-700/90"}
                   ${isActive ? "ring-2 ring-orange-400 shadow-[0_4px_20px_rgba(255,165,0,0.35)]" : ""}
                 `}
