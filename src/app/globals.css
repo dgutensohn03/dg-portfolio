@@ -109,6 +109,9 @@ h6 {
 .case-study summary {
   cursor: pointer;
 }
+.case-study section[id] {
+  scroll-margin-top: 6.25rem;
+}
 .interactive-card {
   box-shadow: 0 12px 36px color-mix(in oklab, var(--fg) 7%, transparent);
 }
@@ -325,13 +328,30 @@ footer[data-visible="true"] {
     background: #fff !important;
   }
   .print-cover {
-    min-height: 8.4in;
-    display: flex;
-    align-items: center;
-    break-after: page;
+    min-height: 0 !important;
+    display: block;
+    border-bottom: 2px solid #ea580c !important;
+    padding: 0.2in 0 0.28in !important;
+    break-after: auto;
+  }
+  .print-hero-intro {
+    max-width: 6.8in !important;
+    margin-top: 0.16in !important;
+    font-size: 11pt !important;
+    line-height: 1.42 !important;
+  }
+  .print-hero-meta {
+    margin-top: 0.16in !important;
+    padding-top: 0.12in !important;
+    gap: 0.18in !important;
+    font-size: 8.5pt !important;
+  }
+  .print-overview {
+    padding-top: 0.22in !important;
+    padding-bottom: 0.22in !important;
   }
   .print-section {
-    break-before: page;
+    break-before: auto;
   }
   .interactive-card {
     border: 1px solid #cbd5e1 !important;
@@ -345,7 +365,7 @@ footer[data-visible="true"] {
   }
   section {
     border-color: #d1d5db !important;
-    padding: 0.35in 0 !important;
+    padding: 0.24in 0 !important;
   }
   article,
   pre,
@@ -359,11 +379,13 @@ footer[data-visible="true"] {
     break-after: avoid;
   }
   h1 {
-    font-size: 34pt !important;
-    line-height: 1.03 !important;
+    max-width: 7.1in !important;
+    margin-top: 0.18in !important;
+    font-size: 28pt !important;
+    line-height: 1.06 !important;
   }
   h2 {
-    font-size: 21pt !important;
+    font-size: 18pt !important;
     line-height: 1.12 !important;
   }
   h3 {
@@ -390,7 +412,19 @@ footer[data-visible="true"] {
   }
   a {
     color: #111827 !important;
-    text-decoration: none !important;
+    text-decoration: underline !important;
+    text-decoration-color: #cbd5e1 !important;
+    text-underline-offset: 2px;
+  }
+  .print-reference-link::after {
+    content: attr(href);
+    display: block;
+    margin-top: 2px;
+    color: #64748b;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 7.5pt;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
   }
   section:last-child::after {
     content: "Daniel Gutensohn · Learn · Updated September 2026";
