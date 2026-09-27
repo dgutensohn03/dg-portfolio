@@ -18,7 +18,10 @@ import {
   LearnNav,
   ResourceCard,
 } from "@/components/learn/LearnShell";
-import { StatementExplorer } from "@/components/learn/LearningInteractions";
+import {
+  ReportingKnowledgeCheck,
+  StatementExplorer,
+} from "@/components/learn/LearningInteractions";
 
 const flow = [
   {
@@ -423,30 +426,17 @@ export default function ActivityToInsight() {
             <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
               Diagnose the earliest unsupported assumption.
             </h2>
-            <div className="mt-9 grid gap-5 lg:grid-cols-2">
-              <div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-7">
-                <h3 className="text-lg font-semibold">Scenario</h3>
-                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                  A completion statement appears in the LRS and can be retrieved
-                  by actor and activity. The dashboard still excludes the
-                  learner. Where should the team investigate next?
-                </p>
-                <ul className="mt-5 space-y-2 text-sm text-[var(--muted)]">
-                  <li>A. Whether the learner clicked the button</li>
-                  <li>B. The dashboard query and transformation rules</li>
-                  <li>C. Whether the LRS is online</li>
-                </ul>
-              </div>
-              <div className="rounded-3xl border border-[var(--accent)]/30 bg-[var(--accent)]/8 p-7">
-                <h3 className="text-lg font-semibold">Reasoned answer</h3>
-                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                  <b className="text-[var(--fg)]">B.</b> The event reached
-                  storage and is retrievable, so the next unsupported assumption
-                  is that the service recognizes it as completion. Compare its
-                  verb, activity, registration, identity, and time context with
-                  the metric definition.
-                </p>
-              </div>
+            <div className="mt-9">
+              <ReportingKnowledgeCheck />
+            </div>
+            <div className="mt-8 rounded-2xl border-l-4 border-[var(--accent)] bg-[var(--accent)]/8 p-6">
+              <p className="font-semibold">Transfer it to your work</p>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Choose one dashboard measure you support. Write its business
+                question, required event evidence, approved identifiers, and the
+                test that proves meaning survives from the source experience to
+                the interface.
+              </p>
             </div>
           </div>
         </section>

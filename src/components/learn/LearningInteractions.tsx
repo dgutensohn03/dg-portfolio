@@ -96,6 +96,76 @@ export function StatementExplorer() {
   );
 }
 
+export function ReportingKnowledgeCheck() {
+  const choices = [
+    {
+      label: "Ask whether the learner clicked Complete",
+      correct: false,
+      feedback:
+        "The stored statement already proves the completion event reached the LRS. Rechecking the original click moves backward to an assumption that has evidence.",
+    },
+    {
+      label: "Inspect the query and transformation rules",
+      correct: true,
+      feedback:
+        "Correct. Storage and retrieval are verified, so the next unsupported assumption is that downstream rules recognize the statement as completion.",
+    },
+    {
+      label: "Confirm the LRS is online",
+      correct: false,
+      feedback:
+        "The statement was retrieved from the LRS, so availability is not the next unsupported assumption.",
+    },
+  ];
+  const [selected, setSelected] = useState<number | null>(null);
+  return (
+    <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
+      <div className="print-hidden">
+        <p className="text-sm font-semibold">Check your reasoning</p>
+        <p className="mt-3 text-lg font-semibold">
+          A completion statement can be retrieved by actor and activity, but the
+          dashboard excludes the learner. What should the team inspect next?
+        </p>
+        <div className="mt-6 space-y-3">
+          {choices.map((choice, index) => (
+            <button
+              key={choice.label}
+              onClick={() => setSelected(index)}
+              className={`flex w-full items-center justify-between gap-4 rounded-xl border p-4 text-left text-sm transition ${selected === index ? "border-[var(--accent)] bg-[var(--accent)]/8" : "border-[var(--hairline)] hover:border-[var(--accent)]"}`}
+            >
+              {choice.label}
+              <ChevronRight size={17} />
+            </button>
+          ))}
+        </div>
+        {selected !== null && (
+          <div
+            aria-live="polite"
+            className={`mt-5 rounded-xl border p-5 text-sm leading-6 ${choices[selected].correct ? "border-emerald-500/35 bg-emerald-500/8" : "border-amber-500/35 bg-amber-500/8"}`}
+          >
+            <p className="font-semibold">
+              {choices[selected].correct
+                ? "Correct—follow the next unverified handoff"
+                : "Not yet—use the evidence already available"}
+            </p>
+            <p className="mt-2 text-[var(--muted)]">
+              {choices[selected].feedback}
+            </p>
+          </div>
+        )}
+      </div>
+      <div className="print-only">
+        <p className="font-semibold">Knowledge check and rationale</p>
+        <p className="mt-2">
+          Inspect the query and transformation rules. Storage and retrieval are
+          verified, so downstream interpretation is the next unsupported
+          assumption.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 const diagnosticChoices = [
   {
     label: "Ask the learner to repeat the course",
