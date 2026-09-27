@@ -8,6 +8,14 @@ export type LearnArticle = {
 
 export const learnArticles: LearnArticle[] = [
   {
+    slug: "learning-standards-field-guide",
+    category: "Technical Guide",
+    title: "A Field Guide to Learning Standards",
+    summary:
+      "Understand what SCORM, AICC, xAPI, Tin Can, and cmi5 actually do—and where LTI, QTI, Common Cartridge, and Caliper fit.",
+    readTime: "12 min",
+  },
+  {
     slug: "activity-to-insight",
     category: "Tutorial",
     title: "From Activity to Insight",
