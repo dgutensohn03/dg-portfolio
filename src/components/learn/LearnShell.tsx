@@ -55,10 +55,10 @@ export function ArticleHero({
         <h1 className="mt-7 max-w-5xl text-[clamp(3rem,7vw,5.75rem)] font-semibold leading-[.95] tracking-[-.055em]">
           {title}
         </h1>
-        <p className="mt-7 max-w-3xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
+        <p className="print-hero-intro mt-7 max-w-3xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
           {intro}
         </p>
-        <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 border-t border-[var(--hairline)] pt-5 text-sm text-[var(--muted)]">
+        <div className="print-hero-meta mt-8 flex flex-wrap gap-x-5 gap-y-3 border-t border-[var(--hairline)] pt-5 text-sm text-[var(--muted)]">
           <span className="inline-flex items-center gap-2">
             <UserRound size={15} />
             Daniel Gutensohn
@@ -91,7 +91,7 @@ export function LearningFrame({
   sections: { href: string; label: string }[];
 }) {
   return (
-    <section className="case-band border-y border-[var(--hairline)] px-5 py-12 sm:px-6">
+    <section className="print-overview case-band border-y border-[var(--hairline)] px-5 py-12 sm:px-6">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.15fr_.85fr]">
         <div>
           <Eyebrow>What you will be able to do</Eyebrow>
@@ -212,7 +212,7 @@ export function ArticleFooter({
               {references.map((x) => (
                 <li key={x.label}>
                   <a
-                    className="underline decoration-[var(--hairline)] underline-offset-4 hover:text-[var(--accent)]"
+                    className="print-reference-link underline decoration-[var(--hairline)] underline-offset-4 hover:text-[var(--accent)]"
                     href={x.href}
                     target="_blank"
                     rel="noreferrer noopener"
