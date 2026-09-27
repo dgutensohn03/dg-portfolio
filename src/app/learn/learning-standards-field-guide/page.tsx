@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Layers3, Radio, Route, SearchCheck } from "lucide-react";
+import { ArrowRight, BarChart3, BookOpenCheck, Database, Layers3, Radio, Route, SearchCheck, Wrench } from "lucide-react";
 import {
   ArticleFooter,
   ArticleHero,
@@ -64,6 +64,23 @@ const adjacent = [
   ["Caliper Analytics", "Describe learning and tool-usage events using 1EdTech metric profiles. It overlaps with xAPI in analytics purpose, but has its own event vocabulary and implementation model.", "https://www.1edtech.org/standards/caliper"],
 ];
 
+const choices = [
+  { name: "SCORM 1.2", use: "A conventional LMS course needs widely familiar launch, resume, score, and completion behavior.", avoid: "You need detailed events across several systems, or depend on 2004 sequencing.", test: "Initialize, suspend/resume, commit, exit, score, status, and retakes." },
+  { name: "SCORM 2004", use: "The LMS supports your exact edition and the course needs separate completion/success or sequencing.", avoid: "The platform only supports partial 2004 behavior, or the learning spans outside the LMS session.", test: "Edition, navigation and sequencing rules, status rollup, and interrupted attempts." },
+  { name: "AICC", use: "A legacy LMS or externally hosted course already has a proven AICC integration.", avoid: "A new project can use a better-supported modern contract without legacy constraints.", test: "The supported profile, launch, identity, status exchange, and error handling." },
+  { name: "xAPI", use: "A simulation, app, course, or workplace experience needs structured evidence in an LRS.", avoid: "You expect xAPI by itself to package, launch, or award an LMS completion.", test: "Actor identity, verb/object IDs, registration, duplicate events, authentication, and reporting rules." },
+  { name: "cmi5", use: "An LMS must import and launch a course while xAPI records its learning events.", avoid: "The LMS lacks cmi5 support, or the activity has no LMS-managed launch requirement.", test: "Course import, AU launch, authorization, required statements, moveOn, and satisfaction." },
+  { name: "LTI 1.3", use: "An external learning tool needs a secure LMS launch and optional grade/roster services.", avoid: "You are only moving a self-contained course package or only collecting activity events.", test: "Launch identity and roles, deep linking, service permissions, grades, and re-launch." },
+];
+
+const media = [
+  ["Video or audio", "Demonstrate a process or provide an interview or explanation.", "Captions, transcript, player controls, and an objective beyond play count."],
+  ["Scenario or branching story", "Let people rehearse decisions and see consequences.", "Keyboard access, meaningful feedback, path identifiers, and a clear completion rule."],
+  ["Simulation or practice tool", "Rehearse a real workflow safely.", "Task success criteria, recovery from error, and events tied to observable actions."],
+  ["Job aid or document", "Support infrequent steps at the moment of need.", "Searchable text, version ownership, and a way to measure usefulness without equating opens with mastery."],
+  ["Live session or field activity", "Practice collaboration, physical work, or judgment outside the browser.", "A defensible observation or assessment record, consent and identity rules, and an authorized reporting path."],
+];
+
 export default function LearningStandardsFieldGuide() {
   return (
     <div className="case-study min-h-screen text-[var(--fg)]">
@@ -71,23 +88,26 @@ export default function LearningStandardsFieldGuide() {
       <main>
         <ArticleHero
           category="Technical field guide"
-          readTime="12 min"
+          readTime="18 min"
           title="A Field Guide to Learning Standards"
-          intro="SCORM, AICC, xAPI, Tin Can, and cmi5 are often listed together, but they solve different parts of the learning ecosystem. Use this guide to identify the job, follow the data, and ask the right integration questions."
+          intro="From authoring tool to LMS, LRS, and analytics: see how learning content is launched, recorded, and interpreted. Then choose the right contract for SCORM, AICC, xAPI, cmi5, or a connected tool."
         />
         <LearningFrame
           outcomes={[
-            "Separate packaging, launch, tracking, and reporting concerns before choosing a standard.",
+            "Trace learning from authored experience through launch, recording, and analysis.",
             "Explain what SCORM 1.2, SCORM 2004, AICC, xAPI, Tin Can, and cmi5 each provide.",
-            "Identify when LTI, QTI, Common Cartridge, or Caliper belongs in the conversation.",
+            "Select an integration approach and name the evidence needed to validate it.",
           ]}
           sections={[
             { href: "#map", label: "The map" },
+            { href: "#ecosystem", label: "LMS and LRS" },
             { href: "#one-event", label: "One event, different paths" },
             { href: "#compare", label: "Compare" },
             { href: "#deep-dive", label: "Deep dive" },
+            { href: "#analytics", label: "Analytics" },
             { href: "#adjacent", label: "Adjacent standards" },
-            { href: "#decision", label: "Choose the contract" },
+            { href: "#authoring", label: "Authoring and media" },
+            { href: "#decision", label: "When to use each" },
           ]}
         />
 
@@ -109,7 +129,38 @@ export default function LearningStandardsFieldGuide() {
           </div>
         </section>
 
-        <section id="one-event" className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
+        <section id="ecosystem" className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>The ecosystem</Eyebrow>
+            <h2 className="mt-4 max-w-4xl text-3xl font-semibold sm:text-5xl">Where the LMS, LRS, and analytics fit.</h2>
+            <p className="mt-5 max-w-4xl leading-7 text-[var(--muted)]">Imagine a learner practicing a customer-support decision. The lesson, the launch, the event record, and the report are different responsibilities. This map shows one possible architecture; a product may combine several roles in one platform.</p>
+            <div aria-label="Learning architecture: authoring and media, delivery and launch, LMS and LRS records, then analytics and action" className="mt-8 grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] md:items-stretch">
+              {[
+                { icon: BookOpenCheck, title: "Create", detail: "Authoring tool, custom app, video, scenario, or simulation", output: "Learning experience" },
+                { icon: Route, title: "Launch", detail: "LMS course, cmi5 AU, LTI tool, or direct app access", output: "Learner + attempt context" },
+                { icon: Database, title: "Record", detail: "LMS course state and/or xAPI statements in an LRS", output: "Status + event evidence" },
+                { icon: BarChart3, title: "Interpret", detail: "Definitions, quality checks, transformation, and dashboard", output: "A decision someone can act on" },
+              ].map(({ icon: Icon, title, detail, output }, index) => (
+                <div key={title} className="contents">
+                  <article className="flex flex-col rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5">
+                    <Icon size={24} aria-hidden="true" className="text-[var(--accent)]" />
+                    <h3 className="mt-4 text-xl font-semibold">{title}</h3>
+                    <p className="mt-2 flex-1 text-sm leading-6 text-[var(--muted)]">{detail}</p>
+                    <p className="mt-5 border-t border-[var(--hairline)] pt-3 text-xs font-semibold text-[var(--accent)]">{output}</p>
+                  </article>
+                  {index < 3 && <ArrowRight size={18} aria-hidden="true" className="hidden self-center text-[var(--accent)] md:block" />}
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              <article className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><h3 className="text-xl font-semibold">LMS · Learning Management System</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">The system that assigns or presents learning, manages enrollment and launch, and usually shows course progress or completion. For SCORM it hosts the runtime API and stores course data. Some LMSs also include an LRS, but that capability must be verified.</p><p className="mt-4 text-sm font-semibold">Typical question: Who has completed the assigned course?</p></article>
+              <article className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><h3 className="text-xl font-semibold">LRS · Learning Record Store</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">A system that receives, stores, and retrieves xAPI statements. It can hold evidence from several activities and applications. It does not automatically assign courses, launch content, or decide which statement qualifies for a particular LMS completion rule.</p><p className="mt-4 text-sm font-semibold">Typical question: What activity happened, in which context, and when?</p></article>
+            </div>
+            <p className="mt-5 max-w-4xl text-sm leading-6 text-[var(--muted)]"><strong className="text-[var(--fg)]">The boundary:</strong> a learner may have a valid LRS statement while the LMS still says “incomplete.” The missing piece may be a reporting rule, identity mapping, registration, or launch contract—not a missing click.</p>
+          </div>
+        </section>
+
+        <section id="one-event" className="case-base px-5 py-16 sm:px-6">
           <div className="mx-auto max-w-6xl">
             <Eyebrow>One event, different paths</Eyebrow>
             <h2 className="mt-4 max-w-4xl text-3xl font-semibold sm:text-5xl">A learner completes an activity. What travels?</h2>
@@ -132,7 +183,7 @@ export default function LearningStandardsFieldGuide() {
           </div>
         </section>
 
-        <section id="compare" className="case-base px-5 py-16 sm:px-6">
+        <section id="compare" className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
           <div className="mx-auto max-w-6xl">
             <Eyebrow>At a glance</Eyebrow>
             <h2 className="mt-4 text-3xl font-semibold sm:text-5xl">Compare the actual contracts.</h2>
@@ -163,7 +214,28 @@ export default function LearningStandardsFieldGuide() {
           </div>
         </section>
 
-        <section id="adjacent" className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
+        <section id="analytics" className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>From events to decisions</Eyebrow>
+            <h2 className="mt-4 max-w-4xl text-3xl font-semibold sm:text-5xl">Analytics is the interpretation layer.</h2>
+            <p className="mt-5 max-w-4xl leading-7 text-[var(--muted)]">The LMS may provide course reports, and an LRS may expose statements. Neither raw status nor raw statements answer every business question. An analytics layer gives the evidence consistent meaning, checks its quality, and presents a useful measure.</p>
+            <ol className="mt-8 grid gap-3 md:grid-cols-4">
+              {[
+                ["01", "Collect", "Capture course status, scores, attempts, and/or events with stable learner and activity IDs."],
+                ["02", "Validate", "Check duplicates, missing context, versions, timestamps, and whether the event reached storage."],
+                ["03", "Interpret", "Apply an approved definition: what counts as completed, passed, practiced, or in progress?"],
+                ["04", "Act", "Show the right audience a measure they can use to support learners or improve the experience."],
+              ].map(([number, title, detail]) => <li key={number} className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><span className="text-sm font-bold text-[var(--accent)]">{number}</span><h3 className="mt-3 text-xl font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-[var(--muted)]">{detail}</p></li>)}
+            </ol>
+            <div className="mt-6 grid gap-4 md:grid-cols-[1.25fr_.75fr]">
+              <div className="rounded-2xl border border-[var(--accent)]/30 bg-[var(--accent)]/5 p-6"><h3 className="font-semibold">Worked question: Who needs help?</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">Join approved completion evidence to the assigned population, reconcile repeat attempts, then identify people without qualifying completion. Add practice errors only if those events are consistently defined. The output is a support list with an auditable reason—not a chart of how many statements arrived.</p></div>
+              <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><h3 className="font-semibold">Keep these distinct</h3><ul className="mt-3 space-y-2 text-sm leading-6 text-[var(--muted)]"><li>Opened ≠ practiced</li><li>Completed ≠ passed</li><li>Passed ≠ performed well on the job</li><li>Stored ≠ recognized by a report</li></ul></div>
+            </div>
+            <Link href="/learn/missing-completion" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] underline-offset-4 hover:underline">Trace a real reporting disagreement <ArrowRight size={16} aria-hidden="true" /></Link>
+          </div>
+        </section>
+
+        <section id="adjacent" className="case-base px-5 py-16 sm:px-6">
           <div className="mx-auto max-w-6xl">
             <Eyebrow>Beyond course tracking</Eyebrow>
             <h2 className="mt-4 max-w-4xl text-3xl font-semibold sm:text-5xl">Other standards worth knowing.</h2>
@@ -178,16 +250,41 @@ export default function LearningStandardsFieldGuide() {
           </div>
         </section>
 
+        <section id="authoring" className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>Build and publish</Eyebrow>
+            <h2 className="mt-4 max-w-4xl text-3xl font-semibold sm:text-5xl">Authoring tool, output format, and media are different choices.</h2>
+            <p className="mt-5 max-w-4xl leading-7 text-[var(--muted)]">An authoring tool creates the experience. Its publishing option produces a package or integration. The LMS or external player launches it; the chosen runtime determines what it records. A video in a SCORM course is still governed by SCORM for its course status. A custom simulation can send xAPI events if it implements a reliable statement contract.</p>
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {[
+                ["Before authoring", "Write the performance objective and a realistic action. Decide what evidence would show meaningful learning. Choose media because it helps that action—not because the format is available."],
+                ["Before publishing", "Verify the tool’s exact output: SCORM edition, AICC, xAPI/Tin Can, or cmi5. Inspect the package and its completion/score settings. A publishing label does not guarantee LMS compatibility."],
+                ["Before release", "Test a real launch in the target LMS with a test learner. Exercise resume, failure, retakes, mobile, keyboard, captions, and reporting. Check the actual LMS record or LRS statements."],
+              ].map(([title, detail]) => <article key={title} className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><h3 className="text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">{detail}</p></article>)}
+            </div>
+
+            <div className="mt-10 grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
+              <div><div className="flex items-center gap-3 text-[var(--accent)]"><Wrench size={22} aria-hidden="true" /><Eyebrow>Wrappers and bridges</Eyebrow></div><h3 className="mt-4 text-2xl font-semibold">What does “wrapped” really mean?</h3><p className="mt-4 leading-7 text-[var(--muted)]">A wrapper is integration code around an experience. It may expose an LMS API to legacy content, relay course state, add xAPI tracking, or launch a hosted activity. It is not a standard in its own right.</p></div>
+              <div className="space-y-3">
+                <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><h4 className="font-semibold">SCORM dispatch or proxy</h4><p className="mt-2 text-sm leading-6 text-[var(--muted)]">A small LMS-imported package can launch hosted content and relay supported SCORM data back to the LMS. Confirm identity, domain/browser restrictions, resume, and what happens if either side is unavailable.</p></div>
+                <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><h4 className="font-semibold">SCORM-to-xAPI instrumentation</h4><p className="mt-2 text-sm leading-6 text-[var(--muted)]">A bridge may translate selected SCORM runtime values into xAPI statements, or the content may emit extra xAPI events. It cannot recover decisions the original course never captured. Map fields deliberately, avoid duplicate completions, and secure LRS credentials.</p></div>
+                <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><h4 className="font-semibold">xAPI library or launch helper</h4><p className="mt-2 text-sm leading-6 text-[var(--muted)]">A library can simplify sending statements; a launch service can supply identity and LRS access. Neither automatically makes the activity cmi5. Inspect the actual launch and reporting contract.</p></div>
+              </div>
+            </div>
+
+            <h3 className="mt-12 text-2xl font-semibold">Media supports the practice; the standard supports the handoff.</h3>
+            <div className="mt-5 grid gap-3 md:grid-cols-2">{media.map(([name, purpose, design]) => <article key={name} className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><h4 className="font-semibold">{name}</h4><p className="mt-2 text-sm leading-6 text-[var(--muted)]">{purpose}</p><p className="mt-3 border-t border-[var(--hairline)] pt-3 text-sm leading-6"><strong>Design and evidence:</strong> {design}</p></article>)}</div>
+            <p className="mt-5 max-w-4xl text-sm leading-6 text-[var(--muted)]">HTML interactions, images, diagrams, downloadable references, discussion, and mixed reality can also fit. The useful question is what the learner must do and what evidence is appropriate. Accessibility, privacy, bandwidth, and maintenance matter for every format.</p>
+          </div>
+        </section>
+
         <section id="decision" className="case-base px-5 py-16 sm:px-6">
           <div className="mx-auto max-w-6xl">
             <Eyebrow>Apply the model</Eyebrow>
-            <h2 className="mt-4 max-w-4xl text-3xl font-semibold sm:text-5xl">Choose the contract, then test the handoffs.</h2>
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              {[
-                ["An LMS-hosted course", "Start with SCORM when the LMS supports the required edition and course data. Test launch, resume, completion, success, score, and exit behavior."],
-                ["A hosted external tool", "Use LTI 1.3 for secure tool launch and platform services; separately decide how detailed activity data will be captured."],
-                ["Rich learning evidence", "Use xAPI and an LRS for event data. If the activity must be imported and launched as an LMS course, evaluate cmi5 support."],
-              ].map(([title, detail]) => <article key={title} className="rounded-2xl border border-[var(--accent)]/25 bg-[var(--accent)]/5 p-6"><h3 className="text-xl font-semibold">{title}</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">{detail}</p></article>)}
+            <h2 className="mt-4 max-w-4xl text-3xl font-semibold sm:text-5xl">When to use it—and when to pause.</h2>
+            <p className="mt-5 max-w-4xl leading-7 text-[var(--muted)]">These are starting points, not automatic rankings. Platform support, existing contracts, learner needs, and reporting obligations decide the final architecture.</p>
+            <div className="mt-8 grid gap-4 lg:grid-cols-2">
+              {choices.map(({ name, use, avoid, test }) => <article key={name} className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><h3 className="text-xl font-semibold">{name}</h3><dl className="mt-4 space-y-3 text-sm leading-6"><div><dt className="font-semibold text-[var(--accent)]">Use when</dt><dd className="text-[var(--muted)]">{use}</dd></div><div><dt className="font-semibold">Pause when</dt><dd className="text-[var(--muted)]">{avoid}</dd></div><div className="border-t border-[var(--hairline)] pt-3"><dt className="font-semibold">Verify</dt><dd className="text-[var(--muted)]">{test}</dd></div></dl></article>)}
             </div>
             <div className="mt-8 rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6">
               <h3 className="font-semibold">Questions I would settle before implementation</h3>
@@ -216,6 +313,7 @@ export default function LearningStandardsFieldGuide() {
           { label: "AICC: cmi5 specification", href: "https://github.com/AICC/CMI-5_Spec_Current/blob/quartz/cmi5_spec.md" },
           { label: "AICC: guidance on CMI and AICC compliance", href: "https://www.aicc.org/pages/aicc_faq.html" },
           { label: "ADL: SCORM 2004 4th Edition conformance suite", href: "https://github.com/adlnet/SCORM-2004-4ed-Test-Suite" },
+          { label: "ADL: SCORM-to-xAPI wrapper example and limitations", href: "https://github.com/adlnet/SCORM-to-xAPI-Wrapper" },
           { label: "1EdTech: LTI and LTI Advantage", href: "https://www.1edtech.org/standards/lti" },
           { label: "1EdTech: interoperability standards", href: "https://www.1edtech.org/specifications" },
         ]} />
