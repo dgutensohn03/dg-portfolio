@@ -215,7 +215,7 @@ export function ArticleFooter({
                     className="underline decoration-[var(--hairline)] underline-offset-4 hover:text-[var(--accent)]"
                     href={x.href}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noreferrer noopener"
                   >
                     {x.label}
                   </a>
