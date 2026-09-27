@@ -112,9 +112,6 @@ h6 {
 .interactive-card {
   box-shadow: 0 12px 36px color-mix(in oklab, var(--fg) 7%, transparent);
 }
-.interactive-card button {
-  background: color-mix(in oklab, var(--case-card) 92%, var(--case-band));
-}
 .interactive-card button:hover {
   box-shadow: 0 5px 18px color-mix(in oklab, var(--accent) 14%, transparent);
   transform: translateY(-1px);
@@ -360,8 +357,4 @@ footer[data-visible="true"] {
     color: #64748b;
     font-size: 8.5pt;
   }
-}
-
-.print-only {
-  display: none;
 }
