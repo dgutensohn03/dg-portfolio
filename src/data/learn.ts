@@ -12,7 +12,7 @@ export const learnArticles: LearnArticle[] = [
     category: "Technical Guide",
     title: "A Field Guide to Learning Standards",
     summary:
-      "Understand what SCORM, AICC, xAPI, Tin Can, and cmi5 actually do—and where LTI, QTI, Common Cartridge, and Caliper fit.",
+      "Compare SCORM 1.2 and 2004, AICC, xAPI/Tin Can, and cmi5; see where LTI, QTI, Common Cartridge, and Caliper fit.",
     readTime: "12 min",
   },
   {
