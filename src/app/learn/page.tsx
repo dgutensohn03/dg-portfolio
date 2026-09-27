@@ -5,6 +5,7 @@ import {
   Clock,
   Network,
   SearchCheck,
+  Layers3,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { LearnNav } from "@/components/learn/LearnShell";
@@ -21,6 +22,11 @@ const articleVisuals: Record<
   string,
   { icon: LucideIcon; label: string; nodes: readonly string[] }
 > = {
+  "learning-standards-field-guide": {
+    icon: Layers3,
+    label: "INTEROPERABILITY MAP",
+    nodes: ["Launch", "Track", "Exchange"],
+  },
   "activity-to-insight": {
     icon: Activity,
     label: "SYSTEM PATH",
@@ -73,7 +79,7 @@ export default function LearnPage() {
           </div>
         </section>
         <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6 sm:py-24">
-          <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
             {learnArticles.map((article) => {
               const visual = articleVisuals[article.slug];
               const VisualIcon = visual.icon;
