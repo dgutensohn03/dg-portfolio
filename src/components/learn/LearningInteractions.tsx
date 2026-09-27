@@ -45,7 +45,7 @@ export function StatementExplorer() {
   const [active, setActive] = useState(0);
   const item = statementFields[active];
   return (
-    <div className="interactive-card print-keep rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
+    <div className="interactive-card print-keep rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-5 sm:p-6">
       <div className="print-hidden">
         <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
           Interactive
@@ -74,7 +74,8 @@ export function StatementExplorer() {
         <div
           role="tabpanel"
           aria-live="polite"
-          className="mt-6 rounded-2xl bg-[#0d1117] p-5 text-slate-200"
+          className="interactive-reveal mt-5 rounded-2xl bg-[#0d1117] p-4 text-slate-200 sm:p-5"
+          key={item.key}
         >
           <p className="font-mono text-xs leading-6 text-orange-300">
             {item.code}
@@ -122,7 +123,7 @@ export function ReportingKnowledgeCheck() {
   ];
   const [selected, setSelected] = useState<number | null>(null);
   return (
-    <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
+    <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-5 sm:p-6">
       <div className="print-hidden">
         <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
           Interactive
@@ -147,7 +148,7 @@ export function ReportingKnowledgeCheck() {
         {selected !== null && (
           <div
             aria-live="polite"
-            className={`mt-5 rounded-xl border p-5 text-sm leading-6 ${choices[selected].correct ? "border-emerald-500/35 bg-emerald-500/8" : "border-amber-500/35 bg-amber-500/8"}`}
+            className={`interactive-reveal mt-5 rounded-xl border p-4 text-sm leading-6 ${choices[selected].correct ? "border-emerald-500/35 bg-emerald-500/8" : "border-amber-500/35 bg-amber-500/8"}`}
           >
             <p className="font-semibold">
               {choices[selected].correct
@@ -196,7 +197,7 @@ const diagnosticChoices = [
 export function DiagnosticDecision() {
   const [selected, setSelected] = useState<number | null>(null);
   return (
-    <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
+    <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-5 sm:p-6">
       <div className="print-hidden">
         <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
           Interactive
@@ -221,7 +222,7 @@ export function DiagnosticDecision() {
         {selected !== null && (
           <div
             aria-live="polite"
-            className={`mt-5 rounded-xl border p-5 text-sm leading-6 ${diagnosticChoices[selected].correct ? "border-emerald-500/35 bg-emerald-500/8" : "border-amber-500/35 bg-amber-500/8"}`}
+            className={`interactive-reveal mt-5 rounded-xl border p-4 text-sm leading-6 ${diagnosticChoices[selected].correct ? "border-emerald-500/35 bg-emerald-500/8" : "border-amber-500/35 bg-amber-500/8"}`}
           >
             <p className="font-semibold">
               {diagnosticChoices[selected].correct
@@ -281,7 +282,7 @@ export function TrainingRecommender() {
   const [active, setActive] = useState(0);
   const item = roles[active];
   return (
-    <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
+    <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-5 sm:p-6">
       <div className="print-hidden">
         <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
           Interactive
@@ -307,7 +308,8 @@ export function TrainingRecommender() {
         </div>
         <div
           aria-live="polite"
-          className="mt-6 rounded-2xl border border-[var(--accent)]/30 bg-[var(--accent)]/8 p-6"
+          className="interactive-reveal mt-5 rounded-2xl border border-[var(--accent)]/30 bg-[var(--accent)]/8 p-5"
+          key={item.role}
         >
           <div className="flex items-center gap-2 text-[var(--accent)]">
             <CheckCircle2 size={18} />
