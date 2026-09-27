@@ -112,7 +112,7 @@ export default function MissingCompletion() {
 
         <section
           id="decision"
-          className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6"
+          className="case-band border-y border-[var(--hairline)] px-5 py-12 sm:px-6"
         >
           <div className="mx-auto max-w-5xl space-y-5">
             <DiagnosticDecision />
