@@ -23,18 +23,18 @@ const articleVisuals: Record<
 > = {
   "activity-to-insight": {
     icon: Activity,
-    label: "EVENT → LRS → INSIGHT",
-    nodes: ["Act", "Store", "Use"],
+    label: "SYSTEM PATH",
+    nodes: ["Event", "LRS", "Decision"],
   },
   "missing-completion": {
     icon: SearchCheck,
-    label: "TRACE THE HANDOFF",
-    nodes: ["Source", "LRS", "Report"],
+    label: "DIAGNOSTIC PATH",
+    nodes: ["Experience", "Evidence", "Rule"],
   },
   "enterprise-system-training": {
     icon: Network,
-    label: "EVIDENCE → PERFORMANCE",
-    nodes: ["Need", "Practice", "Measure"],
+    label: "DESIGN PATH",
+    nodes: ["Evidence", "Practice", "Measure"],
   },
 };
 
@@ -87,7 +87,7 @@ export default function LearnPage() {
                   <div className="flex items-center justify-between text-[var(--accent)]">
                     <VisualIcon className="learn-card-icon" size={25} />
                     <span className="text-[11px] font-bold tracking-[.13em]">
-                      {visual.label}
+                      VISUAL PREVIEW · {visual.label}
                     </span>
                   </div>
                   <div className="mt-10 grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2">
