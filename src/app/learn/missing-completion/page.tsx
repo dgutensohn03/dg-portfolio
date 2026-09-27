@@ -1,5 +1,7 @@
+import Link from "next/link";
 import {
   AlertTriangle,
+  ArrowRight,
   CheckCircle2,
   Code2,
   Database,
@@ -238,6 +240,9 @@ export default function MissingCompletion() {
                 The LRS correctly preserved both records. The defect lived in
                 the contract between the producer and the reporting rule.
               </p>
+              <Link className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] underline-offset-4 hover:underline" href="/learn/learning-standards-field-guide#cmi5">
+                See how cmi5 defines an LMS completion contract <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             </div>
             <div className="rounded-3xl border border-[var(--hairline)] bg-[#0d1117] p-6 text-slate-200 shadow-2xl">
               <p className="font-mono text-xs text-slate-500">
