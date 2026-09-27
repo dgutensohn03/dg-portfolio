@@ -195,6 +195,7 @@ export function ArticleFooter({
   references: { label: string; href: string }[];
 }) {
   const related = [
+    ["learning-standards-field-guide", "A Field Guide to Learning Standards"],
     ["activity-to-insight", "From Activity to Insight"],
     ["missing-completion", "The Case of the Missing Completion"],
     [
@@ -242,9 +243,11 @@ export function ArticleFooter({
             </div>
           </div>
         </div>
-        <div className="mt-12">
-          <ConfidentialityNote />
-        </div>
+        {currentSlug !== "learning-standards-field-guide" && (
+          <div className="mt-12">
+            <ConfidentialityNote />
+          </div>
+        )}
       </div>
     </section>
   );
