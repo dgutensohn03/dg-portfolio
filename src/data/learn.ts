@@ -13,7 +13,7 @@ export const learnArticles: LearnArticle[] = [
     title: "A Field Guide to Learning Standards",
     summary:
       "Compare SCORM 1.2 and 2004, AICC, xAPI/Tin Can, and cmi5; see where LTI, QTI, Common Cartridge, and Caliper fit.",
-    readTime: "12 min",
+    readTime: "18 min",
   },
   {
     slug: "activity-to-insight",
