@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Activity,
   ArrowRight,
@@ -266,6 +267,9 @@ export default function ActivityToInsight() {
                 email. Identity design should minimize personal information
                 while supporting the authorized reporting purpose.
               </p>
+              <Link className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] underline-offset-4 hover:underline" href="/learn/learning-standards-field-guide#xapi">
+                How xAPI differs from SCORM and cmi5 <ArrowRight size={16} aria-hidden="true" />
+              </Link>
             </div>
             <div className="print-keep overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[#0d1117] shadow-2xl">
               <div className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-4">
