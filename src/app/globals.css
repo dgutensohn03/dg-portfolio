@@ -72,7 +72,7 @@ footer[data-visible="true"] { z-index: 10; pointer-events: auto; }
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
 
 @media print {
-  @page { size: Letter; margin: 0.62in 0.65in 0.68in; }
+  @page { size: Letter; margin: 0.62in 0.65in 0.72in; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   html, body { background: #fff !important; color: #111827 !important; }
   .print-hidden { display: none !important; }
@@ -80,6 +80,7 @@ footer[data-visible="true"] { z-index: 10; pointer-events: auto; }
   .case-study, .case-base, .case-band, .case-card { background: #fff !important; }
   .print-cover { min-height: 8.4in; display: flex; align-items: center; break-after: page; }
   .print-section { break-before: page; }
+  .interactive-card { border: 1px solid #cbd5e1 !important; background: #f8fafc !important; }
   section { border-color: #d1d5db !important; padding: 0.35in 0 !important; }
   article, pre, table, .print-keep { break-inside: avoid; }
   h1, h2, h3 { break-after: avoid; }
@@ -91,6 +92,7 @@ footer[data-visible="true"] { z-index: 10; pointer-events: auto; }
   .rounded-2xl, .rounded-3xl { border-radius: 10px !important; }
   .shadow-2xl, .shadow-xl { box-shadow: none !important; }
   a { color: #111827 !important; text-decoration: none !important; }
+  section:last-child::after { content: "Daniel Gutensohn · Learn · Updated September 2026"; display: block; margin-top: 0.35in; border-top: 1px solid #d1d5db; padding-top: 0.12in; color: #64748b; font-size: 8.5pt; }
 }
 
 .print-only { display: none; }

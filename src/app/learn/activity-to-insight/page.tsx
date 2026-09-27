@@ -1,34 +1,280 @@
-import { Activity, ArrowRight, BarChart3, Braces, CheckCircle2, Database, Gauge, Lightbulb, ShieldCheck, Users } from "lucide-react";
-import { ArticleHero, ConfidentialityNote, Eyebrow, LearnNav } from "@/components/learn/LearnShell";
+import {
+  Activity,
+  ArrowRight,
+  BarChart3,
+  Braces,
+  CheckCircle2,
+  Database,
+  Gauge,
+  Lightbulb,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
+import {
+  ArticleFooter,
+  ArticleHero,
+  Eyebrow,
+  LearningFrame,
+  LearnNav,
+  ResourceCard,
+} from "@/components/learn/LearnShell";
+import { StatementExplorer } from "@/components/learn/LearningInteractions";
 
 const flow = [
-  { icon: Activity, label: "Experience", detail: "A meaningful learner action occurs in a course, simulation, portal, or application." },
-  { icon: Braces, label: "Statement", detail: "xAPI represents the event using shared identifiers and contextual information." },
-  { icon: Database, label: "LRS", detail: "The statement is validated, stored, and made available for retrieval." },
-  { icon: Gauge, label: "Service layer", detail: "Documented rules transform event history into defined measures." },
-  { icon: BarChart3, label: "Decision", detail: "A dashboard or report helps someone understand the evidence and act." },
+  {
+    icon: Activity,
+    label: "Experience",
+    detail:
+      "A meaningful learner action occurs in a course, simulation, portal, or application.",
+  },
+  {
+    icon: Braces,
+    label: "Statement",
+    detail:
+      "xAPI represents the event using shared identifiers and contextual information.",
+  },
+  {
+    icon: Database,
+    label: "LRS",
+    detail:
+      "The statement is validated, stored, and made available for retrieval.",
+  },
+  {
+    icon: Gauge,
+    label: "Service layer",
+    detail: "Documented rules transform event history into defined measures.",
+  },
+  {
+    icon: BarChart3,
+    label: "Decision",
+    detail:
+      "A dashboard or report helps someone understand the evidence and act.",
+  },
 ];
 
 const anatomy = [
-  ["Actor", "Who performed the action?", "Use a stable account identity that can be reconciled across sessions and systems."],
-  ["Verb", "What meaningful action occurred?", "The identifier carries meaning; a friendly label does not make two identifiers equivalent."],
-  ["Object", "What activity was involved?", "A persistent activity ID prevents titles, translations, and version changes from breaking reporting."],
-  ["Result", "What was the outcome?", "Success, completion, response, duration, and score answer different questions."],
-  ["Context", "What surrounded the event?", "Registration, parent activity, team, and platform connect one event to a larger experience."],
-  ["Timestamp", "When did it happen?", "Event time and storage time may differ when statements are queued or sent offline."],
+  [
+    "Actor",
+    "Who performed the action?",
+    "Use a stable account identity that can be reconciled across sessions and systems.",
+  ],
+  [
+    "Verb",
+    "What meaningful action occurred?",
+    "The identifier carries meaning; a friendly label does not make two identifiers equivalent.",
+  ],
+  [
+    "Object",
+    "What activity was involved?",
+    "A persistent activity ID prevents titles, translations, and version changes from breaking reporting.",
+  ],
+  [
+    "Result",
+    "What was the outcome?",
+    "Success, completion, response, duration, and score answer different questions.",
+  ],
+  [
+    "Context",
+    "What surrounded the event?",
+    "Registration, parent activity, team, and platform connect one event to a larger experience.",
+  ],
+  [
+    "Timestamp",
+    "When did it happen?",
+    "Event time and storage time may differ when statements are queued or sent offline.",
+  ],
 ];
 
 export default function ActivityToInsight() {
-  return <div className="case-study min-h-screen text-[var(--fg)]"><LearnNav article/><main>
-    <ArticleHero category="Technical tutorial" readTime="11 min" title="From Activity to Insight" intro="A learner clicks Complete. A dashboard updates. Between those moments, several systems have to agree on what happened, who did it, and what the event means. This tutorial follows that evidence from the experience to the decision."/>
+  return (
+    <div className="case-study min-h-screen text-[var(--fg)]">
+      <LearnNav article />
+      <main>
+        <ArticleHero
+          category="Technical tutorial"
+          readTime="11 min"
+          title="From Activity to Insight"
+          intro="A learner clicks Complete. A dashboard updates. Between those moments, several systems have to agree on what happened, who did it, and what the event means. This tutorial follows that evidence from the experience to the decision."
+        />
+        <LearningFrame
+          outcomes={[
+            "Trace a learning event from the experience through storage and reporting.",
+            "Given an event description, identify the Actor, Verb, Object, Result, and Context needed for an interpretable xAPI statement.",
+            "Locate the earliest unsupported assumption when completion data does not match the learner experience.",
+          ]}
+          sections={[
+            { href: "#journey", label: "Data journey" },
+            { href: "#statement", label: "Statement explorer" },
+            { href: "#practice", label: "Practice" },
+          ]}
+        />
 
-    <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6 sm:py-20"><div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[.72fr_1.28fr]"><div><Eyebrow>Who this is for</Eyebrow><h2 className="mt-5 text-3xl font-semibold sm:text-4xl">A shared foundation for mixed technical teams.</h2><p className="mt-5 leading-7 text-[var(--muted)]">Product managers, learning designers, QA analysts, support specialists, and developers often encounter different parts of the same data path. The goal is not to turn every reader into an xAPI engineer. It is to create enough shared understanding to ask better questions and recognize where a problem belongs.</p></div><div className="grid gap-4 sm:grid-cols-2"><div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><Users className="text-[var(--accent)]"/><h3 className="mt-5 text-lg font-semibold">Prerequisite knowledge</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">Familiarity with online learning or reporting is useful. No prior knowledge of xAPI, REST APIs, or Learning Record Stores is required.</p></div><div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><CheckCircle2 className="text-[var(--accent)]"/><h3 className="mt-5 text-lg font-semibold">Learning objective</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">Explain the data flow, interpret the core fields of a statement, and identify the most likely stage of a reporting problem.</p></div></div></div></section>
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6 sm:py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[.72fr_1.28fr]">
+            <div>
+              <Eyebrow>Who this is for</Eyebrow>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-4xl">
+                A shared foundation for mixed technical teams.
+              </h2>
+              <p className="mt-5 leading-7 text-[var(--muted)]">
+                Product managers, learning designers, QA analysts, support
+                specialists, and developers often encounter different parts of
+                the same data path. The goal is not to turn every reader into an
+                xAPI engineer. It is to create enough shared understanding to
+                ask better questions and recognize where a problem belongs.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6">
+                <Users className="text-[var(--accent)]" />
+                <h3 className="mt-5 text-lg font-semibold">
+                  Prerequisite knowledge
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  Familiarity with online learning or reporting is useful. No
+                  prior knowledge of xAPI, REST APIs, or Learning Record Stores
+                  is required.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6">
+                <CheckCircle2 className="text-[var(--accent)]" />
+                <h3 className="mt-5 text-lg font-semibold">
+                  Learning objective
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  Explain the data flow, interpret the core fields of a
+                  statement, and identify the most likely stage of a reporting
+                  problem.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section className="case-base px-5 py-20 sm:px-6"><div className="mx-auto max-w-6xl"><Eyebrow>Start with a real question</Eyebrow><div className="mt-6 grid gap-10 lg:grid-cols-[.8fr_1.2fr]"><div><h2 className="text-3xl font-semibold sm:text-5xl">Did the learner complete the required experience?</h2><p className="mt-6 leading-7 text-[var(--muted)]">The system cannot observe intent. It needs evidence connected to an agreed definition. A final-page view, a passed assessment, and an approved completion event might occur near the end of a course while representing different outcomes.</p><p className="mt-4 leading-7 text-[var(--muted)]">Good instrumentation begins with the decision someone needs to make. Only then should a team define the event that can support it.</p></div><div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8"><p className="text-xs font-bold uppercase tracking-[.16em] text-[var(--accent)]">From decision to evidence</p><dl className="mt-6 space-y-5"><div><dt className="text-sm font-semibold">Business question</dt><dd className="mt-1 text-sm leading-6 text-[var(--muted)]">Which assigned learners still need follow-up?</dd></div><div><dt className="text-sm font-semibold">Required evidence</dt><dd className="mt-1 text-sm leading-6 text-[var(--muted)]">An approved completion event tied to the learner, activity, and registration.</dd></div><div><dt className="text-sm font-semibold">Action enabled</dt><dd className="mt-1 text-sm leading-6 text-[var(--muted)]">Support remaining learners without contacting people who already completed the experience.</dd></div></dl></div></div></div></section>
+        <section className="case-base px-5 py-20 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>Start with a real question</Eyebrow>
+            <div className="mt-6 grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
+              <div>
+                <h2 className="text-3xl font-semibold sm:text-5xl">
+                  Did the learner complete the required experience?
+                </h2>
+                <p className="mt-6 leading-7 text-[var(--muted)]">
+                  The system cannot observe intent. It needs evidence connected
+                  to an agreed definition. A final-page view, a passed
+                  assessment, and an approved completion event might occur near
+                  the end of a course while representing different outcomes.
+                </p>
+                <p className="mt-4 leading-7 text-[var(--muted)]">
+                  Good instrumentation begins with the decision someone needs to
+                  make. Only then should a team define the event that can
+                  support it.
+                </p>
+              </div>
+              <div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-[.16em] text-[var(--accent)]">
+                  From decision to evidence
+                </p>
+                <dl className="mt-6 space-y-5">
+                  <div>
+                    <dt className="text-sm font-semibold">Business question</dt>
+                    <dd className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                      Which assigned learners still need follow-up?
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-semibold">Required evidence</dt>
+                    <dd className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                      An approved completion event tied to the learner,
+                      activity, and registration.
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-semibold">Action enabled</dt>
+                    <dd className="mt-1 text-sm leading-6 text-[var(--muted)]">
+                      Support remaining learners without contacting people who
+                      already completed the experience.
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section className="print-section case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6"><div className="mx-auto max-w-6xl"><Eyebrow>The data journey</Eyebrow><h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">Meaning has to survive every handoff.</h2><div className="mt-10 grid gap-3 lg:grid-cols-5">{flow.map(({icon:Icon,label,detail},i)=><article key={label} className="relative rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"><div className="flex items-center justify-between"><span className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]"><Icon size={21}/></span>{i<flow.length-1&&<ArrowRight className="hidden text-[var(--accent)]/55 lg:block" size={18}/>}</div><h3 className="mt-6 font-semibold">{label}</h3><p className="mt-2 text-sm leading-6 text-[var(--muted)]">{detail}</p></article>)}</div><p className="mt-7 max-w-4xl leading-7 text-[var(--muted)]">A successful HTTP response proves that one request was accepted. It does not prove that the intended action fired once, identity remained stable, reporting recognized the event, or the interface presented the result correctly. Release validation must follow the entire path.</p></div></section>
+        <section
+          id="journey"
+          className="print-section case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6"
+        >
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>The data journey</Eyebrow>
+            <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
+              Meaning has to survive every handoff.
+            </h2>
+            <div className="mt-10 grid gap-3 lg:grid-cols-5">
+              {flow.map(({ icon: Icon, label, detail }, i) => (
+                <article
+                  key={label}
+                  className="relative rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
+                      <Icon size={21} />
+                    </span>
+                    {i < flow.length - 1 && (
+                      <ArrowRight
+                        className="hidden text-[var(--accent)]/55 lg:block"
+                        size={18}
+                      />
+                    )}
+                  </div>
+                  <h3 className="mt-6 font-semibold">{label}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                    {detail}
+                  </p>
+                </article>
+              ))}
+            </div>
+            <p className="mt-7 max-w-4xl leading-7 text-[var(--muted)]">
+              A successful HTTP response proves that one request was accepted.
+              It does not prove that the intended action fired once, identity
+              remained stable, reporting recognized the event, or the interface
+              presented the result correctly. Release validation must follow the
+              entire path.
+            </p>
+          </div>
+        </section>
 
-    <section className="case-base px-5 py-20 sm:px-6"><div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[.8fr_1.2fr]"><div><Eyebrow>A worked statement</Eyebrow><h2 className="mt-5 text-3xl font-semibold sm:text-5xl">The record is small. Its contract is not.</h2><p className="mt-6 leading-7 text-[var(--muted)]">At its core, an xAPI statement says that an actor performed an action involving an object. Result and context make that event useful for analysis. Stable identifiers allow separate systems to interpret it consistently long after a display label changes.</p><p className="mt-4 leading-7 text-[var(--muted)]">This example uses an account identifier rather than a name or email. Identity design should minimize personal information while supporting the authorized reporting purpose.</p></div><div className="print-keep overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[#0d1117] shadow-2xl"><div className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-4"><span className="font-mono text-xs text-slate-400">completion.statement.json</span><span className="rounded-full bg-emerald-400/10 px-2 py-1 font-mono text-[10px] text-emerald-300">VALID</span></div><pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-slate-300"><code>{`{
+        <section id="statement" className="case-base px-5 py-20 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[.8fr_1.2fr]">
+            <div>
+              <Eyebrow>A worked statement</Eyebrow>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">
+                The record is small. Its contract is not.
+              </h2>
+              <p className="mt-6 leading-7 text-[var(--muted)]">
+                At its core, an xAPI statement says that an actor performed an
+                action involving an object. Result and context make that event
+                useful for analysis. Stable identifiers allow separate systems
+                to interpret it consistently long after a display label changes.
+              </p>
+              <p className="mt-4 leading-7 text-[var(--muted)]">
+                This example uses an account identifier rather than a name or
+                email. Identity design should minimize personal information
+                while supporting the authorized reporting purpose.
+              </p>
+            </div>
+            <div className="print-keep overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[#0d1117] shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-4">
+                <span className="font-mono text-xs text-slate-400">
+                  completion.statement.json
+                </span>
+                <span className="rounded-full bg-emerald-400/10 px-2 py-1 font-mono text-[10px] text-emerald-300">
+                  VALID
+                </span>
+              </div>
+              <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-slate-300">
+                <code>{`{
   "actor": { "account": { "name": "learner-482" } },
   "verb": { "id": "http://adlnet.gov/expapi/verbs/completed" },
   "object": { "id": "https://example.org/activity/safety-101" },
@@ -39,14 +285,185 @@ export default function ActivityToInsight() {
   },
   "context": { "registration": "7b5f..." },
   "timestamp": "2026-09-21T14:30:00Z"
-}`}</code></pre></div></div></section>
+}`}</code>
+              </pre>
+            </div>
+          </div>
+        </section>
 
-    <section className="print-section case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6"><div className="mx-auto max-w-6xl"><Eyebrow>Read the statement with purpose</Eyebrow><div className="mt-8 grid gap-px overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--hairline)] md:grid-cols-2 lg:grid-cols-3">{anatomy.map(([field,question,guidance])=><article key={field} className="bg-[var(--case-card)] p-6"><p className="font-mono text-sm text-[var(--accent)]">{field}</p><h3 className="mt-4 font-semibold">{question}</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">{guidance}</p></article>)}</div></div></section>
+        <section className="print-section case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>Read the statement with purpose</Eyebrow>
+            <div className="mt-8 grid gap-px overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--hairline)] md:grid-cols-2 lg:grid-cols-3">
+              {anatomy.map(([field, question, guidance]) => (
+                <article key={field} className="bg-[var(--case-card)] p-6">
+                  <p className="font-mono text-sm text-[var(--accent)]">
+                    {field}
+                  </p>
+                  <h3 className="mt-4 font-semibold">{question}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                    {guidance}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-    <section className="case-base px-5 py-20 sm:px-6"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2"><div><Eyebrow>Where consistency breaks</Eyebrow><h2 className="mt-5 text-3xl font-semibold sm:text-5xl">People see synonyms. Queries see identifiers.</h2><p className="mt-6 leading-7 text-[var(--muted)]">One experience sends <i>completed</i>, another sends <i>finished</i>, and a third sends <i>course_done</i>. A person may interpret all three as completion. A query built for one identifier will not—and should not guess.</p><p className="mt-4 leading-7 text-[var(--muted)]">Correct the producer when feasible. A temporary map can bridge a release window, but it needs an owner, effective dates, test evidence, documentation, and a retirement plan.</p></div><div className="print-keep rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><div className="space-y-3">{[["completed","Approved","bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"],["finished","Not defined","bg-amber-500/10 text-amber-600 dark:text-amber-300"],["course_done","Custom","bg-rose-500/10 text-rose-600 dark:text-rose-300"]].map(([verb,state,style])=><div key={verb} className="flex items-center justify-between rounded-xl border border-[var(--hairline)] p-4"><span className="font-mono text-sm">{verb}</span><span className={`rounded-full px-2.5 py-1 text-xs ${style}`}>{state}</span></div>)}</div></div></div></section>
+        <section className="case-base px-5 py-20 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+            <div>
+              <Eyebrow>Where consistency breaks</Eyebrow>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">
+                People see synonyms. Queries see identifiers.
+              </h2>
+              <p className="mt-6 leading-7 text-[var(--muted)]">
+                One experience sends <i>completed</i>, another sends{" "}
+                <i>finished</i>, and a third sends <i>course_done</i>. A person
+                may interpret all three as completion. A query built for one
+                identifier will not—and should not guess.
+              </p>
+              <p className="mt-4 leading-7 text-[var(--muted)]">
+                Correct the producer when feasible. A temporary map can bridge a
+                release window, but it needs an owner, effective dates, test
+                evidence, documentation, and a retirement plan.
+              </p>
+            </div>
+            <div className="print-keep rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6">
+              <div className="space-y-3">
+                {[
+                  [
+                    "completed",
+                    "Approved",
+                    "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300",
+                  ],
+                  [
+                    "finished",
+                    "Not defined",
+                    "bg-amber-500/10 text-amber-600 dark:text-amber-300",
+                  ],
+                  [
+                    "course_done",
+                    "Custom",
+                    "bg-rose-500/10 text-rose-600 dark:text-rose-300",
+                  ],
+                ].map(([verb, state, style]) => (
+                  <div
+                    key={verb}
+                    className="flex items-center justify-between rounded-xl border border-[var(--hairline)] p-4"
+                  >
+                    <span className="font-mono text-sm">{verb}</span>
+                    <span
+                      className={`rounded-full px-2.5 py-1 text-xs ${style}`}
+                    >
+                      {state}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section className="case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_.9fr]"><div><div className="flex items-center gap-3 text-[var(--accent)]"><ShieldCheck/><Eyebrow>Governance that scales</Eyebrow></div><h2 className="mt-5 text-3xl font-semibold sm:text-5xl">A profile turns agreement into a reusable contract.</h2><p className="mt-6 leading-7 text-[var(--muted)]">An xAPI Profile can define approved concepts, patterns, identifiers, and rules for a domain. It is most useful when paired with representative statements, a data dictionary, version history, validation examples, and a change process shared by producers and consumers.</p><p className="mt-4 leading-7 text-[var(--muted)]">Program stakeholders define the decision, learning teams describe the experience, engineers implement the event, QA validates the path, and analytics teams confirm the measure.</p></div><div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><Lightbulb className="text-[var(--accent)]"/><h3 className="mt-5 text-xl font-semibold">Common misconception</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">“The LRS will normalize everything.” An LRS preserves and retrieves statements. Semantic alignment requires intentional profiles, mappings, and business rules; storing inconsistent events does not make them consistent.</p></div></div></section>
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_.9fr]">
+            <div>
+              <div className="flex items-center gap-3 text-[var(--accent)]">
+                <ShieldCheck />
+                <Eyebrow>Governance that scales</Eyebrow>
+              </div>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">
+                A profile turns agreement into a reusable contract.
+              </h2>
+              <p className="mt-6 leading-7 text-[var(--muted)]">
+                An xAPI Profile can define approved concepts, patterns,
+                identifiers, and rules for a domain. It is most useful when
+                paired with representative statements, a data dictionary,
+                version history, validation examples, and a change process
+                shared by producers and consumers.
+              </p>
+              <p className="mt-4 leading-7 text-[var(--muted)]">
+                Program stakeholders define the decision, learning teams
+                describe the experience, engineers implement the event, QA
+                validates the path, and analytics teams confirm the measure.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6">
+              <Lightbulb className="text-[var(--accent)]" />
+              <h3 className="mt-5 text-xl font-semibold">
+                Common misconception
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                “The LRS will normalize everything.” An LRS preserves and
+                retrieves statements. Semantic alignment requires intentional
+                profiles, mappings, and business rules; storing inconsistent
+                events does not make them consistent.
+              </p>
+            </div>
+          </div>
+        </section>
 
-    <section className="print-section case-base px-5 py-20 sm:px-6"><div className="mx-auto max-w-6xl"><Eyebrow>Apply what you learned</Eyebrow><h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">Diagnose the earliest unsupported assumption.</h2><div className="mt-9 grid gap-5 lg:grid-cols-2"><div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-7"><h3 className="text-lg font-semibold">Scenario</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">A completion statement appears in the LRS and can be retrieved by actor and activity. The dashboard still excludes the learner. Where should the team investigate next?</p><ul className="mt-5 space-y-2 text-sm text-[var(--muted)]"><li>A. Whether the learner clicked the button</li><li>B. The dashboard query and transformation rules</li><li>C. Whether the LRS is online</li></ul></div><div className="rounded-3xl border border-[var(--accent)]/30 bg-[var(--accent)]/8 p-7"><h3 className="text-lg font-semibold">Reasoned answer</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]"><b className="text-[var(--fg)]">B.</b> The event reached storage and is retrievable, so the next unsupported assumption is that the service recognizes it as completion. Compare its verb, activity, registration, identity, and time context with the metric definition.</p></div></div><div className="mt-14"><ConfidentialityNote/></div></div></section>
-  </main></div>;
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.2fr_.8fr]">
+            <StatementExplorer />
+            <ResourceCard
+              title="Download the xAPI statement design checklist"
+              description="Connect a business question to a governed statement contract and validate the complete data path."
+              href="/downloads/xapi-statement-design-checklist.md"
+            />
+          </div>
+        </section>
+
+        <section
+          id="practice"
+          className="print-section case-base px-5 py-20 sm:px-6"
+        >
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>Apply what you learned</Eyebrow>
+            <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
+              Diagnose the earliest unsupported assumption.
+            </h2>
+            <div className="mt-9 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-7">
+                <h3 className="text-lg font-semibold">Scenario</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  A completion statement appears in the LRS and can be retrieved
+                  by actor and activity. The dashboard still excludes the
+                  learner. Where should the team investigate next?
+                </p>
+                <ul className="mt-5 space-y-2 text-sm text-[var(--muted)]">
+                  <li>A. Whether the learner clicked the button</li>
+                  <li>B. The dashboard query and transformation rules</li>
+                  <li>C. Whether the LRS is online</li>
+                </ul>
+              </div>
+              <div className="rounded-3xl border border-[var(--accent)]/30 bg-[var(--accent)]/8 p-7">
+                <h3 className="text-lg font-semibold">Reasoned answer</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  <b className="text-[var(--fg)]">B.</b> The event reached
+                  storage and is retrievable, so the next unsupported assumption
+                  is that the service recognizes it as completion. Compare its
+                  verb, activity, registration, identity, and time context with
+                  the metric definition.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <ArticleFooter
+          currentSlug="activity-to-insight"
+          references={[
+            {
+              label: "1EdTech: Experience API (xAPI) standard",
+              href: "https://www.1edtech.org/standards/xapi",
+            },
+            {
+              label: "Advanced Distributed Learning: xAPI Profiles",
+              href: "https://adlnet.gov/projects/xapi-profile-server/",
+            },
+          ]}
+        />
+      </main>
+    </div>
+  );
 }

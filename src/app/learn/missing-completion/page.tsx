@@ -1,27 +1,386 @@
-import { AlertTriangle, CheckCircle2, Code2, Database, FileCheck2, MessagesSquare, MonitorCheck, Network, Search, Users, Wrench } from "lucide-react";
-import { ArticleHero, ConfidentialityNote, Eyebrow, LearnNav } from "@/components/learn/LearnShell";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  Code2,
+  Database,
+  FileCheck2,
+  MessagesSquare,
+  MonitorCheck,
+  Network,
+  Search,
+  Users,
+  Wrench,
+} from "lucide-react";
+import {
+  ArticleFooter,
+  ArticleHero,
+  Eyebrow,
+  LearningFrame,
+  LearnNav,
+  ResourceCard,
+} from "@/components/learn/LearnShell";
+import { DiagnosticDecision } from "@/components/learn/LearningInteractions";
 
 const investigation = [
-  { icon: MonitorCheck, label: "Experience", question: "Did the expected user action fire?", result: "Yes" },
-  { icon: Network, label: "Transport", question: "Did the LRS accept the request?", result: "200 OK" },
-  { icon: Database, label: "Storage", question: "Can the statement be retrieved?", result: "Found" },
-  { icon: Code2, label: "Rules", question: "Does the query recognize the verb?", result: "No" },
+  {
+    icon: MonitorCheck,
+    label: "Experience",
+    question: "Did the expected user action fire?",
+    result: "Yes",
+  },
+  {
+    icon: Network,
+    label: "Transport",
+    question: "Did the LRS accept the request?",
+    result: "200 OK",
+  },
+  {
+    icon: Database,
+    label: "Storage",
+    question: "Can the statement be retrieved?",
+    result: "Found",
+  },
+  {
+    icon: Code2,
+    label: "Rules",
+    question: "Does the query recognize the verb?",
+    result: "No",
+  },
 ];
 
 export default function MissingCompletion() {
-  return <div className="case-study min-h-screen text-[var(--fg)]"><LearnNav article/><main><ArticleHero category="Diagnostic case study" readTime="10 min" title="The Case of the Missing Completion" intro="The learner finished. The experience confirmed it. The dashboard still said incomplete. Instead of patching the number, the investigation followed the evidence, aligned the people responsible for each handoff, and corrected the contract that connected their work."/>
-    <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6 sm:py-20"><div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.7fr_1.3fr]"><div><Eyebrow>The signal</Eyebrow><h2 className="mt-5 text-3xl font-semibold sm:text-5xl">One user. Two realities.</h2><p className="mt-6 leading-7 text-[var(--muted)]">The training experience showed a successful completion, while the reporting dashboard classified the same learner as incomplete. Both interfaces appeared to be working.</p></div><div className="grid gap-4 sm:grid-cols-2"><div className="rounded-3xl border border-emerald-500/25 bg-emerald-500/8 p-6"><CheckCircle2 className="text-emerald-500"/><p className="mt-8 text-xs font-bold uppercase tracking-[.15em] text-emerald-600 dark:text-emerald-300">Learning experience</p><p className="mt-3 text-2xl font-semibold">Complete</p></div><div className="rounded-3xl border border-amber-500/25 bg-amber-500/8 p-6"><AlertTriangle className="text-amber-500"/><p className="mt-8 text-xs font-bold uppercase tracking-[.15em] text-amber-600 dark:text-amber-300">Analytics dashboard</p><p className="mt-3 text-2xl font-semibold">Incomplete</p></div></div></div></section>
+  return (
+    <div className="case-study min-h-screen text-[var(--fg)]">
+      <LearnNav article />
+      <main>
+        <ArticleHero
+          category="Diagnostic case study"
+          readTime="10 min"
+          title="The Case of the Missing Completion"
+          intro="The learner finished. The experience confirmed it. The dashboard still said incomplete. Instead of patching the number, the investigation followed the evidence, aligned the people responsible for each handoff, and corrected the contract that connected their work."
+        />
+        <LearningFrame
+          outcomes={[
+            "Use an evidence-first sequence to isolate the failing stage of a reporting path.",
+            "Select the next diagnostic action without destroying or masking source evidence.",
+            "Translate an incident into requirements, tests, ownership, and a reusable support process.",
+          ]}
+          sections={[
+            { href: "#decision", label: "Your decision" },
+            { href: "#evidence", label: "Investigation" },
+            { href: "#repair", label: "Repair" },
+          ]}
+        />
+        <section className="case-base px-5 py-16 sm:px-6 sm:py-20">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.7fr_1.3fr]">
+            <div>
+              <Eyebrow>The signal</Eyebrow>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">
+                One user. Two realities.
+              </h2>
+              <p className="mt-6 leading-7 text-[var(--muted)]">
+                The training experience showed a successful completion, while
+                the reporting dashboard classified the same learner as
+                incomplete. Both interfaces appeared to be working.
+              </p>
+              <div className="mt-6 rounded-xl border-l-4 border-[var(--accent)] bg-[var(--accent)]/8 p-4 text-sm leading-6 text-[var(--muted)]">
+                <b className="text-[var(--fg)]">My role:</b> I connected the
+                learner experience, xAPI evidence, LRS records, and reporting
+                rules; coordinated the investigation across technical and
+                program teams; and translated the correction into reusable
+                requirements and validation steps.
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-3xl border border-emerald-500/25 bg-emerald-500/8 p-6">
+                <CheckCircle2 className="text-emerald-500" />
+                <p className="mt-8 text-xs font-bold uppercase tracking-[.15em] text-emerald-600 dark:text-emerald-300">
+                  Learning experience
+                </p>
+                <p className="mt-3 text-2xl font-semibold">Complete</p>
+              </div>
+              <div className="rounded-3xl border border-amber-500/25 bg-amber-500/8 p-6">
+                <AlertTriangle className="text-amber-500" />
+                <p className="mt-8 text-xs font-bold uppercase tracking-[.15em] text-amber-600 dark:text-amber-300">
+                  Analytics dashboard
+                </p>
+                <p className="mt-3 text-2xl font-semibold">Incomplete</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section className="case-base px-5 py-20 sm:px-6"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><Eyebrow>Why the discrepancy mattered</Eyebrow><h2 className="mt-5 text-3xl font-semibold sm:text-5xl">A data defect becomes a people problem quickly.</h2><p className="mt-6 leading-7 text-[var(--muted)]">Incorrect completion data can trigger unnecessary reminders, distort compliance reporting, and cause learners to distrust both the training and the support team. It also creates avoidable work for administrators who have to reconcile two sources manually.</p></div><div className="grid gap-4 sm:grid-cols-2"><div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><Users className="text-[var(--accent)]"/><h3 className="mt-5 font-semibold">People affected</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">Learners, program administrators, support teams, reporting stakeholders, QA, and the developers responsible for the sending experience.</p></div><div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><FileCheck2 className="text-[var(--accent)]"/><h3 className="mt-5 font-semibold">Definition of done</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">Correct new events, reconcile the affected release window, verify the dashboard, document the rule, and prevent recurrence.</p></div></div></div></section>
+        <section
+          id="decision"
+          className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6"
+        >
+          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.2fr_.8fr]">
+            <DiagnosticDecision />
+            <ResourceCard
+              title="Download the missing-completion runbook"
+              description="A reusable evidence path, escalation package, and definition of done for support, QA, and engineering teams."
+              href="/downloads/missing-completion-runbook.md"
+            />
+          </div>
+        </section>
 
-    <section className="print-section case-base px-5 py-20 sm:px-6"><div className="mx-auto max-w-6xl"><div className="flex items-center gap-3 text-[var(--accent)]"><Search/><Eyebrow>Follow the evidence</Eyebrow></div><h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">Find the first broken assumption.</h2><p className="mt-6 max-w-4xl leading-7 text-[var(--muted)]">The investigation moved from the learner-facing experience toward the reporting interface. Each verified handoff narrowed the search without changing data prematurely or asking teams to troubleshoot outside their area of responsibility.</p><div className="mt-10 grid gap-4 lg:grid-cols-4">{investigation.map(({icon:Icon,label,question,result},i)=><article key={label} className={`rounded-2xl border p-5 ${i===3?"border-rose-500/45 bg-rose-500/8":"border-[var(--hairline)] bg-[var(--case-card)]"}`}><Icon className={i===3?"text-rose-500":"text-[var(--accent)]"} size={22}/><h3 className="mt-6 font-semibold">{label}</h3><p className="mt-2 min-h-12 text-sm leading-6 text-[var(--muted)]">{question}</p><p className={`mt-5 border-t border-[var(--hairline)] pt-4 font-mono text-sm ${i===3?"text-rose-500":"text-emerald-500"}`}>{result}</p></article>)}</div></div></section>
+        <section className="case-base px-5 py-20 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
+            <div>
+              <Eyebrow>Why the discrepancy mattered</Eyebrow>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">
+                A data defect becomes a people problem quickly.
+              </h2>
+              <p className="mt-6 leading-7 text-[var(--muted)]">
+                Incorrect completion data can trigger unnecessary reminders,
+                distort compliance reporting, and cause learners to distrust
+                both the training and the support team. It also creates
+                avoidable work for administrators who have to reconcile two
+                sources manually.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6">
+                <Users className="text-[var(--accent)]" />
+                <h3 className="mt-5 font-semibold">People affected</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  Learners, program administrators, support teams, reporting
+                  stakeholders, QA, and the developers responsible for the
+                  sending experience.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6">
+                <FileCheck2 className="text-[var(--accent)]" />
+                <h3 className="mt-5 font-semibold">Definition of done</h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  Correct new events, reconcile the affected release window,
+                  verify the dashboard, document the rule, and prevent
+                  recurrence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section className="case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2"><div><Eyebrow>Root cause</Eyebrow><h2 className="mt-5 text-3xl font-semibold sm:text-5xl">The event arrived. The definition did not.</h2><p className="mt-6 leading-7 text-[var(--muted)]">The updated learning experience sent a custom <code className="rounded bg-[var(--accent)]/10 px-1.5 py-1 font-mono text-sm text-[var(--accent)]">finished</code> verb. The reporting query recognized only the approved <code className="rounded bg-[var(--accent)]/10 px-1.5 py-1 font-mono text-sm text-[var(--accent)]">completed</code> identifier.</p><p className="mt-4 leading-7 text-[var(--muted)]">The LRS correctly preserved both records. The defect lived in the contract between the producer and the reporting rule.</p></div><div className="rounded-3xl border border-[var(--hairline)] bg-[#0d1117] p-6 text-slate-200 shadow-2xl"><p className="font-mono text-xs text-slate-500">statement comparison</p><div className="mt-6 space-y-5 font-mono text-sm"><div><p className="text-slate-500">Expected</p><p className="mt-2 rounded-xl border border-emerald-400/25 bg-emerald-400/8 p-4 text-emerald-300">.../verbs/completed</p></div><div><p className="text-slate-500">Received</p><p className="mt-2 rounded-xl border border-rose-400/25 bg-rose-400/8 p-4 text-rose-300">.../verbs/finished</p></div></div></div></div></section>
+        <section
+          id="evidence"
+          className="print-section case-base px-5 py-20 sm:px-6"
+        >
+          <div className="mx-auto max-w-6xl">
+            <div className="flex items-center gap-3 text-[var(--accent)]">
+              <Search />
+              <Eyebrow>Follow the evidence</Eyebrow>
+            </div>
+            <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
+              Find the first broken assumption.
+            </h2>
+            <p className="mt-6 max-w-4xl leading-7 text-[var(--muted)]">
+              The investigation moved from the learner-facing experience toward
+              the reporting interface. Each verified handoff narrowed the search
+              without changing data prematurely or asking teams to troubleshoot
+              outside their area of responsibility.
+            </p>
+            <div className="mt-10 grid gap-4 lg:grid-cols-4">
+              {investigation.map(
+                ({ icon: Icon, label, question, result }, i) => (
+                  <article
+                    key={label}
+                    className={`rounded-2xl border p-5 ${i === 3 ? "border-rose-500/45 bg-rose-500/8" : "border-[var(--hairline)] bg-[var(--case-card)]"}`}
+                  >
+                    <Icon
+                      className={
+                        i === 3 ? "text-rose-500" : "text-[var(--accent)]"
+                      }
+                      size={22}
+                    />
+                    <h3 className="mt-6 font-semibold">{label}</h3>
+                    <p className="mt-2 min-h-12 text-sm leading-6 text-[var(--muted)]">
+                      {question}
+                    </p>
+                    <p
+                      className={`mt-5 border-t border-[var(--hairline)] pt-4 font-mono text-sm ${i === 3 ? "text-rose-500" : "text-emerald-500"}`}
+                    >
+                      {result}
+                    </p>
+                  </article>
+                ),
+              )}
+            </div>
+          </div>
+        </section>
 
-    <section className="case-base px-5 py-20 sm:px-6"><div className="mx-auto max-w-6xl"><div className="flex items-center gap-3 text-[var(--accent)]"><Wrench/><Eyebrow>The repair</Eyebrow></div><h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">Restore consistency without rewriting history.</h2><div className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--hairline)] md:grid-cols-3">{[["Correct the source","The experience was aligned to the approved completion verb so new events shared one meaning."],["Bridge the release window","A documented reporting mapping included affected historical events without altering source statements."],["Prevent recurrence","An integration test verified the verb identifier before the next deployment."]].map(([t,d])=><article key={t} className="bg-[var(--case-card)] p-6"><h3 className="text-xl font-semibold">{t}</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">{d}</p></article>)}</div></div></section>
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+            <div>
+              <Eyebrow>Root cause</Eyebrow>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">
+                The event arrived. The definition did not.
+              </h2>
+              <p className="mt-6 leading-7 text-[var(--muted)]">
+                The updated learning experience sent a custom{" "}
+                <code className="rounded bg-[var(--accent)]/10 px-1.5 py-1 font-mono text-sm text-[var(--accent)]">
+                  finished
+                </code>{" "}
+                verb. The reporting query recognized only the approved{" "}
+                <code className="rounded bg-[var(--accent)]/10 px-1.5 py-1 font-mono text-sm text-[var(--accent)]">
+                  completed
+                </code>{" "}
+                identifier.
+              </p>
+              <p className="mt-4 leading-7 text-[var(--muted)]">
+                The LRS correctly preserved both records. The defect lived in
+                the contract between the producer and the reporting rule.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-[var(--hairline)] bg-[#0d1117] p-6 text-slate-200 shadow-2xl">
+              <p className="font-mono text-xs text-slate-500">
+                statement comparison
+              </p>
+              <div className="mt-6 space-y-5 font-mono text-sm">
+                <div>
+                  <p className="text-slate-500">Expected</p>
+                  <p className="mt-2 rounded-xl border border-emerald-400/25 bg-emerald-400/8 p-4 text-emerald-300">
+                    .../verbs/completed
+                  </p>
+                </div>
+                <div>
+                  <p className="text-slate-500">Received</p>
+                  <p className="mt-2 rounded-xl border border-rose-400/25 bg-rose-400/8 p-4 text-rose-300">
+                    .../verbs/finished
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <section className="case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2"><div><div className="flex items-center gap-3 text-[var(--accent)]"><MessagesSquare/><Eyebrow>Collaboration and communication</Eyebrow></div><h2 className="mt-5 text-3xl font-semibold sm:text-5xl">Give each team the evidence it can act on.</h2><p className="mt-6 leading-7 text-[var(--muted)]">The course team needed the expected statement pattern. QA needed a reproducible identity and event sequence. Reporting needed the stored statement and metric definition. Program stakeholders needed the scope, learner impact, correction plan, and confidence that historical records would remain auditable.</p></div><div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-7"><h3 className="text-lg font-semibold">Communication package</h3><ul className="mt-5 space-y-3 text-sm leading-6 text-[var(--muted)]"><li>• Incident summary written in plain language</li><li>• Expected and received statement comparison</li><li>• Defined release window and affected population</li><li>• Temporary reporting rule with owner and retirement date</li><li>• QA scenario and acceptance criteria</li><li>• Support note for responding to affected learners</li></ul></div></div></section>
+        <section id="repair" className="case-base px-5 py-20 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex items-center gap-3 text-[var(--accent)]">
+              <Wrench />
+              <Eyebrow>The repair</Eyebrow>
+            </div>
+            <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
+              Restore consistency without rewriting history.
+            </h2>
+            <div className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--hairline)] md:grid-cols-3">
+              {[
+                [
+                  "Correct the source",
+                  "The experience was aligned to the approved completion verb so new events shared one meaning.",
+                ],
+                [
+                  "Bridge the release window",
+                  "A documented reporting mapping included affected historical events without altering source statements.",
+                ],
+                [
+                  "Prevent recurrence",
+                  "An integration test verified the verb identifier before the next deployment.",
+                ],
+              ].map(([t, d]) => (
+                <article key={t} className="bg-[var(--case-card)] p-6">
+                  <h3 className="text-xl font-semibold">{t}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                    {d}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-    <section className="print-section case-base px-5 py-20 sm:px-6"><div className="mx-auto max-w-6xl"><Eyebrow>What changed after the incident</Eyebrow><h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">Turn one correction into a stronger operating model.</h2><div className="mt-9 grid gap-4 sm:grid-cols-2">{[["Definition before development","Completion criteria and identifiers become part of the approved requirements, not an assumption discovered in QA."],["Examples beside rules","Positive, negative, and edge-case statements make the contract easier to implement and test."],["Traceable reporting logic","Metric definitions link to the query or transformation that produces them."],["A reusable runbook","Support teams can isolate the failure stage before escalating, reducing handoffs and guesswork."]].map(([t,d])=><article key={t} className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"><h3 className="font-semibold">{t}</h3><p className="mt-3 text-sm leading-6 text-[var(--muted)]">{d}</p></article>)}</div><p className="mt-9 max-w-4xl leading-7 text-[var(--muted)]"><b className="text-[var(--fg)]">Senior lesson:</b> the durable deliverable was not the mapping rule. It was the shared language, evidence, ownership, and validation process that made the next discrepancy faster to understand and less likely to occur.</p><div className="mt-14"><ConfidentialityNote/></div></div></section>
-  </main></div>;
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+            <div>
+              <div className="flex items-center gap-3 text-[var(--accent)]">
+                <MessagesSquare />
+                <Eyebrow>Collaboration and communication</Eyebrow>
+              </div>
+              <h2 className="mt-5 text-3xl font-semibold sm:text-5xl">
+                Give each team the evidence it can act on.
+              </h2>
+              <p className="mt-6 leading-7 text-[var(--muted)]">
+                The course team needed the expected statement pattern. QA needed
+                a reproducible identity and event sequence. Reporting needed the
+                stored statement and metric definition. Program stakeholders
+                needed the scope, learner impact, correction plan, and
+                confidence that historical records would remain auditable.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-7">
+              <h3 className="text-lg font-semibold">Communication package</h3>
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-[var(--muted)]">
+                <li>• Incident summary written in plain language</li>
+                <li>• Expected and received statement comparison</li>
+                <li>• Defined release window and affected population</li>
+                <li>
+                  • Temporary reporting rule with owner and retirement date
+                </li>
+                <li>• QA scenario and acceptance criteria</li>
+                <li>• Support note for responding to affected learners</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="print-section case-base px-5 py-20 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>What changed after the incident</Eyebrow>
+            <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
+              Turn one correction into a stronger operating model.
+            </h2>
+            <div className="mt-9 grid gap-4 sm:grid-cols-2">
+              {[
+                [
+                  "Definition before development",
+                  "Completion criteria and identifiers become part of the approved requirements, not an assumption discovered in QA.",
+                ],
+                [
+                  "Examples beside rules",
+                  "Positive, negative, and edge-case statements make the contract easier to implement and test.",
+                ],
+                [
+                  "Traceable reporting logic",
+                  "Metric definitions link to the query or transformation that produces them.",
+                ],
+                [
+                  "A reusable runbook",
+                  "Support teams can isolate the failure stage before escalating, reducing handoffs and guesswork.",
+                ],
+              ].map(([t, d]) => (
+                <article
+                  key={t}
+                  className="rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6"
+                >
+                  <h3 className="font-semibold">{t}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                    {d}
+                  </p>
+                </article>
+              ))}
+            </div>
+            <p className="mt-9 max-w-4xl leading-7 text-[var(--muted)]">
+              <b className="text-[var(--fg)]">Senior lesson:</b> the durable
+              deliverable was not the mapping rule. It was the shared language,
+              evidence, ownership, and validation process that made the next
+              discrepancy faster to understand and less likely to occur.
+            </p>
+          </div>
+        </section>
+        <ArticleFooter
+          currentSlug="missing-completion"
+          references={[
+            {
+              label: "1EdTech: Experience API (xAPI) standard",
+              href: "https://www.1edtech.org/standards/xapi",
+            },
+            {
+              label: "Advanced Distributed Learning: xAPI Profiles",
+              href: "https://adlnet.gov/projects/xapi-profile-server/",
+            },
+          ]}
+        />
+      </main>
+    </div>
+  );
 }
