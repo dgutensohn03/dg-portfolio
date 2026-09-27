@@ -176,13 +176,13 @@ export default function EnterpriseSystemTraining() {
           </div>
         </section>
 
-        <section className="case-band border-y border-[var(--hairline)] px-5 py-14 sm:px-6">
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-12 sm:px-6">
           <div className="mx-auto max-w-6xl">
             <Eyebrow>Connect the decisions</Eyebrow>
             <h2 className="mt-4 max-w-3xl text-2xl font-semibold sm:text-3xl">
               Every design choice should trace back to evidence.
             </h2>
-            <div className="mt-8 grid gap-3 lg:grid-cols-5">
+            <div className="decision-path mt-7 grid gap-3 md:grid-cols-5">
               {[
                 [
                   "Evidence",
@@ -195,24 +195,24 @@ export default function EnterpriseSystemTraining() {
               ].map(([title, detail], index) => (
                 <article
                   key={title}
-                  className="relative rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"
+                  className="decision-step relative rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-4"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="grid h-9 w-9 place-items-center rounded-full bg-[var(--accent)]/10 text-sm font-bold text-[var(--accent)]">
-                      {title.charAt(0)}
+                  <div className="flex items-center gap-3">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--accent)] text-sm font-bold text-white">
+                      {index + 1}
                     </span>
-                    {index < 4 && (
-                      <ArrowRight
-                        aria-hidden="true"
-                        className="hidden text-[var(--accent)]/50 lg:block"
-                        size={18}
-                      />
-                    )}
+                    <h3 className="font-semibold">{title}</h3>
                   </div>
-                  <h3 className="mt-5 font-semibold">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                  <p className="mt-3 text-sm leading-5 text-[var(--muted)]">
                     {detail}
                   </p>
+                  {index < 4 && (
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="decision-arrow absolute -right-[1.15rem] top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-[var(--case-band)] p-1 text-[var(--accent)] md:block"
+                      size={22}
+                    />
+                  )}
                 </article>
               ))}
             </div>
@@ -252,7 +252,7 @@ export default function EnterpriseSystemTraining() {
           </div>
         </section>
 
-        <section className="case-base px-5 py-16 sm:px-6">
+        <section className="case-base px-5 py-12 sm:px-6">
           <div className="mx-auto max-w-5xl space-y-5">
             <TrainingRecommender />
             <PracticalToolkit
