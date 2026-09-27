@@ -406,7 +406,7 @@ export default function ActivityToInsight() {
           </div>
         </section>
 
-        <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-12 sm:px-6">
           <div className="mx-auto max-w-5xl space-y-5">
             <StatementExplorer />
             <PracticalToolkit
@@ -433,10 +433,10 @@ export default function ActivityToInsight() {
             <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
               Diagnose the earliest unsupported assumption.
             </h2>
-            <div className="mt-9">
+            <div className="mt-7">
               <ReportingKnowledgeCheck />
             </div>
-            <div className="mt-8 rounded-2xl border-l-4 border-[var(--accent)] bg-[var(--accent)]/8 p-6">
+            <div className="mt-6 rounded-2xl border-l-4 border-[var(--accent)] bg-[var(--accent)]/8 p-5">
               <p className="font-semibold">Transfer it to your work</p>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                 Choose one dashboard measure you support. Write its business
