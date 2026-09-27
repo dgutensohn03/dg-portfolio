@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, Clock } from "lucide-react";
+import {
+  Activity,
+  ArrowRight,
+  Clock,
+  Network,
+  SearchCheck,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { LearnNav } from "@/components/learn/LearnShell";
 import { learnArticles } from "@/data/learn";
 
@@ -9,6 +16,27 @@ const categories = [
   "Technical Guides",
   "Visual Explainers",
 ];
+
+const articleVisuals: Record<
+  string,
+  { icon: LucideIcon; label: string; nodes: readonly string[] }
+> = {
+  "activity-to-insight": {
+    icon: Activity,
+    label: "EVENT → LRS → INSIGHT",
+    nodes: ["Act", "Store", "Use"],
+  },
+  "missing-completion": {
+    icon: SearchCheck,
+    label: "TRACE THE HANDOFF",
+    nodes: ["Source", "LRS", "Report"],
+  },
+  "enterprise-system-training": {
+    icon: Network,
+    label: "EVIDENCE → PERFORMANCE",
+    nodes: ["Need", "Practice", "Measure"],
+  },
+};
 
 export default function LearnPage() {
   return (
@@ -20,7 +48,7 @@ export default function LearnPage() {
             <p className="text-xs font-bold uppercase tracking-[.18em] text-[var(--accent)]">
               Learn
             </p>
-            <h1 className="mt-5 max-w-5xl text-[clamp(3.2rem,9vw,7rem)] font-semibold leading-[.94] tracking-[-.055em]">
+            <h1 className="mt-5 max-w-5xl text-[clamp(3rem,7vw,5.75rem)] font-semibold leading-[.94] tracking-[-.055em]">
               Make complex technology
               <br />
               <span className="text-[var(--accent)]">
@@ -46,37 +74,57 @@ export default function LearnPage() {
         </section>
         <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6 sm:py-24">
           <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-3">
-            {learnArticles.map((article) => (
+            {learnArticles.map((article) => {
+              const visual = articleVisuals[article.slug];
+              const VisualIcon = visual.icon;
+              return (
               <Link
                 key={article.slug}
                 href={`/learn/${article.slug}`}
-                className="group flex min-h-[360px] flex-col rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 transition hover:-translate-y-1 hover:border-[var(--accent)]"
+                className="learn-card group flex flex-col overflow-hidden rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] transition hover:-translate-y-1 hover:border-[var(--accent)]"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold uppercase tracking-[.12em] text-[var(--accent)]">
-                    {article.category}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs text-[var(--muted)]">
-                    <Clock size={13} />
-                    {article.readTime}
-                  </span>
+                <div className="relative min-h-40 overflow-hidden border-b border-[var(--hairline)] bg-[var(--accent)]/[.06] p-5">
+                  <div className="flex items-center justify-between text-[var(--accent)]">
+                    <VisualIcon className="learn-card-icon" size={25} />
+                    <span className="text-[11px] font-bold tracking-[.13em]">
+                      {visual.label}
+                    </span>
+                  </div>
+                  <div className="mt-10 grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2">
+                    {visual.nodes.map((node, index) => (
+                      <div key={node} className="contents">
+                        <span className="rounded-lg border border-[var(--accent)]/25 bg-[var(--case-card)] px-2 py-2 text-center text-xs font-semibold">
+                          {node}
+                        </span>
+                        {index < visual.nodes.length - 1 && (
+                          <ArrowRight aria-hidden="true" className="text-[var(--accent)]/55" size={14} />
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-auto">
-                  <p className="text-xs font-bold uppercase tracking-[.16em] text-[var(--accent)]">
-                    {article.category}
-                  </p>
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-xs font-bold uppercase tracking-[.16em] text-[var(--accent)]">
+                      {article.category}
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 text-xs text-[var(--muted)]">
+                      <Clock size={13} />
+                      {article.readTime}
+                    </span>
+                  </div>
                   <h2 className="mt-4 text-2xl font-semibold leading-tight">
                     {article.title}
                   </h2>
                   <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
                     {article.summary}
                   </p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold group-hover:text-[var(--accent)]">
-                    Open article <ArrowRight size={15} />
+                  <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold group-hover:text-[var(--accent)]">
+                    Open article <ArrowRight className="learn-card-arrow" size={15} />
                   </span>
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
         </section>
       </main>
