@@ -66,9 +66,9 @@ export default function MissingCompletion() {
             "Translate an incident into requirements, tests, ownership, and a reusable support process.",
           ]}
           sections={[
-            { href: "#decision", label: "Your decision" },
-            { href: "#evidence", label: "Investigation" },
-            { href: "#repair", label: "Repair" },
+            { href: "#decision", label: "Diagnostic decision" },
+            { href: "#evidence", label: "Evidence path" },
+            { href: "#repair", label: "Repair and prevention" },
           ]}
         />
         <section className="case-base px-5 py-16 sm:px-6 sm:py-20">
