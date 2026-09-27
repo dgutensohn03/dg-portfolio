@@ -456,7 +456,7 @@ export default function ActivityToInsight() {
             },
             {
               label: "Advanced Distributed Learning: xAPI Profiles",
-              href: "https://www.adlnet.gov/guides/xapi-profile-server/authoring-guide/Methodology.html",
+              href: "https://github.com/adlnet/xapi-profiles/blob/master/xapi-profiles-about.md",
             },
           ]}
         />
