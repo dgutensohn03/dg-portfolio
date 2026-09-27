@@ -52,7 +52,7 @@ export function ArticleHero({
         <span className="rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[.14em] text-[var(--accent)]">
           {category}
         </span>
-        <h1 className="mt-7 max-w-5xl text-[clamp(3rem,8vw,6.4rem)] font-semibold leading-[.95] tracking-[-.055em]">
+        <h1 className="mt-7 max-w-5xl text-[clamp(3rem,7vw,5.75rem)] font-semibold leading-[.95] tracking-[-.055em]">
           {title}
         </h1>
         <p className="mt-7 max-w-3xl text-lg leading-8 text-[var(--muted)] sm:text-xl">
