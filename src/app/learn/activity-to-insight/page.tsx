@@ -107,8 +107,8 @@ export default function ActivityToInsight() {
           ]}
           sections={[
             { href: "#journey", label: "Data journey" },
-            { href: "#statement", label: "Statement explorer" },
-            { href: "#practice", label: "Practice" },
+            { href: "#statement", label: "Worked statement" },
+            { href: "#practice", label: "Diagnostic practice" },
           ]}
         />
 
