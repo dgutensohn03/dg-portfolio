@@ -16,7 +16,7 @@ import {
   Eyebrow,
   LearningFrame,
   LearnNav,
-  ResourceCard,
+  PracticalToolkit,
 } from "@/components/learn/LearnShell";
 import {
   ReportingKnowledgeCheck,
@@ -407,12 +407,19 @@ export default function ActivityToInsight() {
         </section>
 
         <section className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6">
-          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.2fr_.8fr]">
+          <div className="mx-auto max-w-5xl space-y-5">
             <StatementExplorer />
-            <ResourceCard
-              title="Download the xAPI statement design checklist"
-              description="Connect a business question to a governed statement contract and validate the complete data path."
-              href="/downloads/xapi-statement-design-checklist.md"
+            <PracticalToolkit
+              title="xAPI statement design checklist"
+              description="Use the checklist here—without leaving the lesson or opening a separate file."
+              items={[
+                "Name the decision the data must support.",
+                "Define stable Actor, Verb, Object, Result, and Context identifiers.",
+                "Test the event at the source, transport, storage, transformation, and presentation layers.",
+                "Record the owner, effective date, representative statements, and change history.",
+                "Test one negative case and one realistic edge case.",
+                "Give temporary mappings an owner and retirement date.",
+              ]}
             />
           </div>
         </section>
@@ -444,12 +451,12 @@ export default function ActivityToInsight() {
           currentSlug="activity-to-insight"
           references={[
             {
-              label: "1EdTech: Experience API (xAPI) standard",
-              href: "https://www.1edtech.org/standards/xapi",
+              label: "xAPI.com: Experience API overview",
+              href: "https://xapi.com/overview/",
             },
             {
               label: "Advanced Distributed Learning: xAPI Profiles",
-              href: "https://adlnet.gov/projects/xapi-profile-server/",
+              href: "https://www.adlnet.gov/guides/xapi-profile-server/authoring-guide/Methodology.html",
             },
           ]}
         />

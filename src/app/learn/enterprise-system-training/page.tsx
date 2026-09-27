@@ -1,5 +1,6 @@
 import {
   Accessibility,
+  ArrowRight,
   BarChart3,
   BookOpenCheck,
   ClipboardList,
@@ -15,7 +16,7 @@ import {
   Eyebrow,
   LearningFrame,
   LearnNav,
-  ResourceCard,
+  PracticalToolkit,
 } from "@/components/learn/LearnShell";
 import { TrainingRecommender } from "@/components/learn/LearningInteractions";
 
@@ -175,6 +176,49 @@ export default function EnterpriseSystemTraining() {
           </div>
         </section>
 
+        <section className="case-band border-y border-[var(--hairline)] px-5 py-14 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <Eyebrow>Connect the decisions</Eyebrow>
+            <h2 className="mt-4 max-w-3xl text-2xl font-semibold sm:text-3xl">
+              Every design choice should trace back to evidence.
+            </h2>
+            <div className="mt-8 grid gap-3 lg:grid-cols-5">
+              {[
+                [
+                  "Evidence",
+                  "Observed errors, interviews, and learner context",
+                ],
+                ["Gap", "The behavior that must change"],
+                ["Objective", "The observable performance and standard"],
+                ["Practice", "A realistic decision with feedback"],
+                ["Measure", "Evidence of learning and job performance"],
+              ].map(([title, detail], index) => (
+                <article
+                  key={title}
+                  className="relative rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-5"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="grid h-9 w-9 place-items-center rounded-full bg-[var(--accent)]/10 text-sm font-bold text-[var(--accent)]">
+                      {title.charAt(0)}
+                    </span>
+                    {index < 4 && (
+                      <ArrowRight
+                        aria-hidden="true"
+                        className="hidden text-[var(--accent)]/50 lg:block"
+                        size={18}
+                      />
+                    )}
+                  </div>
+                  <h3 className="mt-5 font-semibold">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                    {detail}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section
           id="strategy"
           className="print-section case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6"
@@ -209,12 +253,19 @@ export default function EnterpriseSystemTraining() {
         </section>
 
         <section className="case-base px-5 py-16 sm:px-6">
-          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.2fr_.8fr]">
+          <div className="mx-auto max-w-5xl space-y-5">
             <TrainingRecommender />
-            <ResourceCard
-              title="Download the solution-alignment worksheet"
-              description="Define the performance gap, objective, practice, assessment, support, evaluation, and maintenance plan in one worksheet."
-              href="/downloads/learning-solution-alignment-worksheet.md"
+            <PracticalToolkit
+              title="Learning-solution alignment worksheet"
+              description="Use these prompts to keep evidence, objectives, practice, measurement, and maintenance connected."
+              items={[
+                "Audience, job task, current performance, required performance, and impact.",
+                "Evidence that confirms the gap—and whether training is actually the right response.",
+                "Observable objective with conditions and an acceptable standard.",
+                "Demonstration, practice, feedback, assessment, and moment-of-need support.",
+                "Participation, learning, on-the-job performance, and learner-experience measures.",
+                "Owner, source of truth, review trigger, version, and retirement condition.",
+              ]}
             />
           </div>
         </section>
@@ -561,7 +612,7 @@ export default function EnterpriseSystemTraining() {
             },
             {
               label: "Merrill: First Principles of Instruction",
-              href: "https://mdavidmerrill.wordpress.com/first-principles-of-instruction/",
+              href: "https://mdavidmerrill.wordpress.com/publications/first-principles-of-instruction/",
             },
             {
               label: "Kirkpatrick Partners: The Kirkpatrick Model",

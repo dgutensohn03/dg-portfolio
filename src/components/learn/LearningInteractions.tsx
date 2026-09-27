@@ -47,7 +47,10 @@ export function StatementExplorer() {
   return (
     <div className="interactive-card print-keep rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
       <div className="print-hidden">
-        <p className="text-sm font-semibold">Explore the statement</p>
+        <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
+          Interactive
+        </p>
+        <h3 className="mt-3 text-lg font-semibold">Explore the statement</h3>
         <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
           Choose a field to connect its syntax to its reporting purpose.
         </p>
@@ -121,7 +124,10 @@ export function ReportingKnowledgeCheck() {
   return (
     <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
       <div className="print-hidden">
-        <p className="text-sm font-semibold">Check your reasoning</p>
+        <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
+          Interactive
+        </p>
+        <h3 className="mt-3 text-lg font-semibold">Check your reasoning</h3>
         <p className="mt-3 text-lg font-semibold">
           A completion statement can be retrieved by actor and activity, but the
           dashboard excludes the learner. What should the team inspect next?
@@ -192,7 +198,10 @@ export function DiagnosticDecision() {
   return (
     <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
       <div className="print-hidden">
-        <p className="text-sm font-semibold">Your move</p>
+        <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
+          Interactive
+        </p>
+        <h3 className="mt-3 text-lg font-semibold">Your move</h3>
         <p className="mt-3 text-lg font-semibold">
           The experience shows Complete, but the dashboard shows Incomplete.
           What evidence would you inspect first?
@@ -274,7 +283,12 @@ export function TrainingRecommender() {
   return (
     <div className="interactive-card rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
       <div className="print-hidden">
-        <p className="text-sm font-semibold">Match support to the work</p>
+        <p className="inline-flex rounded-full bg-[var(--accent)] px-2.5 py-1 text-xs font-bold uppercase tracking-[.12em] text-white">
+          Interactive
+        </p>
+        <h3 className="mt-3 text-lg font-semibold">
+          Match support to the work
+        </h3>
         <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
           Choose an audience to see how the performance need changes the
           learning solution.

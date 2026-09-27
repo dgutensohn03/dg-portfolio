@@ -17,7 +17,7 @@ import {
   Eyebrow,
   LearningFrame,
   LearnNav,
-  ResourceCard,
+  PracticalToolkit,
 } from "@/components/learn/LearnShell";
 import { DiagnosticDecision } from "@/components/learn/LearningInteractions";
 
@@ -114,12 +114,19 @@ export default function MissingCompletion() {
           id="decision"
           className="case-band border-y border-[var(--hairline)] px-5 py-16 sm:px-6"
         >
-          <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1.2fr_.8fr]">
+          <div className="mx-auto max-w-5xl space-y-5">
             <DiagnosticDecision />
-            <ResourceCard
-              title="Download the missing-completion runbook"
-              description="A reusable evidence path, escalation package, and definition of done for support, QA, and engineering teams."
-              href="/downloads/missing-completion-runbook.md"
+            <PracticalToolkit
+              title="Missing-completion troubleshooting runbook"
+              description="Open this reusable evidence path when a learner-facing result and a report disagree."
+              items={[
+                "Preserve the source evidence before changing records.",
+                "Reproduce the event with a known test identity and timestamp.",
+                "Verify experience, transport, storage, contract, transformation, and presentation in order.",
+                "Compare the expected and received statement patterns.",
+                "Document the affected release window, population, owner, and next unverified handoff.",
+                "Close with corrected events, reconciled history, updated tests, and a retirement date for temporary rules.",
+              ]}
             />
           </div>
         </section>
@@ -371,12 +378,12 @@ export default function MissingCompletion() {
           currentSlug="missing-completion"
           references={[
             {
-              label: "1EdTech: Experience API (xAPI) standard",
-              href: "https://www.1edtech.org/standards/xapi",
+              label: "xAPI.com: Experience API overview",
+              href: "https://xapi.com/overview/",
             },
             {
               label: "Advanced Distributed Learning: xAPI Profiles",
-              href: "https://adlnet.gov/projects/xapi-profile-server/",
+              href: "https://www.adlnet.gov/guides/xapi-profile-server/authoring-guide/Methodology.html",
             },
           ]}
         />

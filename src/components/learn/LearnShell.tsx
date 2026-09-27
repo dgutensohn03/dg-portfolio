@@ -4,8 +4,9 @@ import {
   ArrowRight,
   BookOpen,
   CalendarDays,
+  ChevronDown,
+  ClipboardCheck,
   Clock3,
-  Download,
   UserRound,
 } from "lucide-react";
 import PrintButton from "./PrintButton";
@@ -131,30 +132,58 @@ export function LearningFrame({
   );
 }
 
-export function ResourceCard({
+export function PracticalToolkit({
   title,
   description,
-  href,
+  items,
 }: {
   title: string;
   description: string;
-  href: string;
+  items: string[];
 }) {
-  const basePath = process.env.NODE_ENV === "production" ? "/dg-portfolio" : "";
   return (
-    <a
-      href={`${basePath}${href}`}
-      download
-      className="print-hidden group flex items-start justify-between gap-6 rounded-2xl border border-[var(--accent)]/30 bg-[var(--accent)]/8 p-6 transition hover:border-[var(--accent)]"
-    >
-      <div>
-        <p className="text-sm font-semibold">{title}</p>
-        <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-          {description}
+    <details className="toolkit group rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] shadow-sm open:border-[var(--accent)]/40">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-5 p-5 marker:hidden sm:p-6">
+        <span className="flex items-start gap-4">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[var(--accent)]/10 text-[var(--accent)]">
+            <ClipboardCheck size={20} />
+          </span>
+          <span>
+            <span className="block text-xs font-bold uppercase tracking-[.14em] text-[var(--accent)]">
+              Practical toolkit
+            </span>
+            <span className="mt-1 block font-semibold">{title}</span>
+            <span className="mt-1 block text-sm font-normal leading-6 text-[var(--muted)]">
+              {description}
+            </span>
+          </span>
+        </span>
+        <ChevronDown
+          aria-hidden="true"
+          className="shrink-0 text-[var(--accent)] transition-transform group-open:rotate-180"
+          size={20}
+        />
+      </summary>
+      <div className="border-t border-[var(--hairline)] px-5 pb-6 pt-5 sm:px-6">
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {items.map((item) => (
+            <li
+              key={item}
+              className="flex gap-3 text-sm leading-6 text-[var(--muted)]"
+            >
+              <span
+                aria-hidden="true"
+                className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--accent)]"
+              />
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-5 text-xs text-[var(--muted)]">
+          Included automatically when you save this article as a PDF.
         </p>
       </div>
-      <Download className="shrink-0 text-[var(--accent)]" size={20} />
-    </a>
+    </details>
   );
 }
 

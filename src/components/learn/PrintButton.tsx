@@ -5,7 +5,7 @@ export default function PrintButton() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--accent)]"
+      className="inline-flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-[var(--muted)] transition hover:bg-[var(--accent)]/10 hover:text-[var(--accent)]"
     >
       <Printer size={16} />
       Save PDF
