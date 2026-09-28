@@ -282,7 +282,10 @@ export default function ActivityToInsight() {
               </div>
               <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-slate-300">
                 <code>{`{
-  "actor": { "account": { "name": "learner-482" } },
+  "actor": { "account": {
+    "homePage": "https://example.org/accounts",
+    "name": "learner-482"
+  } },
   "verb": { "id": "http://adlnet.gov/expapi/verbs/completed" },
   "object": { "id": "https://example.org/activity/safety-101" },
   "result": {
@@ -290,7 +293,7 @@ export default function ActivityToInsight() {
     "success": true,
     "score": { "scaled": 0.92 }
   },
-  "context": { "registration": "7b5f..." },
+  "context": { "registration": "7b5f8c1a-7bb9-4d6e-82e2-394ee688af21" },
   "timestamp": "2026-09-21T14:30:00Z"
 }`}</code>
               </pre>
