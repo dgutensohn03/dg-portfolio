@@ -7,7 +7,7 @@ const statementFields = [
   {
     key: "actor",
     label: "Actor",
-    code: '"actor": { "account": { "name": "learner-482" } }',
+    code: '"actor": { "account": { "homePage": "https://example.org/accounts", "name": "learner-482" } }',
     explanation:
       "A stable account identifies who performed the action without relying on a display name.",
   },
@@ -35,7 +35,7 @@ const statementFields = [
   {
     key: "context",
     label: "Context",
-    code: '"context": { "registration": "7b5f..." }',
+    code: '"context": { "registration": "7b5f8c1a-7bb9-4d6e-82e2-394ee688af21" }',
     explanation:
       "Registration connects the event to one attempt or enrollment so records can be interpreted together.",
   },
