@@ -36,7 +36,7 @@ export const learnArticles: LearnArticle[] = [
     category: "Case Study",
     title: "Designing Training for a Complex Enterprise System",
     summary:
-      "A senior-level look at needs analysis, measurable objectives, instructional strategy, accessibility, content governance, and continuous improvement.",
+      "Follow one administrator support scenario from performance evidence through practice, assessment, and maintained job support.",
     readTime: "12 min",
   },
 ];
