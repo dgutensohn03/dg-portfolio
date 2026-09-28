@@ -95,7 +95,7 @@ export default function EnterpriseSystemTraining() {
                 One platform served people with very different responsibilities.
               </h2>
               <p className="mt-6 leading-7 text-[var(--muted)]">
-                The representative platform combined authentication,
+                This representative scenario combines authentication,
                 personalized content, progress tracking, challenges,
                 notifications, and administrative reporting. A
                 feature-by-feature tour would have overwhelmed new users while
@@ -308,6 +308,29 @@ export default function EnterpriseSystemTraining() {
                 </p>
               </div>
             </div>
+          </div>
+          <div className="mx-auto mt-12 max-w-6xl rounded-3xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8">
+            <Eyebrow>Worked alignment · administrator access issue</Eyebrow>
+            <h3 className="mt-3 text-2xl font-semibold">Trace one problem from evidence to support.</h3>
+            <p className="mt-4 max-w-3xl leading-7 text-[var(--muted)]">
+              In this illustrative scenario, a learner reports that a required activity is locked. The administrator must decide whether the cause is an unmet prerequisite, an access setting, or a reporting delay before changing any record.
+            </p>
+            <dl className="mt-6 grid gap-4 md:grid-cols-2">
+              {[
+                ["Evidence to inspect", "Support tickets and observed attempts show where administrators misread status or override a valid prerequisite."],
+                ["Objective", "Given a learner record and an access report, identify the blocking condition and select a support action without changing valid completion history."],
+                ["Practice and feedback", "Compare status, prerequisite, and access views in a simulated case. Choose a next action; feedback explains the evidence that supports or rules out each choice."],
+                ["Assessment and job support", "Resolve a second case without prompts and explain the reason. Keep a short decision guide available in the support workflow for infrequent exceptions."],
+              ].map(([label, detail]) => (
+                <div key={label} className="rounded-xl border border-[var(--hairline)] p-5">
+                  <dt className="font-semibold">{label}</dt>
+                  <dd className="mt-2 text-sm leading-6 text-[var(--muted)]">{detail}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-6 text-sm leading-6 text-[var(--muted)]">
+              <b className="text-[var(--fg)]">Evaluate the transfer:</b> review case explanations and the pattern of repeat access tickets after launch. A decline alone would not establish causation; compare the same issue types and check for product or policy changes.
+            </p>
           </div>
         </section>
 
@@ -572,7 +595,7 @@ export default function EnterpriseSystemTraining() {
 
         <section className="print-section case-band border-y border-[var(--hairline)] px-5 py-20 sm:px-6">
           <div className="mx-auto max-w-6xl">
-            <Eyebrow>Senior takeaway</Eyebrow>
+            <Eyebrow>What the design produces</Eyebrow>
             <h2 className="mt-5 max-w-4xl text-3xl font-semibold sm:text-5xl">
               The deliverable is a performance system, not a pile of courses.
             </h2>
