@@ -61,17 +61,6 @@ export default function AppShell() {
         </section>
 
         <section
-          id="learn"
-          className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-20 md:pb-28 md:snap-start"
-        >
-          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center">
-            <FadeSection>
-              <LearnFeature />
-            </FadeSection>
-          </div>
-        </section>
-
-        <section
           id="about"
           className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-12 md:pb-0 md:snap-start"
         >
@@ -93,6 +82,17 @@ export default function AppShell() {
           </div>
 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-bg to-transparent opacity-3" />
+        </section>
+
+        <section
+          id="learn"
+          className="relative flex min-h-[calc(100vh-60px)] min-h-[calc(100dvh-60px)] pt-15 pb-20 md:pb-28 md:snap-start"
+        >
+          <div className="w-full px-6 sm:px-16 md:px-20 lg:px-28 xl:px-40 mx-auto flex items-center justify-center">
+            <FadeSection>
+              <LearnFeature />
+            </FadeSection>
+          </div>
         </section>
 
         <section
