@@ -42,6 +42,11 @@ const articleVisuals: Record<
     label: "DESIGN PATH",
     nodes: ["Evidence", "Practice", "Measure"],
   },
+  "working-smarter-with-ai": {
+    icon: SearchCheck,
+    label: "PROMPT PATH",
+    nodes: ["Question", "Context", "Improve"],
+  },
 };
 
 export default function LearnPage() {
