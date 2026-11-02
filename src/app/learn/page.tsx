@@ -82,7 +82,7 @@ export default function LearnPage() {
                 {categories.map((x) => <button key={x} type="button" onClick={() => setCategory(x)}
                   aria-pressed={category === x}
                   className={`rounded-full border px-3.5 py-2 text-xs font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${category === x ? "border-[var(--accent)] bg-[var(--accent)] text-white" : "border-[var(--hairline)] text-[var(--muted)] hover:border-[var(--accent)]"}`}>
-                  {x === "All" ? "All articles" : x + "s"}
+                  {x === "All" ? "All articles" : x === "Case Study" ? "Case Studies" : x === "Tutorial" ? "Tutorials" : x === "Technical Guide" ? "Technical Guides" : "Visual Explainers"}
                 </button>)}
               </div>
             </div>
