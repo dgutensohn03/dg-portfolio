@@ -4,6 +4,8 @@ export type LearnArticle = {
   title: string;
   summary: string;
   readTime: string;
+  publishedAt?: string;
+  author?: string;
 };
 
 export const learnArticles: LearnArticle[] = [
@@ -41,9 +43,11 @@ export const learnArticles: LearnArticle[] = [
   },
   {
     slug: "working-smarter-with-ai",
+    publishedAt: "2026-11-02",
+    author: "Daniel Gutensohn",
     category: "Tutorial",
     title: "Working Smarter with AI: Better Questions, Better Answers",
-    summary: "A friendly guide to more useful AI conversations, with concrete prompts, common mistakes, and a hands-on Prompt Makeover challenge. By Daniel Gutensohn · November 2, 2026.",
+    summary: "A friendly guide to better AI conversations, with examples, common mistakes, and a hands-on Prompt Makeover challenge.",
     readTime: "12 min",
   },
 ];
