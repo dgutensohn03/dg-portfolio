@@ -39,4 +39,11 @@ export const learnArticles: LearnArticle[] = [
       "Follow one administrator support scenario from performance evidence through practice, assessment, and maintained job support.",
     readTime: "12 min",
   },
+  {
+    slug: "working-smarter-with-ai",
+    category: "Tutorial",
+    title: "Working Smarter with AI: Better Questions, Better Answers",
+    summary: "A friendly guide to more useful AI conversations, with concrete prompts, common mistakes, and a hands-on Prompt Makeover challenge. By Daniel Gutensohn · November 2, 2026.",
+    readTime: "12 min",
+  },
 ];
