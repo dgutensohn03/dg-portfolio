@@ -81,6 +81,21 @@ export default function Projects() {
           </p>
         </motion.div>
 
+        <div className="mb-10 rounded-2xl border border-[var(--hairline)] bg-[var(--case-card)] p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-xl">
+              <p className="text-xs font-bold uppercase tracking-[.2em] text-[var(--accent)]">Featured frontend case study</p>
+              <h3 className="mt-3 text-2xl sm:text-3xl font-bold text-[var(--fg)]">LRS Analytics Dashboard</h3>
+              <p className="mt-3 text-[var(--muted)] leading-7">See how I designed the React and TypeScript component architecture, reusable charts, and data-filtering experience behind an interactive learning analytics dashboard.</p>
+              <p className="mt-2 text-sm text-[var(--muted)]">The original client project is private; the public demo uses synthetic records.</p>
+            </div>
+            <div className="flex shrink-0 flex-col gap-3">
+              <a href="/dg-portfolio/lrs-analytics-case-study/" className="inline-flex items-center justify-center rounded-lg bg-[var(--accent)] px-5 py-3 text-sm font-bold text-white hover:opacity-90">Read the case study →</a>
+              <a href="https://dgutensohn03.github.io/LRS-Analytics/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-lg border border-[var(--hairline)] px-5 py-3 text-sm font-semibold text-[var(--fg)] hover:border-[var(--accent)]">Try the live demo ↗</a>
+            </div>
+          </div>
+        </div>
+
         <AILifecycleFeature />
 
         <motion.div
