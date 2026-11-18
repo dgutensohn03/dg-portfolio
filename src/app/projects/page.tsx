@@ -14,6 +14,7 @@ const companion = {
   title: "InsureOps — Insurance Operations Platform",
   role: "Full-Stack .NET Engineer",
   shortDescription: "An interactive operations system demonstrating editable domain workflows, calculated metrics, and browser testing.",
+  description: "An operations dashboard with editable workflows and calculated portfolio metrics.",
   link: "/insurance-operations/",
   github: "https://github.com/dgutensohn03/dotnet-insurance-dashboard",
   image: "./images/projects/insurance/insureops-dashboard-card.svg",
