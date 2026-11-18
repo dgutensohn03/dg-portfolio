@@ -1,0 +1,40 @@
+name: Preview recruiter-first portfolio
+
+on:
+  push:
+    branches:
+      - redesign/recruiter-first-portfolio
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recruiter-first-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out redesign branch
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build isolated preview
+        env:
+          NEXT_PUBLIC_BASE_PATH: /dg-portfolio/preview
+        run: npm run build
+      - name: Publish preview under /preview without replacing the live site
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          destination_dir: preview
+          keep_files: true
