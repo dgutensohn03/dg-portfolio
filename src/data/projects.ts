@@ -90,11 +90,11 @@ export const projects: Project[] = [
 
   {
     id: "learning-analytics-platform",
-    title: "Learning Analytics Platform",
+    title: "LRS Analytics — Interactive React Dashboard",
     client: "Multiple Clients",
-    role: "Full-Stack Engineer",
+    role: "Frontend / Full-Stack Engineer",
     shortDescription:
-      "Cloud-based analytics system capturing learner interactions across Storyline and Lectora courses, with a secure multi-client React dashboard.",
+      "An interactive React and TypeScript analytics dashboard, with reusable UI components, Plotly visualizations, data filtering, and a public demo.",
     description:
       "Built a full-stack learning analytics platform integrating with Storyline and Lectora courses. Google Cloud Functions captured user progress, activity interactions, assessment stats, hyperlink and document clicks. Data fed into a React/TypeScript dashboard with role-based access via Microsoft 365 OAuth, supporting multiple clients and courses. Visualizations provided actionable insights for course improvements.",
     problem:
@@ -133,6 +133,8 @@ export const projects: Project[] = [
       "Secure, multi-tenant architecture increases client confidence",
       "Event tracking across tools drives data-informed course design"
     ],
+    link: "/dg-portfolio/lrs-analytics-case-study/",
+    github: "https://github.com/dgutensohn03/LRS-Analytics",
     image: "./images/projects/analytics/learning-analytics-thumb.jpg",
     featured: true,
     category: "enterprise",
